@@ -8,7 +8,7 @@ export default function EmotionPage() {
     // 기준으로 위는 js 작성
     // 아래로는 jsx(React HTML) 작성
     return(
-        // div로 감싸지 않고 그대로 내보내고 싶을때 (Pragment)
+        // div로 감싸지 않고 그대로 내보내고 싶을때 (<>Pragment)
         <MyWrapper>
             <MyDiv>로그인</MyDiv>
             <MyInfo>
