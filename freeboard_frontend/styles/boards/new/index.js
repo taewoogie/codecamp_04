@@ -313,6 +313,7 @@ export const FooterBtn = styled.button`
     margin-bottom : 100px;
     background-color: #FFD600;
     border : 0px;
+    cursor: pointer;
     
 `
 
