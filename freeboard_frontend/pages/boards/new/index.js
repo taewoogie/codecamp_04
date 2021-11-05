@@ -1,5 +1,6 @@
 import { useState } from "react";
-import {useMutation, gql} from '@apollo/client'
+import { useMutation, gql} from '@apollo/client';
+import { useRouter } from 'next/router'
 import { Container, 
          Wrapper, 
          Title,
@@ -33,7 +34,7 @@ import { Container,
          } from "../../../styles/boards/new";
          
 
-const CRERATE_BOARD = gql`
+const CREATE_BOARD = gql`
     mutation createBoard( $createBoardInput : CreateBoardInput!) {
 
         createBoard(createBoardInput : $createBoardInput) {
@@ -47,8 +48,11 @@ const CRERATE_BOARD = gql`
           
 
 export default function indexPage(){
+    
+    const router = useRouter();
+    
 
-    const [createBoard] = useMutation(CRERATE_BOARD)
+    const [createBoard] = useMutation(CREATE_BOARD)
 
     const [ writer          , setWriter ]          = useState("");
     const [ writerErr       , setWriterErr ]       = useState("");
@@ -129,20 +133,27 @@ export default function indexPage(){
 
         if(writer !== "" && password !== "" && boardTitle !== "" && boardContent !== "") {
             
-            
-            const result = await createBoard({
-                variables : {
-                    createBoardInput: {
-                        writer    : writer,
-                        password  : password,
-                        title     : boardTitle,
-                        contents  : boardContent
+            try{
+                const result = await createBoard({
+                    variables : {
+                        createBoardInput: {
+                            writer    : writer,
+                            password  : password,
+                            title     : boardTitle,
+                            contents  : boardContent
+                        }
                     }
-                }
-            });
-            console.log(result);
-            console.log(result.data.createBoard.message);
-            alert('게시물이 등록 되었습니다!');
+                });
+                console.log(result);
+                console.log(result.data.createBoard.message);
+                alert('게시물이 등록 되었습니다!');
+
+                // 상세 페이지로 이동
+                router.push(`/boards/detail/${result.data.createBoard._id}`);
+
+            }catch(error){
+                console.log(error.message)
+            }
         }
 
     }
