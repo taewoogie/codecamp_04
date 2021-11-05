@@ -2,18 +2,17 @@ import styled from '@emotion/styled'
 
 // 최상위 JSX 영역
 export const Container = styled.div`
-    /* background-color: Lightgray; */
+    /* background-color: black; */
     margin: 60px 60px;
     width: 1200px;
     display: flex;
     justify-content: center;
     box-shadow: 0px 0px 10px gray;
     border-radius: 20px;
-
 `
 // JSX의 내용 전체 영역
 export const Wrapper = styled.div`
-    /* background-color: beige; */
+    /* background-color: blueviolet; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,37 +34,25 @@ export const Title = styled.div`
 
 // Form Title
 export const FormTitle = styled.label`
-    /* background-color: grey; */
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 75px;
-    border-bottom: 1px solid #BDBDBD;
-
-`
-
-export const TitleText = styled.div`
-        margin-left: 10px;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 16px;
 `
 
 // 작성자 + 비밀번호 Wrapper
 export const HeaderWrapper = styled.div`
     display: flex;
-    /* justify-content: space-between; */
-    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     margin-bottom: 40px;
 `
 
 // 작성자 title wrapper
 export const HeaderWrapper_left = styled.div`
-    display: flex;
-    /* background-color: red; */
-    height: 100%;
-    width: 100%;
-    float: right;
-    /* line-height: 50px; */
+
 `
 
 // 작성자

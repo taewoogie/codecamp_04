@@ -3,7 +3,12 @@ import styled from '@emotion/styled'
 // 최상위 JSX 영역
 export const Container = styled.div`
     /* background-color: black; */
-    margin: 60px 100px;
+    margin: 60px 60px;
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 20px;
 `
 // JSX의 내용 전체 영역
 export const Wrapper = styled.div`
@@ -12,6 +17,7 @@ export const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     width: 996px;
+    /* box-shadow: 0px 0px 10px gray; */
     
 `
 // 페이지명
@@ -22,17 +28,27 @@ export const Title = styled.div`
     font-size: 36px;
     line-height: 53px;
     text-align: center;
-    margin-bottom: 79px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 `
 
 // Form Title
 export const FormTitle = styled.label`
+
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 16px;
+    line-height: 30px;
+    margin-top: 20px;
+    /* margin-bottom: 20px; */
+`
+
+export const TitleText = styled.div`
+    /* background-color: grey; */
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 `
 
 // 작성자 + 비밀번호 Wrapper
@@ -45,19 +61,23 @@ export const HeaderWrapper = styled.div`
 
 // 작성자 title wrapper
 export const HeaderWrapper_left = styled.div`
-
+    border: 1px dotted grey;
+    border-radius : 15px;
 `
 
 // 작성자
 export const Writer = styled.input`
     /* margin-top: 10px; */
+    border : none;
+    border-radius: 15px;
+
     width : 486px;
     height: 52px;
-    margin-top: 10px;
+    margin-top: 7px;
 
     background: #FFFFFF;
     /* Gray 4 */
-    border: 1px solid #BDBDBD;
+    /* border: 1px solid #BDBDBD; */
     box-sizing: border-box;
 
     font-family: Noto Sans CJK KR;
@@ -71,18 +91,22 @@ export const Writer = styled.input`
 
 // 비밀번호 title wrapper
 export const HeaderWrapper_right = styled.div`
-
+    border: 1px dotted grey;
+    border-radius : 15px;
 `
 
 // 비밀번호
 export const Password = styled.input`
-    margin-top: 10px;
+    border : none;
+    border-radius: 15px;
+    margin-top: 7px;
+
     width : 486px;
     height: 52px;
 
     background: #FFFFFF;
     /* Gray 4 */
-    border: 1px solid #BDBDBD;
+    /* border: 1px solid #BDBDBD; */
     box-sizing: border-box;
 
     font-family: Noto Sans CJK KR;
@@ -96,6 +120,9 @@ export const Password = styled.input`
 
 // 게시글 Wrapper 
 export const BoardTitleWrapper = styled.div`
+    border: 1px dotted gray;
+    border-radius: 15px;
+
     display: flex;
     /* justify-content: space-between; */
     flex-direction: column;
@@ -105,12 +132,17 @@ export const BoardTitleWrapper = styled.div`
 
 // 게시글 - 제목
 export const BoardTitle = styled.input`
-    width: 996px;
+    
+    border: none;
+    border-radius: 15px;
+    margin-top: 7px;
+    
+    width: 994px;
     height: 52px;
 
     background: #FFFFFF;
     /* Gray 4 */
-    border: 1px solid #BDBDBD;
+    /* border: 1px solid #BDBDBD; */
     box-sizing: border-box;
 
     font-family: Noto Sans CJK KR;
@@ -124,6 +156,11 @@ export const BoardTitle = styled.input`
 
 // 내용 Wrapper
 export const BoardContentWrapper = styled.div`
+    border: 1px dotted gray;
+    border-radius: 15px;
+
+
+
     display: flex;
     /* justify-content: space-between; */
     flex-direction: column;
@@ -133,12 +170,16 @@ export const BoardContentWrapper = styled.div`
 
 // 게시글 - 내용
 export const BoardContent = styled.input`
-    width: 996px;
+    border : none;
+    border-radius: 15px;
+    margin-top: 7px;
+    
+    width: 994px;
     height: 480px;
 
     background: #FFFFFF;
     /* Gray 4 */
-    border: 1px solid #BDBDBD;
+    /* border: 1px solid #BDBDBD; */
     box-sizing: border-box;
 
     font-family: Noto Sans CJK KR;
@@ -162,11 +203,14 @@ export const AddressWrapper = styled.div`
 
 // 주소 우편번호 검색 Wrapper
 export const MainAddressWrapper = styled.div`
-    margin-bottom: 16px;
+    margin-top: 7px;
+    margin-bottom: 15px;
 `
 
 // 주소 - 우편번호
 export const AddressNum = styled.input`
+    border-radius : 15px;
+
     width: 77px;
     height: 52px;
     text-align: center;
@@ -182,6 +226,8 @@ export const AddressNum = styled.input`
 `
 
 export const AddressNumSearch = styled.button`
+    border-radius: 15px;
+
     width : 124px;
     height: 52px;
     margin-left: 16px;
@@ -202,13 +248,16 @@ export const SubAddressWrapper = styled.div`
 
 // 주소 - 상세주소
 export const AddressSub = styled.input`
+    border-radius: 15px;
+    padding: 14px 14px;
+
     width: 996px;
     height: 52px;
-    margin-bottom:30px;
+    margin-bottom:15px;
 
     background: #FFFFFF;
     /* Gray 4 */
-    border: 1px solid #BDBDBD;
+    border: 1px dotted grey;
     box-sizing: border-box;
 
     font-family: Noto Sans CJK KR;
@@ -219,17 +268,29 @@ export const AddressSub = styled.input`
 `
 // 주소 - 상세주소
 export const AddressSub2 = styled.input`
+    border-radius: 15px;
+    padding: 14px 14px;
+
     width: 996px;
     height: 52px;
 
     background: #FFFFFF;
     /* Gray 4 */
-    border: 1px solid #BDBDBD;
+    border: 1px dotted grey;
     box-sizing: border-box;
+    font-family: Noto Sans CJK KR;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
 `
 
 // 유튜브 Wrapper
 export const UtubeWrapper = styled.div`
+    border: 1px dotted gray;
+    border-radius: 15px;
+    margin-bottom: 20px;
+
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -237,29 +298,43 @@ export const UtubeWrapper = styled.div`
 
 // 유튜브 링크
 export const UtubeLink = styled.input`
-    width: 996px;
+    border-radius: 15px;
+    border:none;
+    width: 994px;
     height: 46px;
-    margin-bottom: 40px;
+    margin-top: 7px;
 
     background: #FFFFFF;
     /* Gray 4 */
-    border: 1px solid #BDBDBD;
+    /* border: 1px solid #BDBDBD; */
     box-sizing: border-box;
     padding: 14px 14px;
+
+    font-family: Noto Sans CJK KR;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
 `
 
 // 사진첨부
 export const PhotoWrapper = styled.div`
+    border: 1px dotted gray;
+    border-radius: 15px;
+
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 20px;
 `
 
 // 사진첨부 List Wrapper
 export const PhotoListWrapper = styled.div`
     display:flex;
     width: 100%;
-    margin-bottom : 40px;
+    margin-top: 7px;
+
+    padding: 14px 14px;
 `
 
 // 사진첨부 List
@@ -281,20 +356,25 @@ export const PhotoList = styled.div`
 
 // 메인설정
 export const MainSettingWrapper = styled.div`
+    border: 1px dotted gray;
+    border-radius: 15px;
+
     display: flex;
     flex-direction: column;
     width: 100%;
+    
     margin-bottom : 80px;
 `
 
 // 메인설정 - 선택 Wrapper
 export const MainSettingItemWrapper = styled.div`
-
+    margin-top: 7px;
+    padding: 14px 14px;
 `
 
 // 메인설정 - 선택
 export const MainSettingItem = styled.input`
-
+    
 `
 
 // 등록하기 Wrapper

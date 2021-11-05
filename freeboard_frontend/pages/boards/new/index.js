@@ -30,8 +30,11 @@ import { Container,
          MainSettingItem,
          FooterWrapper,
          FooterBtn,
-         ErrMessage
+         ErrMessage,
+         MainSettingItemWrapper,
+         TitleText
          } from "../../../styles/boards/new";
+// import { TitleText } from "../../../styles/boards/new";
          
 
 const CREATE_BOARD = gql`
@@ -170,59 +173,51 @@ export default function indexPage(){
                     {/* body */}
                     <HeaderWrapper>
                         <HeaderWrapper_left>
-                            <FormTitle>작성자</FormTitle>
-                            <div>
-                                <Writer type="text" placeholder="이름을 적어주세요." onChange={WriterChk}/>
-                            </div>
+                            <TitleText>작성자</TitleText>
+                            <Writer type="text" placeholder="이름을 적어주세요." onChange={WriterChk}/>
                             <ErrMessage>{writerErr}</ErrMessage>
                         </HeaderWrapper_left>
                         
                         <HeaderWrapper_right>
-                            <FormTitle>비밀번호</FormTitle>
-                            <div>
-                                <Password type="password" placeholder="비밀번호를 입력해주세요." onChange={PasswordChk} />
-                            </div>
+                            <TitleText>비밀번호</TitleText>
+                            <Password type="password" placeholder="비밀번호를 입력해주세요." onChange={PasswordChk} />
                             <ErrMessage>{passwordErr}</ErrMessage>
                         </HeaderWrapper_right>
                     </HeaderWrapper>
 
                     <BoardTitleWrapper>
-                        <FormTitle>제목</FormTitle>
-                        <div>
-                            <BoardTitle type="text" placeholder="제목을 작성해주세요." onChange={BoardTitleChk} />
-                        </div>
+                        <TitleText>제목</TitleText>
+                        <BoardTitle type="text" placeholder="제목을 작성해주세요." onChange={BoardTitleChk} />
                         <ErrMessage>{boardTitleErr}</ErrMessage>
                     </BoardTitleWrapper>
 
                     <BoardContentWrapper>
-                        <FormTitle>내용</FormTitle>
-                        <div>
-                            <BoardContent type="textarea" placeholder="내용을 작성해주세요." onChange={BoardContentChk} />
-                        </div>
+                        <TitleText>내용</TitleText>
+                        <BoardContent type="textarea" placeholder="내용을 작성해주세요." onChange={BoardContentChk} />
                         <ErrMessage>{boardContentErr}</ErrMessage>
                     </BoardContentWrapper>
 
                     <AddressWrapper>
-                        <FormTitle>주소</FormTitle>
+                        <TitleText>주소</TitleText>
                         <MainAddressWrapper>
                             <AddressNum type="text" disabled placeholder="07250" />
                             <AddressNumSearch >우편번호 검색</AddressNumSearch>
                         </MainAddressWrapper>
                         <SubAddressWrapper>
-                            <AddressSub type="text" />
-                            <AddressSub2 type="text" />
+                            <AddressSub type="text" placeholder="상세주소를 입력해주세요" />
+                            <AddressSub2 type="text" placeholder="상세주소를 입력해주세요" />
                         </SubAddressWrapper>
                     </AddressWrapper>
 
                     <UtubeWrapper>
-                        <FormTitle>유튜브</FormTitle>
-                        <div>
-                            <UtubeLink type="text" placeholder="링크를 복사해주세요." />
-                        </div>
+                        <TitleText>유튜브</TitleText>
+                        <UtubeLink type="text" placeholder="링크를 복사해주세요." />
+                        {/* <div>
+                        </div> */}
                     </UtubeWrapper>
 
                     <PhotoWrapper>
-                        <FormTitle>사진첨부</FormTitle>
+                        <TitleText>사진첨부</TitleText>
                         <PhotoListWrapper>
                             <PhotoList>Upload</PhotoList>
                             <PhotoList>Upload</PhotoList>
@@ -231,11 +226,11 @@ export default function indexPage(){
                     </PhotoWrapper>
 
                     <MainSettingWrapper>
-                        <FormTitle>메인 설정</FormTitle>
-                        <div>
+                        <TitleText>메인 설정</TitleText>
+                        <MainSettingItemWrapper>
                             <MainSettingItem type="radio" id="contents" /> 유튜브
                             <MainSettingItem type="radio" id="contents" /> 사진
-                        </div>
+                        </MainSettingItemWrapper>
                     </MainSettingWrapper>
 
 
