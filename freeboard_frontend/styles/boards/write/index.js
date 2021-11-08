@@ -137,7 +137,7 @@ export const BoardTitle = styled.input`
     border-radius: 15px;
     margin-top: 7px;
     
-    width: 994px;
+    width: 992px;
     height: 52px;
 
     background: #FFFFFF;
@@ -174,7 +174,7 @@ export const BoardContent = styled.input`
     border-radius: 15px;
     margin-top: 7px;
     
-    width: 994px;
+    width: 992px;
     height: 480px;
 
     background: #FFFFFF;
@@ -300,7 +300,7 @@ export const UtubeWrapper = styled.div`
 export const UtubeLink = styled.input`
     border-radius: 15px;
     border:none;
-    width: 994px;
+    width: 992px;
     height: 46px;
     margin-top: 7px;
 

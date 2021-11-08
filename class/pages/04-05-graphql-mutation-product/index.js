@@ -16,10 +16,10 @@ export default function GraphqlMutationProductPage(){
     
     const [createProduct] = useMutation(CRERATE_PRODUCT)
 
-    const [Seller, setSeller] = useState("")
-    const [ProductName, setProductName] = useState("")
+    const [Seller         , setSeller]          = useState("")
+    const [ProductName    , setProductName]     = useState("")
     const [ProductContents, setProductContents] = useState("")
-    const [ProductPrice, setProductPrice] = useState("")
+    const [ProductPrice   , setProductPrice]    = useState("")
 
     const onChangeSeller = (event) => {
         setSeller(event.target.value);

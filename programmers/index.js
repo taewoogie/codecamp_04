@@ -116,9 +116,9 @@ function makeNumber(num) {
 
 	for(let i=1; i<=num; i++){
         if(i < num){
-        str =  str + i + '-'
+        	str =  str + i + '-'
         } else {
-        str =  str + i 
+        	str =  str + i 
         }
 	}
 }
@@ -169,16 +169,16 @@ function grade(score) {
 // 15. 반복문 : 마이페이지
 
 const myShopping = [
-	{ category: "과일", price: 12000　},
-	{ category: "의류", price:10000　 },
-	{ category: "의류", price: 20000　},
-	{ category: "장난감", price: 9000 },
-	{ category: "과일", price: 5000　 },
-	{ category: "의류", price: 10000  },
-	{ category: "과일", price: 8000　　},
-	{ category: "의류", price: 7000　　},
-	{ category: "장난감", price: 5000  },
-	{ category: "의류", price: 10000　 },
+	{ category: "과일"  , price: 12000　},
+	{ category: "의류"  , price:10000　 },
+	{ category: "의류"  , price: 20000　},
+	{ category: "장난감" , price: 9000 },
+	{ category: "과일"  , price: 5000　 },
+	{ category: "의류"  , price: 10000  },
+	{ category: "과일"  , price: 8000　　},
+	{ category: "의류"  , price: 7000　　},
+	{ category: "장난감" , price: 5000  },
+	{ category: "의류"  , price: 10000　 },
 ]
 
 let count , price = 0;
@@ -204,3 +204,45 @@ if( 0 <= count <= 2 ) {
 console.log("의류를 구매한 횟수는 총 " + count + "회 금액은" + price + "원이며 등급은" + grade + "입니다."
 
 )
+
+// 2주차 월요일
+
+// 16. 문자열을 정수로 바꾸기
+function solution(s) {
+    
+    return Number(s);
+}
+
+// 17. 같은 숫자는 싫어
+function solution(arr) {
+    var answer = [];
+
+    for(let i=0; i<arr.length; i++){
+        if( arr[i] !== arr[i+1] ) {
+            answer.push(arr[i]);
+        }
+    }
+    return answer;
+}
+
+// 18. 핸드폰 번호 가리기
+function solution(phone_number) {
+    var answer = '';
+
+
+	// 방법 1
+	// answer = answer.padStart(phone_number.length-4,"*");
+    // answer += phone_number.slice(phone_number.length-4, phone_number.length);
+
+
+	// 방법 2
+    for (let i=0; i<phone_number.length; i++){
+       if(i < phone_number.length-4){
+           answer += '*'
+       } else {
+           answer += phone_number[i]
+       }
+        
+    }
+    return answer;
+}
