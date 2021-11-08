@@ -391,7 +391,7 @@ export const FooterBtn = styled.button`
     width: 179px;
     height: 52px;
     margin-bottom : 100px;
-    background-color: #FFD600;
+    background-color: ${(props) => props.backColor === true ? 'yellow' : 'whiteGray'};
     border : 0px;
     cursor: pointer;
     

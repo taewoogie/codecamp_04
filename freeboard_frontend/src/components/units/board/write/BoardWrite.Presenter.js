@@ -108,7 +108,7 @@ export default function BoardWritePresenter(props){
             {/* footer */}
             <FooterWrapper>
                 <div>
-                    <FooterBtn onClick={props.RegisterConfirm} >등록하기</FooterBtn>
+                    <FooterBtn onClick={props.RegisterConfirm} backColor={props.backColor}>등록하기</FooterBtn>
                 </div>
             </FooterWrapper>
         </Wrapper>

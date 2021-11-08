@@ -1,8 +1,8 @@
-import BoardWritePresenter from './BoardWrite.Presenter'
+import BoardWritePresenter from './BoardWrite.Presenter';
 import { useMutation }     from '@apollo/client';
 import { useState }        from 'react';
-import { useRouter }       from 'next/router'
-import { CREATE_BOARD }    from './BoardWrite.Queries'
+import { useRouter }       from 'next/router';
+import { CREATE_BOARD }    from './BoardWrite.Queries';
 
 export default function BoardWriteContainer(){
 
@@ -11,37 +11,62 @@ export default function BoardWriteContainer(){
 
     const [createBoard] = useMutation(CREATE_BOARD)
 
-    const [ writer          , setWriter ]          = useState("");
-    const [ writerErr       , setWriterErr ]       = useState("");
-    const [ password        , setPassword ]        = useState("");
-    const [ passwordErr     , setPasswordErr ]     = useState("");
-    const [ boardTitle      , setBoardTitle ]      = useState("");
-    const [ boardTitleErr   , setBoardTitleErr ]   = useState("");
-    const [ boardContent    , setBoardContent ]    = useState("");
+    const [ writer          , setWriter          ] = useState("");
+    const [ writerErr       , setWriterErr       ] = useState("");
+    const [ password        , setPassword        ] = useState("");
+    const [ passwordErr     , setPasswordErr     ] = useState("");
+    const [ boardTitle      , setBoardTitle      ] = useState("");
+    const [ boardTitleErr   , setBoardTitleErr   ] = useState("");
+    const [ boardContent    , setBoardContent    ] = useState("");
     const [ boardContentErr , setBoardContentErr ] = useState("");
+    const [ backColor       , setBackColor       ] = useState(false);
 
     const WriterChk = (event) => {
+        const writerTarget = event.target.value;
         setWriter(event.target.value);
         if(setWriter(event.target.value) !== "") 
             setWriterErr("");
+
+        btnBackColor(writerTarget , password , boardTitle , boardContent);    
     }
 
     const PasswordChk = (event) => {
+        const passwordTarget = event.target.value
         setPassword(event.target.value);
         if(setPassword(event.target.value) !== "") 
             setPasswordErr("");
+        
+        btnBackColor(writer, passwordTarget, boardTitle , boardContent);
     }
 
     const BoardTitleChk = (event) => {
+        const boardTitleTarget = event.target.value;
         setBoardTitle(event.target.value);
         if(setBoardTitle(event.target.value) !== "") 
             setBoardTitleErr("");
+
+        btnBackColor(writer, password, boardTitleTarget, boardContent);
     }
 
     const BoardContentChk = (event) => {
+        const boardContentTarget = event.target.value;
         setBoardContent(event.target.value);
         if(setBoardContent(event.target.value) !== "")
             setBoardContentErr("");
+
+        btnBackColor( writer, password, boardTitle, boardContentTarget);
+    }
+
+    const btnBackColor = (writerTarget , passwordTarget, boardTitleTarget, boardContentTarget) => {
+
+        console.log("SetBackColor : " +  backColor );
+
+        if(writerTarget !== '' && passwordTarget !== '' && boardTitleTarget !== '' && boardContentTarget !== '') {
+            setBackColor(true);
+        } else {
+            setBackColor(false);
+        }
+
     }
     
     const RegisterConfirm = async () => {
@@ -55,7 +80,7 @@ export default function BoardWriteContainer(){
         // }
         if(writer === "") {
             setWriterErr("작성자명을 입력해주세요.");
-        } 
+        }
         
         // if (password.length === 0) {
         //     setPasswordErr("비밀번호를 입력해주세요.");
@@ -124,6 +149,7 @@ export default function BoardWriteContainer(){
                              passwordErr     = {passwordErr}
                              boardTitleErr   = {boardTitleErr}
                              boardContentErr = {boardContentErr}
+                             backColor       = {backColor}
 
 
 
