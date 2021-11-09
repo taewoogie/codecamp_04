@@ -1,4 +1,4 @@
-import { gql } from "graphql-tag"
+import { gql } from "@apollo/client"
 
 export const FETCH_BOARD = gql`
 query fetchBoard ( $boardId : ID! ) {
@@ -9,4 +9,10 @@ query fetchBoard ( $boardId : ID! ) {
         contents
     }
 }
-`
+`;
+
+export const DELETE_BOARD = gql`
+    mutation deleteBoard ( $boardId : ID!) {
+        deleteBoard ( boardId : $boardId)
+    }
+`;

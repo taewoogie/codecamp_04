@@ -246,3 +246,52 @@ function solution(phone_number) {
     }
     return answer;
 }
+
+
+//  화요일
+// 19. 짝수와 홀수
+
+function solution(num) {
+	return num % 2 === 0 ? 'Even' : 'Odd'
+
+    // if(num % 2 === 0 || num === 0) {
+    //     return "Even"
+    // } else {
+    //     return "Odd"
+    // }
+}
+
+//  20.평균 구하기
+function solution(arr) {
+    let sum = 0;
+    let answer = 0;
+    
+    for(let i=0; i<arr.length; i++){
+        sum += arr[i];
+    }
+    answer = (sum / arr.length)
+    return answer;
+}
+
+
+// 21. 가운데 글자 가져오기
+function solution(s) {
+	// 길이를 나눠 정수화 하기
+	// "abcde" : 3 "qwer" : 2
+	// console.log(Math.round(s.length / 2))     
+	// "abcde" : d "qwer" : e
+    
+    // 문자는 배열로 따지므로 길이에 -1 값을 해준다
+	// console.log(s[Math.round(s.length / 2)-1])
+
+	// 짝수 일 경우, 가운대 두 글자이기 때문에 
+	// Math.round(s.length / 2)-1 값과 
+	// Math.round(s.length / 2) 값을 같이 표출한다.
+    if(s.length % 2 === 1) {
+        return s[Math.round(s.length / 2)-1]
+    } else {
+        return s[Math.round(s.length / 2-1)] +
+               s[Math.round(s.length / 2)]
+    }
+    
+}

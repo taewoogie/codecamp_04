@@ -320,23 +320,23 @@ export const MainSettingItem = styled.input`
 // 등록하기 Wrapper
 export const FooterWrapper = styled.div`
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-bottom: 30px;
 `
-
 // 등록하기 버튼
 export const FooterBtn = styled.button`
-    width: 179px;
-    height: 52px;
-    margin-bottom : 100px;
+    width: 100px;
+    height: 40px;
+    margin-top : 30px;
+    margin-bottom : 30px;
+    margin-right: 20px;
     background-color: #FFD600;
-    border : 0px;
+    border : none;
+    border-radius: 15px;
     cursor: pointer;
-    
 `
-
 // 에러 메세지
 export const ErrMessage = styled.div`
     color: red;

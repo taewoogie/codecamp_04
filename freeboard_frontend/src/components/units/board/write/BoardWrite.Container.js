@@ -128,7 +128,7 @@ export default function BoardWriteContainer(){
                 });
                 console.log(result);
                 console.log(result.data.createBoard.message);
-                alert('게시물이 등록 되었습니다!');
+                alert('정상적으로 등록 되었습니다!');
 
                 // 상세 페이지로 이동
                 router.push(`/boards/detail/${result.data.createBoard._id}`);

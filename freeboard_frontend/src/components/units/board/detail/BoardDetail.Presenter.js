@@ -1,5 +1,5 @@
 import { Container , Wrapper , Title , HeaderWrapper , FormTitle , HeaderWrapper_right ,
-    BoardTitleWrapper , BoardContentWrapper } from '../../../../../styles/boards/detail/index';
+    BoardTitleWrapper , BoardContentWrapper, FooterWrapper, FooterBtn } from '../../../../../styles/boards/detail/index';
 
 export default function BoardDetailPresenter(props){
     return(
@@ -75,11 +75,11 @@ export default function BoardDetailPresenter(props){
 
                     {/* footer */}
                     
-                    {/* <FooterWrapper>
-                        <div>
-                            <FooterBtn onClick={RegisterConfirm} >등록하기</FooterBtn>
-                        </div>
-                    </FooterWrapper> */}
+                    <FooterWrapper>
+                        <FooterBtn onClick={props.onClickGoBackList}>목록으로</FooterBtn>
+                        <FooterBtn onClick={props.onClickModify}>수정하기</FooterBtn>
+                        <FooterBtn onClick={props.onClickDelete} id={props.boardId}>삭제하기</FooterBtn>
+                    </FooterWrapper>
 
 
                 {/* <div>나의 게시물 ID : {router.query.ID}</div> */}

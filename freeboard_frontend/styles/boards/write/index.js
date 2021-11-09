@@ -390,11 +390,11 @@ export const FooterWrapper = styled.div`
 export const FooterBtn = styled.button`
     width: 179px;
     height: 52px;
+    border-radius: 15px;
     margin-bottom : 100px;
-    background-color: ${(props) => props.backColor === true ? 'yellow' : 'whiteGray'};
-    border : 0px;
+    background-color: ${(props) => props.backColor === true ? '#FFD600' : 'whiteGray'};
+    border : none;
     cursor: pointer;
-    
 `
 
 // 에러 메세지
