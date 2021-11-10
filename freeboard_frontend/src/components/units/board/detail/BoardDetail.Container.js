@@ -18,9 +18,11 @@ export default function BoardDetailContainer(){
     }
 
     // 수정하기
-    const onClickModify = () => {
-        alert("기능 구현 예정 입니다.")
-    }
+    // const onClickEdit = () => {
+    //     alert("기능 구현 예정 입니다.")
+    //     console.log("router.query.ID : " + router.query.ID);
+    //     // router.push(`/boards/detail/${router.query.ID}/edit`)
+    // }
 
     // 삭제하기
     const onClickDelete = async () => {
@@ -45,7 +47,9 @@ export default function BoardDetailContainer(){
                 fetchContents     = {data?.fetchBoard.contents}
                 onClickDelete     = {onClickDelete}
                 onClickGoBackList = {onClickGoBackList}
-                onClickModify     = {onClickModify}
+                // onClickEdit       = {onClickEdit}
+                
+                
 
 
         />

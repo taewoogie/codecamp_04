@@ -1,15 +1,15 @@
-import BoardWritePresenter from './BoardWrite.Presenter';
-import { useMutation }     from '@apollo/client';
-import { useState }        from 'react';
-import { useRouter }       from 'next/router';
-import { CREATE_BOARD }    from './BoardWrite.Queries';
+import BoardWritePresenter             from './BoardWrite.Presenter';
+import { useMutation }                 from '@apollo/client';
+import { useState }                    from 'react';
+import { useRouter }                   from 'next/router';
+import { CREATE_BOARD , UPDATE_BOARD } from './BoardWrite.Queries';
 
-export default function BoardWriteContainer(){
+export default function BoardWriteContainer(props){
 
     const router = useRouter();
 
-
     const [createBoard] = useMutation(CREATE_BOARD)
+    const [updateBoard] = useMutation(UPDATE_BOARD)
 
     const [ writer          , setWriter          ] = useState("");
     const [ writerErr       , setWriterErr       ] = useState("");
@@ -71,44 +71,18 @@ export default function BoardWriteContainer(){
     
     const RegisterConfirm = async () => {
 
-
-        // if(writer.length === 0) {
-        //     setWriterErr("작성자명을 입력해주세요.");
-        // } 
-        // else {
-        //     setWriterErr("");
-        // }
         if(writer === "") {
             setWriterErr("작성자명을 입력해주세요.");
         }
         
-        // if (password.length === 0) {
-        //     setPasswordErr("비밀번호를 입력해주세요.");
-        // } 
-        // else {
-        //     setPasswordErr("");
-        // }
-
         if(password === ""){
             setPasswordErr("비밀번호를 입력해주세요.");
         }
-        
-        // if (boardTitle.length === 0) {
-        //     setBoardTitleErr("게시물 제목을 작성해주세요.");
-        // } 
-        // else {
-        //     setBoardTitleErr("");
-        // }
+
         if(boardTitle === ""){
             setBoardTitleErr("제목을 입력해주세요.");
         }
         
-        // if (boardContent.length === 0) {
-        //     setBoardContentErr("게시물 내용을 입력해주세요.");
-        // } 
-        // else {
-        //     setBoardContentErr("");
-        // }
         if(boardContent === ""){
             setBoardContentErr("내용을 작성해주세요.");
         }
@@ -139,6 +113,26 @@ export default function BoardWriteContainer(){
         }
 
     }
+
+    const Edit = async () => {
+        
+        try{
+            const result = await updateBoard({
+                variables : {
+                    updateBoardInput : { title : boardTitle, contents : boardContent } ,
+                                      password ,
+                                      boardId  : router.query.ID
+                }
+            })
+            alert("수정이 완료 되었습니다.");
+            console.log("RESULT = " + result);
+            router.push(`/boards/detail/${result.data.updateBoard._id}`);
+        } catch (error) {
+            console.log(error.message);
+        }
+
+    }
+
     return(
         <BoardWritePresenter WriterChk       = {WriterChk}
                              PasswordChk     = {PasswordChk}
@@ -150,6 +144,8 @@ export default function BoardWriteContainer(){
                              boardTitleErr   = {boardTitleErr}
                              boardContentErr = {boardContentErr}
                              backColor       = {backColor}
+                             isEdit          = {props.isEdit}
+                             Edit            = {Edit}
 
 
 

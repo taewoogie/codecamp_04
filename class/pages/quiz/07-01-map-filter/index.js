@@ -1,5 +1,4 @@
-import { useMutation, useQuery } from "@apollo/client"
-import gql from "graphql-tag"
+import { useMutation, useQuery, gql } from "@apollo/client"
 import styled from "@emotion/styled"
 
 const FETCH_PRODUCTS = gql`
@@ -40,11 +39,14 @@ export default function MapFilterPage(){
     const [deleteProduct] = useMutation(DELETE_PRODUCT);
 
     async function onClickDelete(event){
-
+        try{
             await deleteProduct({
                 variables : {productId : event.target.id , key : event.target.key},
                 refetchQueries : [{ query : FETCH_PRODUCTS }]
             })
+        } catch (error) {
+            console.log(error.message)
+        }
 
     }
 

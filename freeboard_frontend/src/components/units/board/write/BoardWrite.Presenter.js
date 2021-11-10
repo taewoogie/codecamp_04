@@ -1,117 +1,85 @@
-import { Container, 
-    Wrapper, 
-    Title,
-    // FormTitle, 
-    HeaderWrapper,
-    HeaderWrapper_left,
-    HeaderWrapper_right,
-    Writer,
-    Password,
-    BoardTitleWrapper,
-    BoardTitle,
-    BoardContent,
-    BoardContentWrapper,
-    AddressWrapper,
-    MainAddressWrapper,
-    AddressNum,
-    AddressNumSearch,
-    SubAddressWrapper,
-    AddressSub,
-    AddressSub2,
-    UtubeWrapper,
-    UtubeLink,
-    PhotoWrapper,
-    PhotoListWrapper,
-    PhotoList,
-    MainSettingWrapper,
-    MainSettingItem,
-    FooterWrapper,
-    FooterBtn,
-    ErrMessage,
-    MainSettingItemWrapper,
-    TitleText
-    } from "../../../../../styles/boards/write/index";
-
+import * as S from '../../../../../styles/boards/write/index'
 
 export default function BoardWritePresenter(props){
 
     return(
-        <Container>
-        <Wrapper>
-        <Title>
-            게시물 등록
-        </Title>
+        <S.Container>
+        <S.Wrapper>
+        <S.Title>
+            게시물 {props.isEdit?"수정":"등록"}
+        </S.Title>
             {/* header */}
             
             {/* body */}
-            <HeaderWrapper>
-                <HeaderWrapper_left>
-                    <TitleText>작성자</TitleText>
-                    <Writer type="text" placeholder="이름을 적어주세요." onChange={props.WriterChk}/>
-                    <ErrMessage>{props.writerErr}</ErrMessage>
-                </HeaderWrapper_left>
+            <S.HeaderWrapper>
+                <S.HeaderWrapper_left>
+                    <S.TitleText>작성자</S.TitleText>
+                    <S.Writer type="text" placeholder="이름을 적어주세요." onChange={props.WriterChk}/>
+                    <S.ErrMessage>{props.writerErr}</S.ErrMessage>
+                </S.HeaderWrapper_left>
                 
-                <HeaderWrapper_right>
-                    <TitleText>비밀번호</TitleText>
-                    <Password type="password" placeholder="비밀번호를 입력해주세요." onChange={props.PasswordChk} />
-                    <ErrMessage>{props.passwordErr}</ErrMessage>
-                </HeaderWrapper_right>
-            </HeaderWrapper>
+                <S.HeaderWrapper_right>
+                    <S.TitleText>비밀번호</S.TitleText>
+                    <S.Password type="password" placeholder="비밀번호를 입력해주세요." onChange={props.PasswordChk} />
+                    <S.ErrMessage>{props.passwordErr}</S.ErrMessage>
+                </S.HeaderWrapper_right>
+            </S.HeaderWrapper>
 
-            <BoardTitleWrapper>
-                <TitleText>제목</TitleText>
-                <BoardTitle type="text" placeholder="제목을 작성해주세요." onChange={props.BoardTitleChk} />
-                <ErrMessage>{props.boardTitleErr}</ErrMessage>
-            </BoardTitleWrapper>
+            <S.BoardTitleWrapper>
+                <S.TitleText>제목</S.TitleText>
+                <S.BoardTitle type="text" placeholder="제목을 작성해주세요." onChange={props.BoardTitleChk} />
+                <S.ErrMessage>{props.boardTitleErr}</S.ErrMessage>
+            </S.BoardTitleWrapper>
 
-            <BoardContentWrapper>
-                <TitleText>내용</TitleText>
-                <BoardContent type="textarea" placeholder="내용을 작성해주세요." onChange={props.BoardContentChk} />
-                <ErrMessage>{props.boardContentErr}</ErrMessage>
-            </BoardContentWrapper>
+            <S.BoardContentWrapper>
+                <S.TitleText>내용</S.TitleText>
+                <S.BoardContent type="textarea" placeholder="내용을 작성해주세요." onChange={props.BoardContentChk} />
+                <S.ErrMessage>{props.boardContentErr}</S.ErrMessage>
+            </S.BoardContentWrapper>
 
-            <AddressWrapper>
-                <TitleText>주소</TitleText>
-                <MainAddressWrapper>
-                    <AddressNum type="text" disabled placeholder="07250" />
-                    <AddressNumSearch >우편번호 검색</AddressNumSearch>
-                </MainAddressWrapper>
-                <SubAddressWrapper>
-                    <AddressSub type="text" placeholder="상세주소를 입력해주세요" />
-                    <AddressSub2 type="text" placeholder="상세주소를 입력해주세요" />
-                </SubAddressWrapper>
-            </AddressWrapper>
+            <S.AddressWrapper>
+                <S.TitleText>주소</S.TitleText>
+                <S.MainAddressWrapper>
+                    <S.AddressNum type="text" disabled placeholder="07250" />
+                    <S.AddressNumSearch >우편번호 검색</S.AddressNumSearch>
+                </S.MainAddressWrapper>
+                <S.SubAddressWrapper>
+                    <S.AddressSub type="text" placeholder="상세주소를 입력해주세요" />
+                    <S.AddressSub2 type="text" placeholder="상세주소를 입력해주세요" />
+                </S.SubAddressWrapper>
+            </S.AddressWrapper>
 
-            <UtubeWrapper>
-                <TitleText>유튜브</TitleText>
-                <UtubeLink type="text" placeholder="링크를 복사해주세요." />
-            </UtubeWrapper>
+            <S.UtubeWrapper>
+                <S.TitleText>유튜브</S.TitleText>
+                <S.UtubeLink type="text" placeholder="링크를 복사해주세요." />
+            </S.UtubeWrapper>
 
-            <PhotoWrapper>
-                <TitleText>사진첨부</TitleText>
-                <PhotoListWrapper>
-                    <PhotoList>Upload</PhotoList>
-                    <PhotoList>Upload</PhotoList>
-                    <PhotoList>Upload</PhotoList>
-                </PhotoListWrapper>
-            </PhotoWrapper>
+            <S.PhotoWrapper>
+                <S.TitleText>사진첨부</S.TitleText>
+                <S.PhotoListWrapper>
+                    <S.PhotoList>Upload</S.PhotoList>
+                    <S.PhotoList>Upload</S.PhotoList>
+                    <S.PhotoList>Upload</S.PhotoList>
+                </S.PhotoListWrapper>
+            </S.PhotoWrapper>
 
-            <MainSettingWrapper>
-                <TitleText>메인 설정</TitleText>
-                <MainSettingItemWrapper>
-                    <MainSettingItem type="radio" id="contents" /> 유튜브
-                    <MainSettingItem type="radio" id="contents" /> 사진
-                </MainSettingItemWrapper>
-            </MainSettingWrapper>
+            <S.MainSettingWrapper>
+                <S.TitleText>메인 설정</S.TitleText>
+                <S.MainSettingItemWrapper>
+                    <S.MainSettingItem type="radio" id="contents" /> 유튜브
+                    <S.MainSettingItem type="radio" id="contents" /> 사진
+                </S.MainSettingItemWrapper>
+            </S.MainSettingWrapper>
 
 
             {/* footer */}
-            <FooterWrapper>
+            <S.FooterWrapper>
                 <div>
-                    <FooterBtn onClick={props.RegisterConfirm} backColor={props.backColor}>등록하기</FooterBtn>
+                    {!props.isEdit && <S.FooterBtn onClick={props.RegisterConfirm} backColor={props.backColor}>{!props.isEdit?"등록":"수정"}하기</S.FooterBtn>}
+                    {props.isEdit && <S.FooterBtn onClick={props.Edit} backColor={props.backColor}>{props.isEdit?"수정":"등록"}하기</S.FooterBtn>}
                 </div>
-            </FooterWrapper>
-        </Wrapper>
-    </Container>
+            </S.FooterWrapper>
+        </S.Wrapper>
+    </S.Container>
     )
 }

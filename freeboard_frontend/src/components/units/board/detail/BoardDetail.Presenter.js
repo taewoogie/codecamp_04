@@ -1,3 +1,4 @@
+import router from 'next/router';
 import { Container , Wrapper , Title , HeaderWrapper , FormTitle , HeaderWrapper_right ,
     BoardTitleWrapper , BoardContentWrapper, FooterWrapper, FooterBtn } from '../../../../../styles/boards/detail/index';
 
@@ -77,7 +78,9 @@ export default function BoardDetailPresenter(props){
                     
                     <FooterWrapper>
                         <FooterBtn onClick={props.onClickGoBackList}>목록으로</FooterBtn>
-                        <FooterBtn onClick={props.onClickModify}>수정하기</FooterBtn>
+                        {/* <FooterBtn onClick={() => router.push(`/boards/detail/${router.query.ID}/edit`)}>수정하기</FooterBtn> */}
+                        <FooterBtn onClick={() => router.push(`/boards/detail/${router.query.ID}/edit`)}>수정하기</FooterBtn>
+                        {/* <FooterBtn onClick={props.onClickEdit}>수정하기</FooterBtn> */}
                         <FooterBtn onClick={props.onClickDelete} id={props.boardId}>삭제하기</FooterBtn>
                     </FooterWrapper>
 

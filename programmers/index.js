@@ -295,3 +295,31 @@ function solution(s) {
     }
     
 }
+
+//  수요일
+//  22. 서울에서 김서방 찾기
+function solution(seoul) {
+    for(let i=0; i<seoul.length; i++){
+        if(seoul[i].includes('Kim')) return '김서방은 ' + i + '에 있다'
+    }
+}
+
+//  23. 문자열 다루기 기본
+function solution(s) {
+    if((s.length === 4 || s.length === 6) && !isNaN(s) && !s.includes('e')) return true
+    else return false
+    
+}
+
+//  24. 약수의 합
+function solution(n) {
+    var answer = 0;
+    
+    for(let i=0; i<=n; i++){
+        // n을 i 로 나눴을 때 나머지 값이 0 이라면 약수로 판단
+        if(n % i === 0){
+            answer += i;
+        }
+    }
+    return answer;
+}
