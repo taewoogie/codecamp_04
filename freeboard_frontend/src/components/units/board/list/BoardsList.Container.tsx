@@ -3,6 +3,7 @@ import { useQuery }        from "@apollo/client"
 import { useRouter }       from 'next/router'
 import { FETCH_BOARDS , FETCH_BOARDS_OF_THE_BEST } from './BoardsList.Queries'
 
+
 export default function BoardsListContainer(){
     
     const router = useRouter();
@@ -13,17 +14,19 @@ export default function BoardsListContainer(){
     const { data:ad2 } = useQuery(FETCH_BOARDS);
 
     // 전체 게시물의 해당 게시글 제목 클릭
-    const onClickColumnTitle = (event) => {
+    const onClickColumnTitle = (event:{target:HTMLDivElement}) => {
+    // const onClickColumnTitle = (event:{MouseEventHandler<HTMLDivElement>():any;}) => {
         // 상세 페이지로 이동
         router.push(`/boards/detail/${event.target.id}`);
     }
     // 베스트 게시글 제목 클릭
-    const onClickBestBoardsId = (event) => {
+    // const onClickBestBoardsId = (event:{target:HTMLDivElement}) => {
+    const onClickBestBoardsId = (event:{target:HTMLDivElement}) => {
         // 상세 페이지로 이동
         router.push(`/boards/detail/${event.target.id}`);
     }
     // 게시글 등록 버튼
-    const onClickRegisterBtn = () => {
+    const onClickRegisterBtn = () =>  { 
         router.push(`/boards/write/`);
     }
 
@@ -33,8 +36,8 @@ export default function BoardsListContainer(){
             ad                  = {ad}
             ad2                 = {ad2}
             onClickColumnTitle  = {onClickColumnTitle}
-            onClickRegisterBtn  = {onClickRegisterBtn}
             onClickBestBoardsId = {onClickBestBoardsId}
+            onClickRegisterBtn  = {onClickRegisterBtn}
         />
     )
 }

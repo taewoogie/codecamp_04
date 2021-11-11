@@ -2,7 +2,6 @@ import BoardWriteContainer from '../../../src/components/units/board/write/Board
 
 export default function indexPage(){
     
-    return(
-        <BoardWriteContainer />
-    )
+    return <BoardWriteContainer />
+    
 }

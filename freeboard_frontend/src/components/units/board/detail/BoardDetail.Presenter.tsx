@@ -2,7 +2,15 @@ import router from 'next/router';
 import { Container , Wrapper , Title , HeaderWrapper , FormTitle , HeaderWrapper_right ,
     BoardTitleWrapper , BoardContentWrapper, FooterWrapper, FooterBtn } from '../../../../../styles/boards/detail/index';
 
-export default function BoardDetailPresenter(props){
+interface IProps {
+    boardId?          : string
+    fetchWriter?      : string | number
+    fetchTitle?       : string | number
+    fetchContents?    : string | number
+    onClickDelete     : () => void
+    onClickGoBackList : () => void
+}
+export default function BoardDetailPresenter(props : IProps){
     return(
         // Container
         <Container>

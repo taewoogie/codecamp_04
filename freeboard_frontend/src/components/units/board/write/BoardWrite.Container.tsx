@@ -57,6 +57,7 @@ export default function BoardWriteContainer(props){
         btnBackColor( writer, password, boardTitle, boardContentTarget);
     }
 
+    // 유효성 검사 후 버튼 색 변경
     const btnBackColor = (writerTarget , passwordTarget, boardTitleTarget, boardContentTarget) => {
 
         console.log("SetBackColor : " +  backColor );
@@ -69,6 +70,7 @@ export default function BoardWriteContainer(props){
 
     }
     
+    // 등록
     const RegisterConfirm = async () => {
 
         if(writer === "") {
@@ -111,18 +113,50 @@ export default function BoardWriteContainer(props){
                 console.log(error.message)
             }
         }
-
     }
 
+    // 수정
     const Edit = async () => {
         
+        // 수정 페이지에서 작성한 항목을 확인 할 배열 생성
+        const editVariables = { 
+            boardId : router.query.ID,
+            password : password,
+            updateBoardInput : {}
+        }
+
+        // ******************
+        //     수업 내용
+        // ******************
+
+        // 항목 중 변경 된 값이 있을 때만 myVariables 객체 안에 푸쉬 해준다.
+        // if(writer       !== "") editVariables.updateBoardInput.writer   = writer
+        // if(boardTitle   !== "") editVariables.updateBoardInput.title    = boardTitle
+        // if(boardContent !== "") editVariables.updateBoardInput.contents = boardContent
+        
+        // *****************
+        //     예외 처리 
+        // *****************
+        
+        // 게시글 제목 미입력시 기존 조회해 온 데이터 셋팅
+        if(boardTitle !== "") {
+            editVariables.updateBoardInput.title   = boardTitle
+        } else {
+            editVariables.updateBoardInput.title   = props.fetchBoardData.fetchBoard.title
+        }
+        console.log("제목 : " + editVariables.updateBoardInput.title)
+        
+        // 게시글 내용 미입력시 기존 조회해 온 데이터 셋팅
+        if(boardContent !== "") {
+            editVariables.updateBoardInput.contents   = boardContent
+        } else {
+            editVariables.updateBoardInput.contents   = props.fetchBoardData.fetchBoard.contents
+        }
+        console.log("내용 : " + editVariables.updateBoardInput.contents)
+
         try{
             const result = await updateBoard({
-                variables : {
-                    updateBoardInput : { title : boardTitle, contents : boardContent } ,
-                                      password ,
-                                      boardId  : router.query.ID
-                }
+                variables : editVariables
             })
             alert("수정이 완료 되었습니다.");
             console.log("RESULT = " + result);
@@ -130,26 +164,22 @@ export default function BoardWriteContainer(props){
         } catch (error) {
             console.log(error.message);
         }
-
     }
 
     return(
-        <BoardWritePresenter WriterChk       = {WriterChk}
-                             PasswordChk     = {PasswordChk}
-                             BoardTitleChk   = {BoardTitleChk}
-                             BoardContentChk = {BoardContentChk}
-                             RegisterConfirm = {RegisterConfirm}
-                             writerErr       = {writerErr}
-                             passwordErr     = {passwordErr}
-                             boardTitleErr   = {boardTitleErr}
-                             boardContentErr = {boardContentErr}
-                             backColor       = {backColor}
-                             isEdit          = {props.isEdit}
-                             Edit            = {Edit}
-
-
-
-        
+        <BoardWritePresenter WriterChk       = { WriterChk }
+                             PasswordChk     = { PasswordChk }
+                             BoardTitleChk   = { BoardTitleChk }
+                             BoardContentChk = { BoardContentChk }
+                             RegisterConfirm = { RegisterConfirm }
+                             writerErr       = { writerErr }
+                             passwordErr     = { passwordErr }
+                             boardTitleErr   = { boardTitleErr }
+                             boardContentErr = { boardContentErr }
+                             backColor       = { backColor }
+                             isEdit          = { props.isEdit }
+                             Edit            = { Edit }
+                             fetchBoardData  = { props.fetchBoardData }
         />
     )
 }

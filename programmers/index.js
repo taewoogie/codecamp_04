@@ -205,7 +205,7 @@ console.log("의류를 구매한 횟수는 총 " + count + "회 금액은" + pri
 
 )
 
-// 2주차 월요일
+//  * 2주차 월요일
 
 // 16. 문자열을 정수로 바꾸기
 function solution(s) {
@@ -248,7 +248,7 @@ function solution(phone_number) {
 }
 
 
-//  화요일
+//  * 화요일
 // 19. 짝수와 홀수
 
 function solution(num) {
@@ -296,7 +296,8 @@ function solution(s) {
     
 }
 
-//  수요일
+//  * 수요일
+
 //  22. 서울에서 김서방 찾기
 function solution(seoul) {
     for(let i=0; i<seoul.length; i++){
@@ -320,6 +321,41 @@ function solution(n) {
         if(n % i === 0){
             answer += i;
         }
+    }
+    return answer;
+}
+
+// * 목요일 (빼빼로데이)
+
+// 자릿수 더하기
+function solution(n){
+    const word = n.toString();
+    let result = 0;
+    
+    // console.log(typeof(word[0]) , word[1], word[2])
+    // console.log(word.length)
+    for(let i=0; i<word.length; i++){
+        result += Number(word[i])
+    }
+    console.log(result)
+    return result
+}
+// ㄴ 멘토님 코드
+function solution(n){
+    let result = 0;
+    
+    String(n).split("").forEach( num => {
+        result += Number(num);
+    })
+    return result;
+}
+
+//  x만큼 간격이 있는 n개의 숫자
+function solution(x, n) {
+    var answer = [];
+    
+    for(let i=1; i<=n; i++){
+        answer.push(i*x)
     }
     return answer;
 }
