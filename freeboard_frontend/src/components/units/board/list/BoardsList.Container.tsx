@@ -1,6 +1,6 @@
-import BoardsListPresenter from "./BoardsList.Presenter";
-import { useQuery }        from "@apollo/client"
-import { useRouter }       from 'next/router'
+import BoardsListPresenter                         from "./BoardsList.Presenter";
+import { useQuery }                                from "@apollo/client"
+import { useRouter }                               from 'next/router'
 import { FETCH_BOARDS , FETCH_BOARDS_OF_THE_BEST } from './BoardsList.Queries'
 
 
@@ -39,5 +39,6 @@ export default function BoardsListContainer(){
             onClickBestBoardsId = {onClickBestBoardsId}
             onClickRegisterBtn  = {onClickRegisterBtn}
         />
+
     )
 }

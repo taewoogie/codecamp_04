@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Divider } from 'antd'
 
 // 최상위 JSX 영역
 export const Container = styled.div`
@@ -323,7 +324,7 @@ export const FooterWrapper = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 80px;
 `
 // 버튼
 export const FooterBtn = styled.button`
@@ -348,3 +349,201 @@ export const ErrMessage = styled.div`
     font-size: 13px;
     margin-left: 5px;
 `
+export const Line = styled.div`
+    border: 1px solid #BDBDBD;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 40px;
+`
+// ******************
+//      댓글 영역
+// ******************
+export const BoardCommentsContainer = styled.div`
+    width: 996px;
+    margin-bottom: 80px;
+`
+// 댓글 타이틀 영역
+export const BoardCommentsWriteWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+    justify-content: space-between;
+`
+// 댓글 아이콘
+export const VectorImg = styled.img`
+    margin-right: 14px;
+    width: 27px;
+    height: 25px;
+`
+// 댓글 타이틀
+export const BoardCommentsTitle = styled.span`
+    width: 35px;
+    height: 27px;
+    font-size: 20px;
+    line-height: 23px;
+    /* identical to box height */
+    /* Black */
+    color: #000000;    
+`
+// wrapper
+export const CommentsWrapper = styled.div`
+    display: flex;
+`
+// 작성자
+export const CommentsWriter = styled.input`
+    width: 180px;
+    height: 52px;
+    margin-right: 25px;
+    font-family: Noto Sans CJK KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+    /* Gray 3 */
+    color: #828282;
+    padding-left: 15px;
+    /* White */
+    background: #FFFFFF;
+    /* Gray 4 */
+    border: 1px solid #BDBDBD;
+    box-sizing: border-box;
+    border-radius: 10px;
+    :focus{
+        outline: none;
+    }
+`
+// 비밀번호
+export const CommentsPassword = styled.input`
+    width: 180px;
+    height: 52px;
+    margin-right: 25px;
+    font-family: Noto Sans CJK KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+    /* Gray 3 */
+    color: #828282;
+    padding-left: 15px;
+    /* White */
+    background: #FFFFFF;
+    /* Gray 4 */
+    border: 1px solid #BDBDBD;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-right: 20px;
+    :focus{
+        outline: none;
+    }    
+`
+// 별 이미지 Wrapper
+export const StarImgWrapper = styled.div`
+    /* background-color: green; */
+    display: flex;
+    align-items: center;
+    padding : 15px;
+`
+//  별 이미지
+export const StarImg = styled.img`
+    margin-right: 5px;
+`
+// 등록하기 버튼
+export const CommentsRegBtn = styled.button`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 16px;
+    width: 100px;
+    height: 52px;
+    background: #000000;
+    font-family: Noto Sans CJK KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+    color : white;
+    text-align: center;
+    border-radius: 10px;
+    
+`
+
+export const BoardCommentsTitleWrapper = styled.div`
+    display: flex;
+    margin-bottom: 20px;
+`
+export const BoardCommentsWrapper = styled.div`
+    width: 100%;
+`
+// TextArea
+export const BoardCommentsTextarea = styled.textarea`
+    width : 100%;
+    height: 161px;
+    /* White */
+    background: #FFFFFF;
+    /* Gray 4 */
+    border: 1px solid #BDBDBD;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 15px 15px;
+    font-size: 15px;
+    max-width: 996px;
+    margin-bottom: 20px;
+    :focus{
+        outline: none;
+    }
+`
+
+// *******************
+//    댓글 리스트 조회 
+// *******************
+export const BoardCommentsListContainer = styled.div`
+    background-color: green;
+    width: 996px;
+`
+
+export const profileImage = styled.img`
+width: 40px;
+height: 40px;
+`
+
+export const BoardCommentsListWrapper = styled.div`
+
+`
+
+export const BoardCommentsWriter = styled.input`
+    width: 45px;
+    height: 24px;
+    font-family: Noto Sans CJK KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+    /* Black */
+    color: #000000;    
+`
+
+export const BoardCommentsListHeaderWrapper = styled.div`
+    display: flex;
+    
+
+`
+
+export const BoardCommentsListBodyWrapper = styled.div`
+
+`
+
+export const BoardCommentsBody = styled.div`
+
+`
+
+export const BoardCommentsListFooter = styled.div`
+`
+
+
+
+
