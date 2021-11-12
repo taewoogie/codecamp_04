@@ -25,9 +25,7 @@ import {Container,
 
 export default function indexPage () {
 
-
-
-    return(
+return(
         <Container>
             <Wrapper>
                 <Header>

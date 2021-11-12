@@ -125,7 +125,7 @@ export const SearchAreaWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 `
 // 제목 검색
 export const SearchBoardTitleInput = styled.input`
@@ -136,6 +136,7 @@ export const SearchBoardTitleInput = styled.input`
     background: #F2F2F2;
     border-radius: 10px;
     padding: 14px 16px;
+    :focus{ outline : none; }
 `
 // 날짜 검색
 export const SearchBoardDateInput = styled.input`
@@ -159,6 +160,8 @@ export const SearchBoardDateInput = styled.input`
     color: #BDBDBD;
     width: 244px;
     height: 52px;
+    border-radius: 10px;
+    :focus{ outline : none; }
 `
 // 검색하기 버튼
 export const SearchBtn = styled.button`
@@ -323,6 +326,7 @@ export const ColumnCreatedAt = styled.div`
     text-align: center;
     /* Gray 2 */
     color: #4F4F4F;
+    
 `
 
 
@@ -333,29 +337,36 @@ export const ColumnCreatedAt = styled.div`
 export const FooterWrapper = styled.div`
     width: 100%;
     display: flex;
-    margin-bottom: 40px;
+    justify-content: flex-end;
+    margin-bottom: 10px;
 
 `
-
+// 등록 버튼
 export const RegisterBtn = styled.button`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 14px 16px;
+    padding: 10px 10px;
     /* Black */
-    background: #FFFFFF;
+    background: #FFD600;
     border-radius: 10px;
     border: 1px solid #F2F2F2;
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 13px;
+    /* line-height: 15px; */
+    align-items: center;
     /* identical to box height */
     text-align: center;
     /* White */
     color: #000000;
-    width: 171px;
-    height: 52px;
+    width: 94px;
+    height: 32px;
     cursor: pointer;
+    :hover{
+        font-size: 13px;
+        font-weight: bold;
+        color : white;
+    }
 `

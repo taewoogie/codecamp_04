@@ -28,6 +28,10 @@ export default function BoardsListPresenter(props){
                 <S.SearchBtn>검색하기</S.SearchBtn>
             </S.SearchAreaWrapper>
             
+            {/* 게시물 등록 */}
+            <S.FooterWrapper>
+                <S.RegisterBtn onClick={props.onClickRegisterBtn}>게시물 등록</S.RegisterBtn>
+            </S.FooterWrapper>            
 
             {/* 전체 게시글 영역 */}
             <S.BoardsListWrapper>
@@ -48,11 +52,11 @@ export default function BoardsListPresenter(props){
                 ))}
             </S.BoardsListWrapper>
 
-            {/* footer */}
+            {/* footer
             <S.FooterWrapper>
                 <S.RegisterBtn onClick={props.onClickRegisterBtn}>게시물 등록하기</S.RegisterBtn>
 
-            </S.FooterWrapper>
+            </S.FooterWrapper> */}
         </S.Wrapper>        
     )
 }

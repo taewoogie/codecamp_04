@@ -70,23 +70,21 @@ export const Writer = styled.input`
     /* margin-top: 10px; */
     border : none;
     border-radius: 15px;
-
     width : 486px;
     height: 52px;
     margin-top: 7px;
-
     background: #FFFFFF;
     /* Gray 4 */
     /* border: 1px solid #BDBDBD; */
     box-sizing: border-box;
-
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
-
     padding: 14px 14px;
+    /* focus 영역 없애기 */
+    :focus { outline: none; }
 `
 
 // 비밀번호 title wrapper
@@ -100,29 +98,26 @@ export const Password = styled.input`
     border : none;
     border-radius: 15px;
     margin-top: 7px;
-
     width : 486px;
     height: 52px;
-
     background: #FFFFFF;
     /* Gray 4 */
     /* border: 1px solid #BDBDBD; */
     box-sizing: border-box;
-
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
-
     padding: 14px 14px;
+    /* focus 영역 없애기 */
+    :focus { outline: none; }
 `
 
 // 게시글 Wrapper 
 export const BoardTitleWrapper = styled.div`
     border: 1px dotted gray;
     border-radius: 15px;
-
     display: flex;
     /* justify-content: space-between; */
     flex-direction: column;
@@ -132,35 +127,29 @@ export const BoardTitleWrapper = styled.div`
 
 // 게시글 - 제목
 export const BoardTitle = styled.input`
-    
     border: none;
     border-radius: 15px;
     margin-top: 7px;
-    
     width: 992px;
     height: 52px;
-
     background: #FFFFFF;
     /* Gray 4 */
     /* border: 1px solid #BDBDBD; */
     box-sizing: border-box;
-
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
-
     padding: 14px 14px;
+    /* focus 영역 없애기 */
+    :focus { outline: none; }
 `
 
 // 내용 Wrapper
 export const BoardContentWrapper = styled.div`
     border: 1px dotted gray;
     border-radius: 15px;
-
-
-
     display: flex;
     /* justify-content: space-between; */
     flex-direction: column;
@@ -173,23 +162,20 @@ export const BoardContent = styled.input`
     border : none;
     border-radius: 15px;
     margin-top: 7px;
-    
     width: 992px;
     height: 480px;
-
     background: #FFFFFF;
     /* Gray 4 */
     /* border: 1px solid #BDBDBD; */
     box-sizing: border-box;
-
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
-
     padding: 14px 14px;
-    
+    /* focus 영역 없애기 */
+    :focus { outline: none; } 
 `
 
 // 주소 Wrapper
@@ -210,32 +196,28 @@ export const MainAddressWrapper = styled.div`
 // 주소 - 우편번호
 export const AddressNum = styled.input`
     border-radius : 15px;
-
     width: 77px;
     height: 52px;
     text-align: center;
     font-size: 16px;
     line-height: 24px;
     color: #BDBDBD;
-
     background: #FFFFFF;
     /* Gray 4 */
     border: 1px solid #BDBDBD;
     box-sizing: border-box;
-    
+    /* focus 영역 없애기 */
+    :focus { outline: none; }
 `
 
 export const AddressNumSearch = styled.button`
     border-radius: 15px;
-
     width : 124px;
     height: 52px;
     margin-left: 16px;
     color : white;
     background-color: #000000;
-
     padding: 14px 16px;
-
 `
 
 // 주소 - 상세 주소 Wrapper 
@@ -250,30 +232,27 @@ export const SubAddressWrapper = styled.div`
 export const AddressSub = styled.input`
     border-radius: 15px;
     padding: 14px 14px;
-
     width: 996px;
     height: 52px;
     margin-bottom:15px;
-
     background: #FFFFFF;
     /* Gray 4 */
     border: 1px dotted grey;
     box-sizing: border-box;
-
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
+    /* focus 영역 없애기 */
+    :focus { outline: none; }
 `
 // 주소 - 상세주소
 export const AddressSub2 = styled.input`
     border-radius: 15px;
     padding: 14px 14px;
-
     width: 996px;
     height: 52px;
-
     background: #FFFFFF;
     /* Gray 4 */
     border: 1px dotted grey;
@@ -283,6 +262,8 @@ export const AddressSub2 = styled.input`
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
+    /* focus 영역 없애기 */
+    :focus { outline: none; }
 `
 
 // 유튜브 Wrapper
@@ -290,7 +271,6 @@ export const UtubeWrapper = styled.div`
     border: 1px dotted gray;
     border-radius: 15px;
     margin-bottom: 20px;
-
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -303,25 +283,24 @@ export const UtubeLink = styled.input`
     width: 992px;
     height: 46px;
     margin-top: 7px;
-
     background: #FFFFFF;
     /* Gray 4 */
     /* border: 1px solid #BDBDBD; */
     box-sizing: border-box;
     padding: 14px 14px;
-
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
+    /* focus 영역 없애기 */
+    :focus { outline: none; }
 `
 
 // 사진첨부
 export const PhotoWrapper = styled.div`
     border: 1px dotted gray;
     border-radius: 15px;
-
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -333,7 +312,6 @@ export const PhotoListWrapper = styled.div`
     display:flex;
     width: 100%;
     margin-top: 7px;
-
     padding: 14px 14px;
 `
 
@@ -358,11 +336,9 @@ export const PhotoList = styled.div`
 export const MainSettingWrapper = styled.div`
     border: 1px dotted gray;
     border-radius: 15px;
-
     display: flex;
     flex-direction: column;
     width: 100%;
-    
     margin-bottom : 80px;
 `
 
@@ -401,5 +377,6 @@ export const FooterBtn = styled.button`
 export const ErrMessage = styled.div`
     color: red;
     font-size: 13px;
-    margin-left: 5px;
+    margin-left: 15px;
+    margin-bottom: 10px;
 `

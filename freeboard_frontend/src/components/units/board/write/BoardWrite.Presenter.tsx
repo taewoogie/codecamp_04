@@ -1,3 +1,4 @@
+import { isNonEmptyArray } from '@apollo/client/utilities'
 import * as S from '../../../../../styles/boards/write/index'
 
 export default function BoardWritePresenter(props){
@@ -19,6 +20,8 @@ export default function BoardWritePresenter(props){
                                   placeholder="이름을 적어주세요." 
                                   onChange={props.WriterChk}
                                   defaultValue={props.fetchBoardData?.fetchBoard.writer}
+                                //   style={props.isEdit?disabled:""}
+                                  readOnly={props.isEdit?'readonly':''}
                         />
                         <S.ErrMessage>{props.writerErr}</S.ErrMessage>
                     </S.HeaderWrapper_left>

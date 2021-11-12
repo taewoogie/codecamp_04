@@ -27,7 +27,7 @@ export default function BoardWriteContainer(props){
         if(setWriter(event.target.value) !== "") 
             setWriterErr("");
 
-        btnBackColor(writerTarget , password , boardTitle , boardContent);    
+        btnBackColor(writerTarget , password , boardTitle , boardContent);
     }
 
     const PasswordChk = (event) => {
@@ -36,7 +36,7 @@ export default function BoardWriteContainer(props){
         if(setPassword(event.target.value) !== "") 
             setPasswordErr("");
         
-        btnBackColor(writer, passwordTarget, boardTitle , boardContent);
+        btnBackColor(writer, passwordTarget, boardTitle , boardContent);    
     }
 
     const BoardTitleChk = (event) => {
@@ -59,15 +59,13 @@ export default function BoardWriteContainer(props){
 
     // 유효성 검사 후 버튼 색 변경
     const btnBackColor = (writerTarget , passwordTarget, boardTitleTarget, boardContentTarget) => {
-
-        console.log("SetBackColor : " +  backColor );
-
-        if(writerTarget !== '' && passwordTarget !== '' && boardTitleTarget !== '' && boardContentTarget !== '') {
-            setBackColor(true);
-        } else {
-            setBackColor(false);
-        }
-
+        // if(!props.isEdit)
+            if(writerTarget !== '' && passwordTarget !== '' && boardTitleTarget !== '' && boardContentTarget !== '') {
+                setBackColor(true);
+            } else {
+                setBackColor(false);
+            }
+        
     }
     
     // 등록
@@ -117,7 +115,11 @@ export default function BoardWriteContainer(props){
 
     // 수정
     const Edit = async () => {
-        
+
+        if(password === ""){
+            setPasswordErr("비밀번호를 입력해주세요.");
+        }
+
         // 수정 페이지에서 작성한 항목을 확인 할 배열 생성
         const editVariables = { 
             boardId : router.query.ID,
@@ -155,14 +157,16 @@ export default function BoardWriteContainer(props){
         console.log("내용 : " + editVariables.updateBoardInput.contents)
 
         try{
+
             const result = await updateBoard({
                 variables : editVariables
             })
             alert("수정이 완료 되었습니다.");
-            console.log("RESULT = " + result);
             router.push(`/boards/detail/${result.data.updateBoard._id}`);
+
         } catch (error) {
             console.log(error.message);
+            alert(error.message);
         }
     }
 

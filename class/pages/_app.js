@@ -1,22 +1,17 @@
-import '../styles/globals.css'
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import "../styles/globals.css";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 function MyApp({ Component, pageProps }) {
-const client = new ApolloClient({
-  uri : 'http://example.codebootcamp.co.kr/graphql',
-  // 임시저장 (cache)
-  cache : new InMemoryCache()
-})
+  const client = new ApolloClient({
+    uri: "http://example.codebootcamp.co.kr/graphql",
+    cache: new InMemoryCache(),
+  });
 
   return (
-  <ApolloProvider client={client}>
-  
-    {/* 각 페이지 컴포넌트 */}
-    <Component {...pageProps} />
-  
-  </ApolloProvider>
-  
-  )
+    <ApolloProvider client={client}>
+      <Component {...pageProps} />
+    </ApolloProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

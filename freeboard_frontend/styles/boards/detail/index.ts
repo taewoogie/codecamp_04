@@ -317,7 +317,7 @@ export const MainSettingItem = styled.input`
 
 `
 
-// 등록하기 Wrapper
+// 버튼 Wrapper
 export const FooterWrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -325,7 +325,7 @@ export const FooterWrapper = styled.div`
     width: 100%;
     margin-bottom: 30px;
 `
-// 등록하기 버튼
+// 버튼
 export const FooterBtn = styled.button`
     width: 100px;
     height: 40px;
@@ -336,6 +336,11 @@ export const FooterBtn = styled.button`
     border : none;
     border-radius: 15px;
     cursor: pointer;
+    :hover{
+        font-size: 15px;
+        font-weight: bold;
+        color : white;
+    }
 `
 // 에러 메세지
 export const ErrMessage = styled.div`
