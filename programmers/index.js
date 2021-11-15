@@ -325,9 +325,9 @@ function solution(n) {
     return answer;
 }
 
-// * 목요일 (빼빼로데이)
+// * 목요일 
 
-// 자릿수 더하기
+// 25. 자릿수 더하기
 function solution(n){
     const word = n.toString();
     let result = 0;
@@ -350,12 +350,141 @@ function solution(n){
     return result;
 }
 
-//  x만큼 간격이 있는 n개의 숫자
+//  26. x만큼 간격이 있는 n개의 숫자
 function solution(x, n) {
     var answer = [];
     
     for(let i=1; i<=n; i++){
         answer.push(i*x)
     }
+    return answer;
+}
+
+// * 금요일
+// 27. 문자열 내림차순으로 정렬하기
+function solution(s) {
+    const answer = [];
+    
+    for( let i = 0; i < s.length; i++ ) {
+        answer.push( s[i] )
+    }
+    answer.sort( (a, b) => {
+        return a > b ? -1 : 1
+    })
+    
+    return answer.join("");
+}
+
+// 28. k번째 수 (for문)
+function solution(array, commands) {
+    const answer = [];
+    
+    for( let idx = 0; idx < commands.length; idx++ ) {
+        const i = commands[idx][0];
+        const j = commands[idx][1];
+        const k = commands[idx][2];
+        
+        const result = array.slice( i - 1, j )
+                            .sort( (a, b) => {
+                                return a - b
+                            })
+        answer.push( result[k - 1] )
+    }
+    
+    return answer;
+}
+// map 활용문
+function solution(array, commands) {
+    const answer = commands.map( el => {
+        
+        const result = array.slice( el[0] - 1, el[1] )
+                            .sort( (a, b) => {
+                                return a - b   
+                            })
+        return result[ el[2] - 1 ]
+    }) 
+          
+    return answer;
+}
+
+
+// 3주차
+//  * 월요일
+
+// 29. 문자열 p와 y의 개수 ( for 반복문 )
+function solution(s){
+    s = s.toLowerCase(); // 문자열 전체를 소문자로 변환
+    let p = 0; // p의 개수를 카운트
+    let y = 0; // y의 개수를 카운트
+
+    for( let i = 0; i < s.length; i++ ) {
+        if( s[i] === "y" ) {
+            y++
+            // y += 1; // y = y + 1;
+            
+        } else if( s[i] === "p" ) {
+            p++
+        }
+    }
+    
+    return p === y;
+    // p와 y의 개수가 동일하다면 true 값을 리턴
+    // p와 y의 개수가 동일하지 않다면 false 값을 리턴
+}
+
+// ( forEach 문 )
+function solution(s){
+    const check = {}; // 알파벳의 개수를 정리하는 객체
+    const answer = s.toLowerCase()
+                    .split("")
+                    .forEach( str => {
+                        check[str] === undefined
+                            ? check[str] = 1
+                            // 기존에 알파벳이 없다면 1을 초기값으로 생성
+                            : check[str] += 1
+                            // 기존의 알파벳 개수를 1 증가
+                    })
+    return check.p === check.y
+}
+
+
+// 30. 이상한 문자 만들기 ( for 반복문 )
+function solution(s) {
+    let answer = '';
+    
+    let idx = 0; // 단어별로 인덱스 값을 저장하는 역할
+    for( let i = 0; i < s.length; i++ ) {
+        if( s[i] === " " ) {
+            // 공백이라면 그냥 공백을 넣어준다. (예외처리)
+            answer += " ";
+            idx = 0; // idx 를 0으로 초기화
+            
+        } else {
+            answer += idx % 2 === 0
+                // 짝수 인덱스라면 대문자 추가
+                ? s[i].toUpperCase()
+                // 홀수 인덱스라면 소문자 추가
+                : s[i].toLowerCase()
+            idx++;
+        }
+    }
+    
+    return answer;
+}
+
+// Map 활용문
+function solution(s) {
+    // 공백을 기준으로 쪼개서 배열에 저장 (단어를 기준으로)
+    const answer = s.split(" ")
+                    .map( word => {
+                        return word.split("")
+                                   .map( (letter, i) => {
+                            return i % 2 === 0
+                                ? letter.toUpperCase()
+                                : letter.toLowerCase()
+                        }).join("")
+                        // 하나의 문자열로 (붙어서) 만들어 준다.
+                    }).join(" ")
+                    // 공백을 기준으로 (띄어서) 문자열을 만들어 준다.
     return answer;
 }

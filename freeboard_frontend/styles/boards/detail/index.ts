@@ -360,7 +360,7 @@ export const Line = styled.div`
 // ******************
 export const BoardCommentsContainer = styled.div`
     width: 996px;
-    margin-bottom: 80px;
+    /* margin-bottom: 40px; */
 `
 // 댓글 타이틀 영역
 export const BoardCommentsWriteWrapper = styled.div`
@@ -440,10 +440,8 @@ export const CommentsPassword = styled.input`
 `
 // 별 이미지 Wrapper
 export const StarImgWrapper = styled.div`
-    /* background-color: green; */
     display: flex;
     align-items: center;
-    padding : 15px;
 `
 //  별 이미지
 export const StarImg = styled.img`
@@ -501,47 +499,109 @@ export const BoardCommentsTextarea = styled.textarea`
 //    댓글 리스트 조회 
 // *******************
 export const BoardCommentsListContainer = styled.div`
-    background-color: green;
+    background-color: #FFFFFF;
     width: 996px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #BDBDBD;
+    box-sizing: border-box;
+    padding: 20px 20px;
+    /* margin-bottom: 50px; */
 `
-
-export const profileImage = styled.img`
-width: 40px;
-height: 40px;
+// 댓글 위 영역 ( 프로필 / 작성자 / 별점 / 버튼 / 내용 )
+export const BoardCommentsListContainerWrapper = styled.div`
+    display: flex;
+    /* background-color: thistle; */
+    height: 100px;
 `
-
+// 댓글 리스트 Wrapper
 export const BoardCommentsListWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+`
+// 댓글 프로필 사진
+export const profileImage = styled.img`
+width: 60px;
+height: 60px;
+padding : 5px 5px;
+margin-top: 15px;
+`
+// 댓글 ( 작성자 / 등급 / 수정 / 삭제 버튼 ) 영역
+export const BoardCommentsListHeaderWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15px;
+    height: 30px;
+    margin-top: 10px;
+    /* background-color: yellow; */
+    padding : 5px 5px;
+`
+export const CommentsWriterRating = styled.div`
+    display: flex;
 
 `
+export const CommentsImgButtonWrapper = styled.div`
 
-export const BoardCommentsWriter = styled.input`
-    width: 45px;
+`
+export const BoardCommentsWriterWrapper = styled.div`
+    /* width: 100%; */
+`
+// 댓글 작성자
+export const BoardCommentsWriter = styled.div`
+    /* background-color: tomato; */
+    /* width: 100%; */
     height: 24px;
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 20px;
     /* identical to box height */
     /* Black */
-    color: #000000;    
+    color: #000000;
+    align-items: center;
+    margin-right: 10px;
 `
-
-export const BoardCommentsListHeaderWrapper = styled.div`
-    display: flex;
-    
-
+export const BoardCommentsImg = styled.img`
+    /* background-color: yellow; */
+    margin : 0px 0px 0px 20px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 `
-
+// 댓글 내용 Wrapper
 export const BoardCommentsListBodyWrapper = styled.div`
-
+    /* background-color: tomato; */
+    margin-left: 15px;
+    font-family: Noto Sans CJK KR;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height */
+    /* Gray 2 */
+    color: #4F4F4F;
+    padding : 5px 5px;
 `
-
+// 댓글 내용
 export const BoardCommentsBody = styled.div`
-
+    width: 100%;
+    margin-top: 5px;
 `
-
+// 댓글 등록일
 export const BoardCommentsListFooter = styled.div`
+    width: 60px;
+    height: 20px;
+    /* margin-top: 20px; */
+    font-family: Noto Sans CJK KR;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 18px;
+    /* identical to box height */
+    /* Gray 4 */
+    color: #BDBDBD;
+    margin-left: 80px;
 `
 
 

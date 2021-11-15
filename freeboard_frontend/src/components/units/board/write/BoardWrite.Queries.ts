@@ -3,7 +3,6 @@ import { gql } from '@apollo/client';
 // 게시물 등록
 export const CREATE_BOARD = gql`
     mutation createBoard( $createBoardInput : CreateBoardInput!) {
-
         createBoard(createBoardInput : $createBoardInput) {
             _id
             writer
@@ -11,7 +10,8 @@ export const CREATE_BOARD = gql`
             contents
         }
     }
-`
+`;
+
 //  게시물 수정
 export const UPDATE_BOARD = gql`
     mutation updateBoard( $updateBoardInput : UpdateBoardInput! , $password : String , $boardId : ID! ) {
@@ -23,4 +23,4 @@ export const UPDATE_BOARD = gql`
             updatedAt
         }
     }
-`
+`;

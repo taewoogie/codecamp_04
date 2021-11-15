@@ -1,5 +1,11 @@
 import router from 'next/router';
 import * as S from '../../../../../styles/boards/detail/index';
+import { Rate } from 'antd';
+import styled from '@emotion/styled';
+
+const MyRate = styled(Rate)`
+font-size: 17px;
+`
 
 interface IProps {
     boardId?                 : string
@@ -13,9 +19,14 @@ interface IProps {
     onChangeCommentsPassword : () => void
     onChangeCommentsArea     : () => void
     cmts?                    : any
+    onClickDeleteComments    : () => void
+    handleChange             : () => void
+    onChangeRate             : () => void
+    starValue?               : number
     
 }
 export default function BoardDetailPresenter(props : IProps){
+
     return(
         // Container
         <S.Container>
@@ -107,26 +118,27 @@ export default function BoardDetailPresenter(props : IProps){
                     {/* 댓글 Wrapper */}
                     <S.BoardCommentsContainer>
 
+                        {/* 댓글 타이틀 영역 */}
                         <S.BoardCommentsTitleWrapper>
                             <S.VectorImg src="/images/Vector.png"></S.VectorImg>
                             <S.BoardCommentsTitle>댓글</S.BoardCommentsTitle>
                         </S.BoardCommentsTitleWrapper>
 
+                        {/* 댓글 작성 헤더 ( 작성자 / 비밀번호 / 별점 / 등록버튼 ) */}
                         <S.BoardCommentsWriteWrapper>
                             <S.CommentsWrapper>
                                 <S.CommentsWriter   type="text" onChange={props.onChangeCommentsWriter}   placeholder="작성자"></S.CommentsWriter>
                                 <S.CommentsPassword type="text" onChange={props.onChangeCommentsPassword} placeholder="비밀번호"></S.CommentsPassword>
                                 <S.StarImgWrapper>
-                                    <S.StarImg src="/images/Star.png"></S.StarImg>
-                                    <S.StarImg src="/images/Star.png"></S.StarImg>
-                                    <S.StarImg src="/images/Star.png"></S.StarImg>
-                                    <S.StarImg src="/images/Star.png"></S.StarImg>
-                                    <S.StarImg src="/images/Star.png"></S.StarImg>
+                                    {/* <Rate onChange={props.onChangeCommentsStar} value={props.starValue} /> */}
+                                    <Rate onChange={props.onChangeRate} value={props.starValue} />
                                 </S.StarImgWrapper>
+
                             </S.CommentsWrapper>
                             <S.CommentsRegBtn onClick={props.onClickRegComments}>등록하기</S.CommentsRegBtn>
                         </S.BoardCommentsWriteWrapper>
 
+                        {/* 댓글 작성 영역 */}
                         <S.BoardCommentsWrapper>
                             <S.BoardCommentsTextarea onChange={props.onChangeCommentsArea} placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.">
                             
@@ -135,29 +147,42 @@ export default function BoardDetailPresenter(props : IProps){
 
                     </S.BoardCommentsContainer>
 
-
                     {/* 댓글 조회 리스트 영역 */}
-                    {props.cmts?.fetchBoardComments.map((el) => {
-                    <S.BoardCommentsListContainer>
-                        <S.profileImage src="/images/Vertor.svg"></S.profileImage>
-                        <S.BoardCommentsListWrapper>
-                            <S.BoardCommentsListHeaderWrapper>
-                                <S.BoardCommentsWriter>{el.writer}</S.BoardCommentsWriter>
-                                <S.StarImg>{el.rating}</S.StarImg>
-                                <div>수정</div>
-                                <div>삭제</div>
-                            </S.BoardCommentsListHeaderWrapper>
+                    {props.cmts?.fetchBoardComments.map((el,index) => (
+                    <S.BoardCommentsListContainer key={el+index}>
+                        <S.BoardCommentsListContainerWrapper>
                             
-                            <S.BoardCommentsListBodyWrapper>
-                                <S.BoardCommentsBody>{el.contents}</S.BoardCommentsBody>
-                            </S.BoardCommentsListBodyWrapper>
+                            {/* 프로필 사진 */}
+                            <S.profileImage src="/images/Vector.svg"></S.profileImage>
                             
-                            <S.BoardCommentsListFooter>
-                                <div>{el.createdAt}</div>
-                            </S.BoardCommentsListFooter>   
-                        </S.BoardCommentsListWrapper>
+                            <S.BoardCommentsListWrapper>
+
+                                <S.BoardCommentsListHeaderWrapper>
+                                    {/* 작성자 */}
+                                    <S.CommentsWriterRating>
+                                        <S.BoardCommentsWriter>{el.writer}</S.BoardCommentsWriter>
+                                        {/* 별점 */}
+                                        <MyRate value={el.rating}></MyRate>
+                                    </S.CommentsWriterRating>
+                                    {/* 수정/삭제버튼 */}
+                                    <S.CommentsImgButtonWrapper>
+                                        <S.BoardCommentsImg src="/images/Edit.svg"></S.BoardCommentsImg>
+                                        <S.BoardCommentsImg src="/images/Delete.svg" onClick={props.onClickDeleteComments} id={el._id}></S.BoardCommentsImg>
+                                    </S.CommentsImgButtonWrapper>
+                                </S.BoardCommentsListHeaderWrapper>
+
+                                {/* 댓글 내용 */}
+                                <S.BoardCommentsListBodyWrapper>{el.contents}</S.BoardCommentsListBodyWrapper>
+                            </S.BoardCommentsListWrapper>
+
+                        </S.BoardCommentsListContainerWrapper>
+                        
+                        {/* Board Comments Footer */}
+                        <S.BoardCommentsListFooter>{(el.createdAt).replaceAll('-','.').split('T')[0]}</S.BoardCommentsListFooter>
                     </S.BoardCommentsListContainer>
-                    })}
+                    ))}
+
+
             </S.Wrapper>
         </S.Container>        
     )

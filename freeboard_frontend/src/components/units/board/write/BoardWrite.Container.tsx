@@ -157,7 +157,6 @@ export default function BoardWriteContainer(props){
         console.log("내용 : " + editVariables.updateBoardInput.contents)
 
         try{
-
             const result = await updateBoard({
                 variables : editVariables
             })
