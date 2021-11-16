@@ -1,15 +1,19 @@
 import styled from '@emotion/styled'
+import ReactPlayer from 'react-player/youtube'
 import { Divider } from 'antd'
+import { StepLabel } from '@material-ui/core'
 
 // 최상위 JSX 영역
 export const Container = styled.div`
     /* background-color: Lightgray; */
     margin: 60px 60px;
     width: 1200px;
+    height: 100%;
     display: flex;
     justify-content: center;
     box-shadow: 0px 0px 10px gray;
     border-radius: 20px;
+    /* padding-bottom: 50px; */
 
 `
 // JSX의 내용 전체 영역
@@ -19,6 +23,8 @@ export const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     width: 996px;
+    padding-bottom: 50px;
+    /* height: 100%; */
     /* box-shadow: 0px 0px 10px gray; */
     
 `
@@ -41,8 +47,9 @@ export const FormTitle = styled.label`
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
-    line-height: 75px;
-    border-bottom: 1px solid #BDBDBD;
+    margin-top: 20px;
+    /* line-height: 75px; */
+    /* border-bottom: 1px solid #BDBDBD; */
 
 `
 
@@ -57,6 +64,9 @@ export const HeaderWrapper = styled.div`
     flex-direction: column;
     width: 100%;
     margin-bottom: 40px;
+    border : 1px solid #BDBDBD;
+    padding : 10px 10px 10px 10px;
+    border-radius: 15px;
 `
 
 // 작성자 title wrapper
@@ -117,11 +127,14 @@ export const Password = styled.input`
 
 // 게시글 Wrapper 
 export const BoardTitleWrapper = styled.div`
+    /* background-color: gray; */
     display: flex;
-    /* justify-content: space-between; */
     flex-direction: column;
     width: 100%;
     margin-bottom: 40px;
+    border : 1px solid #BDBDBD;
+    border-radius: 15px;
+    padding : 10px 10px 10px 10px;
 `
 
 // 게시글 - 제목
@@ -149,26 +162,31 @@ export const BoardContentWrapper = styled.div`
     /* justify-content: space-between; */
     flex-direction: column;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    border: 1px solid #BDBDBD;
+    border-radius: 15px;
+    padding : 10px 10px 10px 10px;
 `
 
 // 게시글 - 내용
-export const BoardContent = styled.input`
-    width: 996px;
+export const BoardContent = styled.textarea`
+    width: 970px;
     height: 480px;
-
+    margin-top: 20px;
     background: #FFFFFF;
     /* Gray 4 */
-    border: 1px solid #BDBDBD;
+    border: none;
     box-sizing: border-box;
-
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 24px;
     line-height: 24px;
+    :focus{
+        outline: none;
+    }
 
-    padding: 14px 14px;
+    /* padding: 14px 14px; */
     
 `
 
@@ -179,6 +197,9 @@ export const AddressWrapper = styled.div`
     flex-direction: column;
     width: 100%;
     margin-bottom: 40px;
+    border: 1px solid #bdbdbd;
+    border-radius: 15px;
+    padding : 10px 10px;
 `
 
 // 주소 우편번호 검색 Wrapper
@@ -222,7 +243,7 @@ export const SubAddressWrapper = styled.div`
 `
 
 // 주소 - 상세주소
-export const AddressSub = styled.input`
+export const Address = styled.input`
     width: 996px;
     height: 52px;
     margin-bottom:30px;
@@ -239,7 +260,7 @@ export const AddressSub = styled.input`
     line-height: 24px;
 `
 // 주소 - 상세주소
-export const AddressSub2 = styled.input`
+export const AddressSub = styled.input`
     width: 996px;
     height: 52px;
 
@@ -249,11 +270,26 @@ export const AddressSub2 = styled.input`
     box-sizing: border-box;
 `
 
+// 유튜브 타이틀
+export const YoutubeTitle = styled.label`
+    background-color: whitesmoke;
+    font-family: Noto Sans CJK KR;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 20px;
+    /* line-height: 75px; */
+    /* border-bottom: 1px solid #BDBDBD; */
+
+`
 // 유튜브 Wrapper
 export const UtubeWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
+    /* background-color: gray; */
+    padding : 10px 10px;
 `
 
 // 유튜브 링크
@@ -456,16 +492,18 @@ export const CommentsRegBtn = styled.button`
     padding: 14px 16px;
     width: 100px;
     height: 52px;
-    background: #000000;
+    background-color: #FFD600;
+    border : none;
     font-family: Noto Sans CJK KR;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
     /* identical to box height */
-    color : white;
+    color : black;
     text-align: center;
     border-radius: 10px;
+    cursor: pointer;
     
 `
 
@@ -479,7 +517,7 @@ export const BoardCommentsWrapper = styled.div`
 // TextArea
 export const BoardCommentsTextarea = styled.textarea`
     width : 100%;
-    height: 161px;
+    /* height: 161px; */
     /* White */
     background: #FFFFFF;
     /* Gray 4 */
@@ -532,7 +570,7 @@ export const BoardCommentsListHeaderWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     margin-left: 15px;
-    height: 30px;
+    /* height: 30px; */
     margin-top: 10px;
     /* background-color: yellow; */
     padding : 5px 5px;
@@ -602,8 +640,53 @@ export const BoardCommentsListFooter = styled.div`
     /* Gray 4 */
     color: #BDBDBD;
     margin-left: 80px;
+`;
+// youtube player
+export const MyYoutube = styled(ReactPlayer)`
+    /* border: 10px solid yellow; */
+`;
+// youtube
+export const Youtube = styled.div`
+    display: flex;
+    justify-content: center;
+    margin : 30px 0px 30px 0px;
 `
-
-
-
-
+// LikeDisLikeWrapper
+export const LikeDisLikeWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    /* background-color: tomato; */
+    justify-content: center;
+    margin: 60px 0px;
+`
+// 좋아요 wrapper
+export const LikeWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 100px;
+`
+// 좋아요 이미지
+export const LikeImg = styled.img`
+    width: 45px;
+    margin-bottom: 30px;
+`
+export const LikeCounter = styled.div`
+    font-size: 20px;
+    color : #FFD600;
+`
+// 싫어요 wrapper
+export const DisLikeWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+// 싫어요 이미지
+export const DisLikeImg = styled.img`
+    width: 45px;
+    margin-bottom: 27px;
+`
+export const DisLikeCounter = styled.div`
+    font-size: 21px;
+    color : gray;
+`

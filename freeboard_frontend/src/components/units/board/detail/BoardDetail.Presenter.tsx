@@ -3,6 +3,10 @@ import * as S from '../../../../../styles/boards/detail/index';
 import { Rate } from 'antd';
 import styled from '@emotion/styled';
 
+// import ReactPlayer from 'react-player/youtube'
+
+
+
 const MyRate = styled(Rate)`
 font-size: 17px;
 `
@@ -12,6 +16,7 @@ interface IProps {
     fetchWriter?             : string | number
     fetchTitle?              : string | number
     fetchContents?           : string | number
+    fetchYoutubeUrl?         : string
     onClickDelete            : () => void
     onClickGoBackList        : () => void
     onClickRegComments       : () => void
@@ -23,7 +28,13 @@ interface IProps {
     handleChange             : () => void
     onChangeRate             : () => void
     starValue?               : number
-    
+    fetchAddress             : string
+    fetchAddressDetail       : string
+    fetchZoneCode            : string
+    onClickLike              : () => void
+    onClickDisLike           : () => void
+    fetchLikeCount           : number
+    fetchDisLikeCount        : number
 }
 export default function BoardDetailPresenter(props : IProps){
 
@@ -58,29 +69,38 @@ export default function BoardDetailPresenter(props : IProps){
 
                     <S.BoardContentWrapper>
                         <div>내용</div>
-                        <S.FormTitle>{props.fetchContents}</S.FormTitle>
+                        <S.BoardContent value={props.fetchContents} readOnly/>
                     </S.BoardContentWrapper>
 
-                    {/* <AddressWrapper>
-                        <FormTitle>주소</FormTitle>
-                        <MainAddressWrapper>
-                            <AddressNum type="text" disabled placeholder="07250" />
-                            <AddressNumSearch >우편번호 검색</AddressNumSearch>
-                        </MainAddressWrapper>
-                        <SubAddressWrapper>
-                            <AddressSub type="text" />
-                            <AddressSub2 type="text" />
-                        </SubAddressWrapper>
-                    </AddressWrapper>
+                     <S.AddressWrapper>
+                        <div>주소</div>
+                        <S.SubAddressWrapper>
+                            <S.FormTitle>{props.fetchZoneCode}</S.FormTitle>
+                            <S.FormTitle>{props.fetchAddress}</S.FormTitle>
+                            <S.FormTitle>{props.fetchAddressDetail}</S.FormTitle>
+                        </S.SubAddressWrapper>
+                    </S.AddressWrapper>
 
-                    <UtubeWrapper>
-                        <FormTitle>유튜브</FormTitle>
-                        <div>
-                            <UtubeLink type="text" placeholder="링크를 복사해주세요." />
-                        </div>
-                    </UtubeWrapper>
+                    <S.UtubeWrapper>
+                        <S.YoutubeTitle> - Youtube Link - </S.YoutubeTitle>
+                        <S.Youtube>
+                            <S.MyYoutube url={props.fetchYoutubeUrl} width={800} height={500}/>
+                        </S.Youtube>
+                    </S.UtubeWrapper>
 
-                    <PhotoWrapper>
+                    <S.LikeDisLikeWrapper>
+                        <S.LikeWrapper>
+                            <S.LikeImg src="/images/Like.svg" onClick={props.onClickLike}/>
+                            <S.LikeCounter>{props.fetchLikeCount}</S.LikeCounter>
+                        </S.LikeWrapper>
+                        <S.DisLikeWrapper>
+                            <S.DisLikeImg src="/images/DisLike.svg" onClick={props.onClickDisLike}/>
+                            <S.DisLikeCounter>{props.fetchDisLikeCount}</S.DisLikeCounter>
+                        </S.DisLikeWrapper>
+                    </S.LikeDisLikeWrapper>
+
+
+                    {/*<PhotoWrapper>
                         <FormTitle>사진첨부</FormTitle>
                         <PhotoListWrapper>
                             <PhotoList>Upload</PhotoList>
@@ -166,7 +186,7 @@ export default function BoardDetailPresenter(props : IProps){
                                     </S.CommentsWriterRating>
                                     {/* 수정/삭제버튼 */}
                                     <S.CommentsImgButtonWrapper>
-                                        <S.BoardCommentsImg src="/images/Edit.svg"></S.BoardCommentsImg>
+                                        <S.BoardCommentsImg src="/images/Edit.svg" ></S.BoardCommentsImg>
                                         <S.BoardCommentsImg src="/images/Delete.svg" onClick={props.onClickDeleteComments} id={el._id}></S.BoardCommentsImg>
                                     </S.CommentsImgButtonWrapper>
                                 </S.BoardCommentsListHeaderWrapper>

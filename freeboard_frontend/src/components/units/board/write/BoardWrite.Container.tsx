@@ -6,6 +6,12 @@ import { CREATE_BOARD , UPDATE_BOARD } from './BoardWrite.Queries';
 
 export default function BoardWriteContainer(props){
 
+     console.log(props.fetchBoardData)
+
+    const addressInfo = props.fetchBoardData?.fetchBoard?.boardAddress
+
+    console.log(addressInfo);
+
     const router = useRouter();
 
     const [createBoard] = useMutation(CREATE_BOARD)
@@ -20,6 +26,15 @@ export default function BoardWriteContainer(props){
     const [ boardContent    , setBoardContent    ] = useState("");
     const [ boardContentErr , setBoardContentErr ] = useState("");
     const [ backColor       , setBackColor       ] = useState(false);
+
+    // 11.16 youtube 링크 추가
+    const [ youtubeUrl      , setYoutubeUrl      ] = useState("");
+    // 11.16 주소 추가
+    const [isModalVisible   , setIsModalVisible  ] = useState(false);
+    const [Address          , setAddress         ] = useState(addressInfo?.address);
+    const [AddressSub       , setAddressSub      ] = useState(addressInfo?.addressDetail);
+    const [ZoneCode         , setZoneCode        ] = useState(addressInfo?.zipcode);
+
 
     const WriterChk = (event) => {
         const writerTarget = event.target.value;
@@ -46,6 +61,11 @@ export default function BoardWriteContainer(props){
             setBoardTitleErr("");
 
         btnBackColor(writer, password, boardTitleTarget, boardContent);
+    }
+
+    const onChangeYoutubeUrl = (event) => {
+        const YoutubeUrlTarget = event.target.value;
+        setYoutubeUrl(YoutubeUrlTarget);
     }
 
     const BoardContentChk = (event) => {
@@ -93,10 +113,16 @@ export default function BoardWriteContainer(props){
                 const result = await createBoard({
                     variables : {
                         createBoardInput: {
-                            writer    : writer,
-                            password  : password,
-                            title     : boardTitle,
-                            contents  : boardContent
+                            writer     : writer,
+                            password   : password,
+                            title      : boardTitle,
+                            contents   : boardContent,
+                            youtubeUrl : youtubeUrl,
+                            boardAddress : {
+                                zipcode : ZoneCode,
+                                address : Address,
+                                addressDetail : AddressSub
+                            }
                         }
                     }
                 });
@@ -124,7 +150,9 @@ export default function BoardWriteContainer(props){
         const editVariables = { 
             boardId : router.query.ID,
             password : password,
-            updateBoardInput : {}
+            updateBoardInput : {
+                boardAddress : {}
+            }
         }
 
         // ******************
@@ -156,6 +184,35 @@ export default function BoardWriteContainer(props){
         }
         console.log("내용 : " + editVariables.updateBoardInput.contents)
 
+        // 11.16 youtube 추가
+        if(youtubeUrl !== "") {
+            editVariables.updateBoardInput.youtubeUrl = youtubeUrl
+        } else {
+            editVariables.updateBoardInput.youtubeUrl = props.fetchBoardData.fetchBoard.youtubeUrl
+        }
+        console.log("youtube : " + editVariables.updateBoardInput.youtubeUrl)
+        // // 주소
+        if(Address !== ""){
+            editVariables.updateBoardInput.boardAddress.address = Address
+        } else {
+            editVariables.updateBoardInput.boardAddress.address = props.fetchBoardData.fetchBoard.boardAddress.address
+        }
+        console.log("주소 : " + editVariables.updateBoardInput.boardAddress.address)
+        // // 상세주소
+        if(AddressSub !== ""){
+            editVariables.updateBoardInput.boardAddress.addressDetail = AddressSub
+        } else {
+            editVariables.updateBoardInput.boardAddress.addressDetail = props.fetchBoardData.fetchBoard.boardAddress.addressDetail
+        }
+        console.log("상세주소 : " + editVariables.updateBoardInput.boardAddress.addressDetail)
+        // // 우편번호
+        if(ZoneCode !== ""){
+            editVariables.updateBoardInput.boardAddress.zipcode = ZoneCode
+        } else {
+            editVariables.updateBoardInput.boardAddress.zipcode = props.fetchBoardData.fetchBoard.boardAddress.zipcode
+        }
+        console.log("우편번호 : " + editVariables.updateBoardInput.boardAddress.zipcode)
+
         try{
             const result = await updateBoard({
                 variables : editVariables
@@ -168,6 +225,43 @@ export default function BoardWriteContainer(props){
             alert(error.message);
         }
     }
+
+    // 상세주소 입력
+    const onChangeAddressSub = (event) => {
+        const AddressSubTarget = event.target.value;
+
+        if(AddressSubTarget !== ""){
+            setAddressSub(AddressSubTarget);
+        }
+    }
+
+    const onChangeAddress = (event) => {
+        const AddressTarget = event.target.value;
+
+        if(AddressTarget !== "") {
+            setAddress(AddressTarget);
+        }
+    }
+    
+    const onChangeZipcode = (event) => {
+        const ZipcodeTarget = event.target.value;
+
+        if(ZipcodeTarget !== "") {
+            setZoneCode(ZipcodeTarget);
+        }
+    }
+
+    // 주소 핸들러
+    const onToggleModal = () => {
+      setIsModalVisible(prev => !prev);
+    }
+    // 주소 핸들러 종료 후 처리
+    const handleComplete = (data:any) => {
+        console.log(data);
+        setAddress(data.address);
+        setZoneCode(data.zonecode);
+        setIsModalVisible(prev => !prev);
+    };
 
     return(
         <BoardWritePresenter WriterChk       = { WriterChk }
@@ -183,6 +277,21 @@ export default function BoardWriteContainer(props){
                              isEdit          = { props.isEdit }
                              Edit            = { Edit }
                              fetchBoardData  = { props.fetchBoardData }
+
+                            //  11.16 youtube + 주소록
+                             onChangeYoutubeUrl = { onChangeYoutubeUrl }
+                             onToggleModal      = { onToggleModal }
+                             handleComplete     = { handleComplete }
+                             isModalVisible     = { isModalVisible }
+                             Address            = { Address }
+                             AddressSub         = { AddressSub }
+                             ZoneCode           = { ZoneCode }
+                             onChangeAddressSub = { onChangeAddressSub }
+                             onChangeAddress    = { onChangeAddress }
+                             onChangeZipcode    = { onChangeZipcode }
+
+                             
+
         />
     )
 }

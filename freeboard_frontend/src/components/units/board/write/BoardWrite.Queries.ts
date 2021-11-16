@@ -2,12 +2,20 @@ import { gql } from '@apollo/client';
 
 // 게시물 등록
 export const CREATE_BOARD = gql`
-    mutation createBoard( $createBoardInput : CreateBoardInput!) {
-        createBoard(createBoardInput : $createBoardInput) {
+    mutation createBoard( $createBoardInput : CreateBoardInput! ) {
+        createBoard( createBoardInput : $createBoardInput ) {
             _id
             writer
             title
             contents
+            youtubeUrl
+            likeCount
+            dislikeCount
+            boardAddress{
+                zipcode
+                address
+                addressDetail
+            }
         }
     }
 `;
@@ -21,6 +29,11 @@ export const UPDATE_BOARD = gql`
             title
             contents
             updatedAt
+            boardAddress{
+                zipcode
+                address
+                addressDetail
+            }            
         }
     }
 `;

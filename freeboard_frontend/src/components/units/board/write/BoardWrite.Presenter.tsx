@@ -1,5 +1,7 @@
 import { isNonEmptyArray } from '@apollo/client/utilities'
 import * as S from '../../../../../styles/boards/write/index'
+import DaumPostcode from 'react-daum-postcode';
+import { Modal } from 'antd';
 
 export default function BoardWritePresenter(props){
 
@@ -62,20 +64,46 @@ export default function BoardWritePresenter(props){
 
                 <S.AddressWrapper>
                     <S.TitleText>주소</S.TitleText>
+
                     <S.MainAddressWrapper>
-                        <S.AddressNum type="text" disabled placeholder="07250" />
-                        <S.AddressNumSearch >우편번호 검색</S.AddressNumSearch>
+                        <S.AddressNum type="text"
+                                      readOnly 
+                                      defaultValue = { props.ZoneCode }
+                                      value        = { props.ZoneCode }
+                                        // defaultValue = {props.isEdit ? props.fetchBoardData?.fetchBoard.boardAddress.zipcode : ""}
+                                      />
+                        <S.AddressButton type="primary" onClick={props.onToggleModal}> 우편번호 검색 </S.AddressButton>
+                        {props.isModalVisible && (
+                        <Modal visible={true} onOk={props.onToggleModal} onCancel={props.onToggleModal}>
+                            <DaumPostcode onComplete={props.handleComplete}/>
+                        </Modal>
+                         )}
                     </S.MainAddressWrapper>
+
                     <S.SubAddressWrapper>
-                        <S.AddressSub type="text" placeholder="상세주소를 입력해주세요" />
-                        <S.AddressSub2 type="text" placeholder="상세주소를 입력해주세요" />
+                        <S.Address type="text" 
+                                   placeholder  = "우편 번호를 검색 해주세요" 
+                                   readOnly 
+                                   defaultValue = { props.Address }
+                                   value        = { props.Address }
+                                   //    onChange={props.Address}
+                                   />
+                        <S.AddressSub type="text" 
+                                      placeholder  = "상세주소를 입력해주세요" 
+                                      defaultValue = { props.AddressSub }
+                                      value        = { props.AddressSub }
+                                      onChange     = { props.onChangeAddressSub }
+                                      />
                     </S.SubAddressWrapper>
                 </S.AddressWrapper>
 
-
                 <S.UtubeWrapper>
                     <S.TitleText>유튜브</S.TitleText>
-                    <S.UtubeLink type="text" placeholder="링크를 복사해주세요." />
+                    <S.UtubeLink type="text" 
+                                 placeholder="링크를 복사해주세요." 
+                                 onChange={props.onChangeYoutubeUrl}
+                                 defaultValue={props.fetchBoardData?.fetchBoard.youtubeUrl}
+                                 />
                 </S.UtubeWrapper>
 
 

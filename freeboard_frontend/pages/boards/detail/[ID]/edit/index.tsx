@@ -11,7 +11,7 @@ export default function EditPage(){
         const { data } = useQuery( FETCH_BOARD , { variables : { boardId : router.query.ID }});
     
     return(
-        <BoardWriteContainer isEdit         = { true } 
+        <BoardWriteContainer isEdit= {true}
                              fetchBoardData = { data }
         />
     )

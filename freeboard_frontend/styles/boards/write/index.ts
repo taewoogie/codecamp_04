@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Button } from 'antd';
 
 // 최상위 JSX 영역
 export const Container = styled.div`
@@ -229,7 +230,7 @@ export const SubAddressWrapper = styled.div`
 `
 
 // 주소 - 상세주소
-export const AddressSub = styled.input`
+export const Address = styled.input`
     border-radius: 15px;
     padding: 14px 14px;
     width: 996px;
@@ -248,7 +249,7 @@ export const AddressSub = styled.input`
     :focus { outline: none; }
 `
 // 주소 - 상세주소
-export const AddressSub2 = styled.input`
+export const AddressSub = styled.input`
     border-radius: 15px;
     padding: 14px 14px;
     width: 996px;
@@ -379,4 +380,11 @@ export const ErrMessage = styled.div`
     font-size: 13px;
     margin-left: 15px;
     margin-bottom: 10px;
+`
+
+export const AddressButton = styled(Button)`
+    margin-left: 10px;
+    border : none;
+    border-radius: 15px;
+    height: 51px;
 `

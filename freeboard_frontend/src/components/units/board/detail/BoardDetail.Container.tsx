@@ -1,14 +1,22 @@
 import { useRouter }                                   from "next/router";
 import { useQuery , useMutation }                      from "@apollo/client";
-import { FETCH_BOARD , DELETE_BOARD }                  from './BoardDetail.Queries'
+import { FETCH_BOARD 
+       , DELETE_BOARD 
+       , LIKE_BOARD 
+       , DISLIKE_BOARD }                               from './BoardDetail.Queries'
 import BoardDetailPresenter                            from "./BoardDetail.Presenter";
 import { useState }                                    from "react";
-import { FETCH_BOARD_COMMENTS , CREATE_BOARD_COMMENT , DELETE_BOARD_COMMENT } from "../comments/BoardComments.Queries";
+import { FETCH_BOARD_COMMENTS 
+       , CREATE_BOARD_COMMENT 
+       , DELETE_BOARD_COMMENT }                        from "../comments/BoardComments.Queries";
 
 export default function BoardDetailContainer(props){
     const router = useRouter();
     // 게시글 상세 조회
     const { data:board } = useQuery( FETCH_BOARD , { variables : { boardId : router.query.ID }});
+
+    console.log(board)
+
     // 게시글 삭제
     const [deleteBoard] = useMutation(DELETE_BOARD);
     // 게시글 전체 목록으로
@@ -26,8 +34,39 @@ export default function BoardDetailContainer(props){
         } catch(error) {
             console.log(error.message)
         }
-    }    
-    
+    }
+
+    // ***********************
+    // 11.16 좋아요 안좋아요 
+    // ***********************
+    const [ likeBoard    ] = useMutation(LIKE_BOARD);
+    const [ dislikeBoard ] = useMutation(DISLIKE_BOARD);
+
+    const onClickLike = () => {
+        console.log(("fetchBoard.ID : " + router.query.ID));
+        try{
+            const result = likeBoard({variables : { boardId : router.query.ID },
+                                      refetchQueries : [{ query : FETCH_BOARD, variables : { boardId : router.query.ID } }]
+                                    })
+            // alert("좋아요!");
+            console.log(result);
+        } catch(error) {
+            console.log(error.message)
+        }
+    }
+    const onClickDisLike = () => {
+        console.log(("fetchBoard.ID : " + router.query.ID));
+        try{
+            const result = dislikeBoard({variables : { boardId : router.query.ID },
+                                      refetchQueries : [{ query : FETCH_BOARD, variables : { boardId : router.query.ID } }]
+                                    })
+            // alert("안좋아요!");
+            console.log(result);
+        } catch(error) {
+            console.log(error.message)
+        }
+    }
+
     // *************
     //     댓글
     // *************
@@ -37,7 +76,9 @@ export default function BoardDetailContainer(props){
     const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
     console.log(cmts);
     // 댓글 별점
-    const [starValue, setValue] = useState(0)
+    const [starValue, setValue] = useState(0);
+    // 댓글 수정
+    const [isEdit , setIsEdit] = useState(false);
 
     // 댓글 등록
     const [ createBoardComment ] = useMutation(CREATE_BOARD_COMMENT);
@@ -118,23 +159,37 @@ export default function BoardDetailContainer(props){
 
     return(
         <BoardDetailPresenter
-                boardId           = {board?.fetchBoard.ID}
-                fetchWriter       = {board?.fetchBoard.writer}
-                fetchTitle        = {board?.fetchBoard.title}
-                fetchContents     = {board?.fetchBoard.contents}
-                onClickDelete     = {onClickDelete}
-                onClickGoBackList = {onClickGoBackList}
+                boardId           = { board?.fetchBoard.ID }
+                fetchWriter       = { board?.fetchBoard.writer }
+                fetchTitle        = { board?.fetchBoard.title }
+                fetchContents     = { board?.fetchBoard.contents }
+                fetchYoutubeUrl   = { board?.fetchBoard.youtubeUrl }
+                fetchLikeCount    = { board?.fetchBoard.likeCount }
+                fetchDisLikeCount = { board?.fetchBoard.dislikeCount }
+                onClickDelete     = { onClickDelete }
+                onClickGoBackList = { onClickGoBackList }
                 //************
                 //    댓글
                 //************
-                onClickRegComments        = {onClickRegComments}
-                onChangeCommentsWriter    = {onChangeCommentsWriter}
-                onChangeCommentsPassword  = {onChangeCommentsPassword}
-                onChangeCommentsArea      = {onChangeCommentsArea}
-                onClickDeleteComments     = {onClickDeleteComments}
+                onClickRegComments        = { onClickRegComments }
+                onChangeCommentsWriter    = { onChangeCommentsWriter }
+                onChangeCommentsPassword  = { onChangeCommentsPassword }
+                onChangeCommentsArea      = { onChangeCommentsArea }
+                onClickDeleteComments     = { onClickDeleteComments }
                 cmts                      = { cmts }
                 onChangeRate              = { onChangeRate }
                 starValue                 = { starValue }
+                //************
+                //   우편번호
+                //************
+                fetchAddress              = { board?.fetchBoard?.boardAddress?.address }
+                fetchAddressDetail        = { board?.fetchBoard?.boardAddress?.addressDetail }
+                fetchZoneCode             = { board?.fetchBoard?.boardAddress?.zipcode }
+                // ***********
+                //    댓글
+                // ***********
+                onClickLike               = { onClickLike }
+                onClickDisLike            = { onClickDisLike }
         />
     )
 }
