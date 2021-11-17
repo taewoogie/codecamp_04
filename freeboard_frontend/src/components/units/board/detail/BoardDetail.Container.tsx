@@ -186,7 +186,7 @@ export default function BoardDetailContainer(props){
                 fetchAddressDetail        = { board?.fetchBoard?.boardAddress?.addressDetail }
                 fetchZoneCode             = { board?.fetchBoard?.boardAddress?.zipcode }
                 // ***********
-                //    댓글
+                //    좋아요 싫어요
                 // ***********
                 onClickLike               = { onClickLike }
                 onClickDisLike            = { onClickDisLike }

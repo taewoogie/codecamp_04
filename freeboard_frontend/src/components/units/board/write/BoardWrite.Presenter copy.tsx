@@ -1,3 +1,4 @@
+import { isNonEmptyArray } from '@apollo/client/utilities'
 import * as S from '../../../../../styles/boards/write/index'
 import DaumPostcode from 'react-daum-postcode';
 import { Modal } from 'antd';
@@ -52,7 +53,8 @@ export default function BoardWritePresenter(props){
 
                 <S.BoardContentWrapper>
                     <S.TitleText>내용</S.TitleText>
-                    <S.BoardContent placeholder="내용을 작성해주세요." 
+                    <S.BoardContent type="textarea" 
+                                    placeholder="내용을 작성해주세요." 
                                     onChange={props.BoardContentChk} 
                                     defaultValue={props.fetchBoardData?.fetchBoard.contents}
                     />

@@ -159,7 +159,7 @@ export const BoardContentWrapper = styled.div`
 `
 
 // 게시글 - 내용
-export const BoardContent = styled.input`
+export const BoardContent = styled.textarea`
     border : none;
     border-radius: 15px;
     margin-top: 7px;
