@@ -66,10 +66,14 @@ export default function BoardWritePresenter(props){
                     <S.MainAddressWrapper>
                         <S.AddressNum type="text"
                                       readOnly 
-                                      defaultValue = { props.ZoneCode }
-                                      value        = { props.ZoneCode }
+                                      value = { 
+                                                props.ZoneCode ||
+                                                props.fetchBoardData?.fetchBoard.boardAddress?.zipcode||
+                                                "" 
+                                        }
+                                        // defaultValue = { props.ZoneCode }
                                         // defaultValue = {props.isEdit ? props.fetchBoardData?.fetchBoard.boardAddress.zipcode : ""}
-                                      />
+                        />
                         <S.AddressButton type="primary" onClick={props.onToggleModal}> 우편번호 검색 </S.AddressButton>
                         {props.isModalVisible && (
                         <Modal visible={true} onOk={props.onToggleModal} onCancel={props.onToggleModal}>
@@ -82,16 +86,21 @@ export default function BoardWritePresenter(props){
                         <S.Address type="text" 
                                    placeholder  = "우편 번호를 검색 해주세요" 
                                    readOnly 
-                                   defaultValue = { props.Address }
-                                   value        = { props.Address }
-                                   //    onChange={props.Address}
-                                   />
+                                   value        = { 
+                                       props.Address ||
+                                       props.fetchBoardData?.fetchBoard.boardAddress?.address ||
+                                       "" 
+                                    }
+                                   // defaultValue = { props.Address }
+                                   // onChange={props.Address}
+                        />
                         <S.AddressSub type="text" 
                                       placeholder  = "상세주소를 입력해주세요" 
-                                      defaultValue = { props.AddressSub }
-                                      value        = { props.AddressSub }
                                       onChange     = { props.onChangeAddressSub }
-                                      />
+                                      defaultValue = { 
+                                          props.fetchBoardData?.fetchBoard.boardAddress?.addressDetail || ""
+                                       }
+                        />
                     </S.SubAddressWrapper>
                 </S.AddressWrapper>
 

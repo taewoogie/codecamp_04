@@ -1,11 +1,7 @@
 import router from 'next/router';
 import * as S from '../../../../../styles/boards/detail/index';
-import { Rate } from 'antd';
+import { Rate , Modal } from 'antd';
 import styled from '@emotion/styled';
-
-// import ReactPlayer from 'react-player/youtube'
-
-
 
 const MyRate = styled(Rate)`
 font-size: 17px;
@@ -35,11 +31,23 @@ interface IProps {
     onClickDisLike           : () => void
     fetchLikeCount           : number
     fetchDisLikeCount        : number
+    isOpenDeleteModal        : boolean
+    onClickOpenDeleteModal   : () => void
 }
-export default function BoardDetailPresenter(props : IProps){
 
+export default function BoardDetailPresenter(props : IProps){
+    
     return(
-        // Container
+        <>
+
+        {props.isOpenDeleteModal && (
+            <Modal visible={true} onOk={props.onClickDeleteComments}>
+                <div>비밀번호 입력: </div>
+                <S.PasswordInput type="password" onChange={props.onChangeCommentsPassword} />
+            </Modal>
+        )}
+
+        {/* // Container */}
         <S.Container>
             {/* Wrapper */}
             <S.Wrapper>
@@ -187,7 +195,9 @@ export default function BoardDetailPresenter(props : IProps){
                                     {/* 수정/삭제버튼 */}
                                     <S.CommentsImgButtonWrapper>
                                         <S.BoardCommentsImg src="/images/Edit.svg" ></S.BoardCommentsImg>
-                                        <S.BoardCommentsImg src="/images/Delete.svg" onClick={props.onClickDeleteComments} id={el._id}></S.BoardCommentsImg>
+
+                                        <S.BoardCommentsImg src="/images/Delete.svg" onClick={props.onClickOpenDeleteModal} id={el._id}></S.BoardCommentsImg>
+                                        {/* <S.BoardCommentsImg src="/images/Delete.svg" onClick={props.onClickDeleteComments} id={el._id}></S.BoardCommentsImg> */}
                                     </S.CommentsImgButtonWrapper>
                                 </S.BoardCommentsListHeaderWrapper>
 
@@ -205,5 +215,6 @@ export default function BoardDetailPresenter(props : IProps){
 
             </S.Wrapper>
         </S.Container>        
+    </>
     )
 }

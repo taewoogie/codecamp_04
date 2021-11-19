@@ -1,5 +1,5 @@
 import BoardDetailContainer      from '../../../../../src/components/units/board/detail/BoardDetail.Container';
-import { FETCH_BOARD_COMMENTS } from '../../../../../src/components/units/board/comments/BoardComments.Queries';
+import { FETCH_BOARD_COMMENTS } from '../../../../../src/components/units/boardComment/write/BoardCommentsWrite.Queries';
 import { useRouter }            from 'next/router';
 import { useQuery }             from '@apollo/client';
 

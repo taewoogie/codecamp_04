@@ -370,3 +370,11 @@ export const RegisterBtn = styled.button`
         color : white;
     }
 `
+
+export const PageNationContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`
+export const PageNationWrapper = styled.div`
+    margin: 0px 10px;
+`

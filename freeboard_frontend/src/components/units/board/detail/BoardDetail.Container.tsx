@@ -8,9 +8,9 @@ import BoardDetailPresenter                            from "./BoardDetail.Prese
 import { useState }                                    from "react";
 import { FETCH_BOARD_COMMENTS 
        , CREATE_BOARD_COMMENT 
-       , DELETE_BOARD_COMMENT }                        from "../comments/BoardComments.Queries";
+       , DELETE_BOARD_COMMENT }                        from "../../boardComment/write/BoardCommentsWrite.Queries";
 
-export default function BoardDetailContainer(props){
+export default function BoardDetailContainer(){
     const router = useRouter();
     // 게시글 상세 조회
     const { data:board } = useQuery( FETCH_BOARD , { variables : { boardId : router.query.ID }});
@@ -22,7 +22,7 @@ export default function BoardDetailContainer(props){
     // 게시글 전체 목록으로
     const onClickGoBackList = () => {
         router.push('../../../../../boards/list');
-    }    
+    }
     // 게시글 삭제하기
     const onClickDelete = async () => {
         console.log(("fetchBoard.ID : " + router.query.ID));
@@ -85,6 +85,9 @@ export default function BoardDetailContainer(props){
     const [ commentsWriter      , setCommentsWriter      ] = useState("");
     const [ commentsPassword    , setCommentsPassword    ] = useState("");
     const [ commentsArea        , setCommentsArea        ] = useState("");
+    const [ commentsID          , setCommentsID          ] = useState("");
+    // 댓글 삭제 모달
+    const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 
     // 작성자명 입력 
     const onChangeCommentsWriter = (event) => {
@@ -135,22 +138,27 @@ export default function BoardDetailContainer(props){
         }
     }
 
-    // 댓글 삭제하기
-    const onClickDeleteComments = async (event) => {
+    // 삭제 모달 팝업
+    const onClickOpenDeleteModal = (event) => {
+        setIsOpenDeleteModal(prev => !prev);
+        setCommentsID(event.target.id);
+        console.log(event.target.id);
+    } 
 
-        // console.log(("BoardCommentID : " + event.target.id));
-        const deletePasswordChk = prompt("비밀번호를 입력해주세요");
+    // 댓글 삭제하기
+    const onClickDeleteComments = async () => {
 
         try{
             const result = await deleteBoardComment({
                 variables : { 
-                    boardCommentId : event.target.id,
-                    password       : deletePasswordChk
+                    boardCommentId : commentsID,
+                    password       : commentsPassword
                 },
                 refetchQueries : [{ query : FETCH_BOARD_COMMENTS, variables : { boardId : router.query.ID } }]
             })
             console.log(result);
             alert("정상적으로 삭제되었습니다!");
+            setIsOpenDeleteModal(prev => !prev)
         } catch(error) {
             console.log(error.message)
             alert(error.message);
@@ -159,18 +167,22 @@ export default function BoardDetailContainer(props){
 
     return(
         <BoardDetailPresenter
-                boardId           = { board?.fetchBoard.ID }
-                fetchWriter       = { board?.fetchBoard.writer }
-                fetchTitle        = { board?.fetchBoard.title }
-                fetchContents     = { board?.fetchBoard.contents }
-                fetchYoutubeUrl   = { board?.fetchBoard.youtubeUrl }
-                fetchLikeCount    = { board?.fetchBoard.likeCount }
-                fetchDisLikeCount = { board?.fetchBoard.dislikeCount }
-                onClickDelete     = { onClickDelete }
-                onClickGoBackList = { onClickGoBackList }
-                //************
-                //    댓글
-                //************
+                //*****************************************************************
+                //                    게시물 상세 조회
+                //*****************************************************************
+                boardId                   = { board?.fetchBoard.ID }
+                fetchWriter               = { board?.fetchBoard.writer }
+                fetchTitle                = { board?.fetchBoard.title }
+                fetchContents             = { board?.fetchBoard.contents }
+                fetchYoutubeUrl           = { board?.fetchBoard.youtubeUrl }
+                fetchLikeCount            = { board?.fetchBoard.likeCount }
+                fetchDisLikeCount         = { board?.fetchBoard.dislikeCount }
+                onClickDelete             = { onClickDelete }
+                onClickGoBackList         = { onClickGoBackList }
+
+                //*****************************************************************
+                //                      댓글
+                //*****************************************************************
                 onClickRegComments        = { onClickRegComments }
                 onChangeCommentsWriter    = { onChangeCommentsWriter }
                 onChangeCommentsPassword  = { onChangeCommentsPassword }
@@ -179,15 +191,19 @@ export default function BoardDetailContainer(props){
                 cmts                      = { cmts }
                 onChangeRate              = { onChangeRate }
                 starValue                 = { starValue }
-                //************
-                //   우편번호
-                //************
+                isOpenDeleteModal         = { isOpenDeleteModal }
+                onClickOpenDeleteModal    = { onClickOpenDeleteModal }
+                
+                //*****************************************************************
+                //                      우편번호
+                //*****************************************************************
                 fetchAddress              = { board?.fetchBoard?.boardAddress?.address }
                 fetchAddressDetail        = { board?.fetchBoard?.boardAddress?.addressDetail }
                 fetchZoneCode             = { board?.fetchBoard?.boardAddress?.zipcode }
-                // ***********
-                //    좋아요 싫어요
-                // ***********
+                
+                //*****************************************************************
+                //                    좋아요 / 싫어요
+                //*****************************************************************
                 onClickLike               = { onClickLike }
                 onClickDisLike            = { onClickDisLike }
         />

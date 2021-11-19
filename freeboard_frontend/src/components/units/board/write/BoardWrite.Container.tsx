@@ -31,10 +31,9 @@ export default function BoardWriteContainer(props){
     const [ youtubeUrl      , setYoutubeUrl      ] = useState("");
     // 11.16 주소 추가
     const [isModalVisible   , setIsModalVisible  ] = useState(false);
-    const [Address          , setAddress         ] = useState(addressInfo?.address);
-    const [AddressSub       , setAddressSub      ] = useState(addressInfo?.addressDetail);
-    const [ZoneCode         , setZoneCode        ] = useState(addressInfo?.zipcode);
-
+    const [Address          , setAddress         ] = useState("");
+    const [AddressSub       , setAddressSub      ] = useState("");
+    const [ZoneCode         , setZoneCode        ] = useState("");
 
     const WriterChk = (event) => {
         const writerTarget = event.target.value;

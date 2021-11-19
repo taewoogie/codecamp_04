@@ -1,7 +1,5 @@
 import styled from '@emotion/styled'
 import ReactPlayer from 'react-player/youtube'
-import { Divider } from 'antd'
-import { StepLabel } from '@material-ui/core'
 
 // 최상위 JSX 영역
 export const Container = styled.div`
@@ -641,6 +639,14 @@ export const BoardCommentsListFooter = styled.div`
     color: #BDBDBD;
     margin-left: 80px;
 `;
+
+export const PasswordInput = styled.input`
+    width: 100%;
+    margin-top: 10px ;
+`
+
+
+
 // youtube player
 export const MyYoutube = styled(ReactPlayer)`
     /* border: 10px solid yellow; */
