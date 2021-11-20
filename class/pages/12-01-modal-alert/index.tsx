@@ -1,24 +1,22 @@
-import {Modal} from 'antd'
-
+import { Modal } from "antd";
 
 export default function ModalAlertPage() {
+  function onClickSuccess() {
+    Modal.success({ content: "게시물 등록에 성공했습니다!!!" });
+  }
 
-    const onClickSuccess = () => {
-        Modal.success({
-            content: '게시물 등록에 성공 했습니다',
-          });
-    }
-    const onClickFail = () => {
-        Modal.error({
-            content: '게시물 등록에 실패 했습니다',
-          });
-    }
+  function onClickFail() {
+    Modal.error({ content: "게시물 등록에 실패했습니다!!!" });
+  }
 
-    return(
-        <>
-            <button onClick={onClickSuccess}>알림창 나타내기 (성공 메시지)</button>
-            <button onClick={onClickFail}>알림창 나타내기 (실패 메시지)</button>
-        </>
-    )
-    
+  return (
+    <>
+      <button onClick={onClickSuccess}>
+        알림창 나타나기!!(성공했을때 메시지)
+      </button>
+      <button onClick={onClickFail}>
+        알림창 나타나기!!(실패했을때 메시지)
+      </button>
+    </>
+  );
 }

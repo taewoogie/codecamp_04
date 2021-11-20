@@ -1,13 +1,8 @@
+export default function SataticRoutedPage(){
 
 
-export default function StaticRountedPage(){
+    return (
+        <div>페이지 이동완료!!!</div>
+    )
 
-
-
-
-
-
-    return(
-            <div>페이지 이동완료!</div>
-        )
 }

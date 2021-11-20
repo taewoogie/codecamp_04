@@ -1,107 +1,79 @@
-import { useMutation }                    from '@apollo/client'
-import { ChangeEvent, useState }          from 'react'
-import { useRouter }                      from 'next/router'
-import { CRERATE_BOARD , UPDATE_BOARD }   from './BoardWrite.Queries'
-import BoardWritePresenter                from './BoardWrite.Presenter'
+import BoardWriteUI from './BoardWrite.presenter'
+import { useMutation } from '@apollo/client'
+import { ChangeEvent, useState } from 'react'
+import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
+import { useRouter } from 'next/router'
+import { IBoardWriteProps, IMyVariables } from './BoardWrite.types'
 
+export default function BoardWrite(props: IBoardWriteProps){
+    const router = useRouter()
 
-interface IProps {
-    isEdit          : boolean,
-    fetchBoardData? : any
-}
+    const [myQqq, setMyQqq] = useState<boolean>(false)
+    const [myWriter, setMyWriter] = useState("")
+    const [myTitle, setMyTitle] = useState("")
+    const [myContents, setMyContents] = useState("")
+    const [createBoard] = useMutation(CREATE_BOARD)
+    const [updateBoard] = useMutation(UPDATE_BOARD)
 
-export default function BoardWriteContainer(props : IProps){
-    const router                       = useRouter();
-    const [createBoard]                = useMutation(CRERATE_BOARD)
-    const [updateBoard]                = useMutation(UPDATE_BOARD)
-    const [Writer     , setWriter]     = useState("")
-    const [Title      , setTitle]      = useState("")
-    const [Contents   , setContents]   = useState("")
-    const [BackGround , setBackGround] = useState<boolean>(false)
-
-                            // 이벤트 change 이벤트이며 <htmlinputelement> 의 value를 할당했다
-    const onChangeWriter = (event : ChangeEvent<HTMLInputElement>) => {
-        const chkWriter = event.target.value;
-        setWriter(chkWriter);
-        onChangeBackGround(chkWriter,Title, Contents);
-    }
-
-    const onChangeTitle = (event : ChangeEvent<HTMLInputElement>) => {
-        const chkTitle = event.target.value;
-        setTitle(chkTitle);
-        onChangeBackGround(Writer,chkTitle,Contents);
-    }
-
-    const onChangeContents = (event : ChangeEvent<HTMLInputElement>) => {
-        const chkContents = event.target.value;
-        setContents(chkContents);
-        onChangeBackGround(Writer,Title,chkContents);
-    }
-
-    const onChangeBackGround = (chkWriter:string | number , chkTitle:string|number , chkContents:string|number) => {
-
-        if(chkWriter !== '' && chkTitle !== '' && chkContents !== '') {
-            setBackGround(true);
-        } else {
-            setBackGround(false);
+    function onChangeMyWriter(event: ChangeEvent<HTMLInputElement>){
+        setMyWriter(event.target.value)
+        if(event.target.value !== "" && myTitle !== "" && myContents !== ""){
+            setMyQqq(true)
         }
     }
 
-    // 등록하기
-    const Request = async () => {
-        // alert("등록하기 버튼을 누르셨습니다");
+    function onChangeMyTitle(event: ChangeEvent<HTMLInputElement>){
+        setMyTitle(event.target.value)
+        if(myWriter !== "" && event.target.value !== "" && myContents !== ""){
+            setMyQqq(true)
+        }
+    }
+
+    function onChangeMyContents(event: ChangeEvent<HTMLInputElement>){
+        setMyContents(event.target.value)
+        if(myWriter !== "" && myTitle !== "" && event.target.value !== ""){
+            setMyQqq(true)
+        }
+    }
+
+    async function zzz(){
+        // alert("등록하기 버튼을 누르셨습니다!")
         const result = await createBoard({
-            variables : {
-                writer    : Writer,
-                title     : Title,
-                contents  : Contents
-            }
-        });
-        console.log(result);
-        console.log(result.data.createBoard.message);
-        alert('등록이 완료 되었습니다')
-        console.log(result.data.createBoard.number);
-        router.push(`/09-02-boards2/${result.data.createBoard.number}`);
-    }
-
-    // 수정하기
-    const Edit = async () => {
-        interface IMyVariables {
-            number?   : number ,
-            writer?   : string | number ,
-            title?    : string | number ,
-            contents? : string | number 
-        }
-
-        // 수정 페이지에서 작성한 항목을 확인 할 배열 생성
-        // 필수값인 number(게시물번호) 고정
-        const myVariables: IMyVariables = { 
-            number : Number(router.query.number) 
-            
-        }
-
-        // 항목 중 값이 있을 때만 myVariables 객체 안에 푸쉬 해준다.
-        if(Writer !== "") myVariables.writer = Writer
-        if(Title !== "") myVariables.title = Title
-        if(Contents !== "") myVariables.contents = Contents
-
-        const result = await updateBoard({
-            variables : myVariables
+            variables: { writer: myWriter, title: myTitle, contents: myContents }
         })
-        alert("수정이 완료 되었습니다");
         console.log(result)
-        router.push(`/09-02-boards2/${router.query.number}`);
+        console.log(result.data.createBoard.message)
+        router.push(`/09-02-boards2/${result.data.createBoard.number}`)
     }
 
-    return(
-        <BoardWritePresenter onChangeWriter       = { onChangeWriter }
-                             onChangeTitle        = { onChangeTitle }
-                             onChangeContents     = { onChangeContents }
-                             BackGround           = { BackGround }
-                             Request              = { Request }
-                             isEdit               = { props.isEdit }
-                             Edit                 = { Edit }
-                             fetchBoardData       = { props.fetchBoardData }
+    async function xxx(){
+        const myVariables: IMyVariables = {
+            number: Number(router.query.myNumber)
+        }
+
+        if(myWriter !== "") myVariables.writer = myWriter
+        if(myTitle !== "") myVariables.title = myTitle        
+        if(myContents !== "") myVariables.contents = myContents
+
+        // alert("수정하기 버튼을 누르셨습니다!")
+        const result = await updateBoard({
+            variables: myVariables
+        })
+        console.log(result)
+        router.push(`/09-02-boards2/${router.query.myNumber}`)
+    }
+
+    return (
+        <BoardWriteUI 
+            aaa={onChangeMyWriter}
+            bbb={onChangeMyTitle}
+            ccc={onChangeMyContents}
+            zzz={zzz}
+            qqq={myQqq}
+            ggg={props.isEdit}
+            xxx={xxx}
+            data={props.data}
         />
     )
+
 }

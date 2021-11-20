@@ -5,6 +5,6 @@ export const MyInput = styled.input`
 `
 
 export const MyButton = styled.button`
-    background-color: ${(props) => props.BackGround === true ? 'yellow' : 'whiteGray'};
+    background-color: ${(props) => props.qqq === true ? "yellow" : "gray"};
     font-size: 30px;
 `

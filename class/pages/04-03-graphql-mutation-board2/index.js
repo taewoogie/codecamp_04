@@ -1,41 +1,36 @@
-import {useMutation, gql} from '@apollo/client'
+import { useMutation, gql } from '@apollo/client'
 import { useState } from 'react'
 
-const CRERATE_BOARD = gql`
-    mutation createBoard( $writer : String , $title : String , $contents : String) {
-
-             createBoard( writer : $writer, title :  $title, contents : $contents) {
-                _id
-                number
-                message
-            }
+const CREATE_BOARD = gql`
+    mutation createBoard($writer: String, $title: String, $contents: String){
+        createBoard(writer: $writer, title: $title, contents: $contents){
+            _id
+            number
+            message
+        }
     }
 `
 
 export default function GraphqlMutationBoard2Page(){
-    const [request , setRequest] = useState("");
+    const [aaa, setAaa] = useState("안녕하세요")
+    const [createBoard] = useMutation(CREATE_BOARD)
 
-    const [createBoard] = useMutation(CRERATE_BOARD)
-    
-    const Request = async () => {
 
+    async function zzz(){
         const result = await createBoard({
-            variables : {
-                writer    : "광영희",
-                title     : "제목이요",
-                constents : "내용"
-            }
-        });
-        console.log(result);
-        setRequest(result.data.createBoard.message)
-
-
+            variables: { writer: "영희", title: "제목이요!!", contents: "내용이요!!" }
+        })
+        console.log(result)
+        console.log(result.data.createBoard.message)
+        setAaa(result.data.createBoard.message)
     }
 
-    return(
+    return (
         <>
-            <div>{request}</div>
-            <button onClick={Request}>GRAPHQL-API 요청하기</button>
+            <div>{aaa}</div>
+            <button onClick={zzz}>GRAPHQL-API 요청하기!!!</button>
         </>
     )
+
+
 }

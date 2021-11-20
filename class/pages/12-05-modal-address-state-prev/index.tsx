@@ -1,35 +1,34 @@
-import DaumPostcode from 'react-daum-postcode';
-import { Modal, Button } from 'antd';
-import React, { useState } from 'react';
+import DaumPostcode from "react-daum-postcode";
+import { useState } from "react";
+import { Modal, Button } from "antd";
 
 export default function ModalBasicPage() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [myAddress, setMyAddress] = useState("");
+  //   const [myAddressDetail, setMyAddressDetail]
+  const [myZonecode, setMyZonecode] = useState("");
 
-        const [isModalVisible, setIsModalVisible] = useState(false);
-        const [Address  , setAddress]   = useState("");
-        const [ZoneCode , setZoneCode]  = useState("");
-      
-        const onToggleModal = () => {
-          setIsModalVisible(prev => !prev);
-        }
+  const onToggleModal = () => {
+    setIsOpen((prev) => !prev);
+  };
 
-        const handleComplete = (data:any) => {
-            console.log(data);
-            setAddress(data.address);
-            setZoneCode(data.zonecode);
-            setIsModalVisible(prev => !prev);
-        };
+  const handleComplete = (data: any) => {
+    // console.log(data);
+    setMyAddress(data.address);
+    setMyZonecode(data.zonecode);
+    setIsOpen((prev) => !prev);
+  };
 
-    return(
-        <>
-        <div>내 주소  : {Address}</div>
-        <div>우편번호  : {ZoneCode}</div>
-        <Button type="primary" onClick={onToggleModal}> Open Modal </Button>
-        {/* <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}> */}
-        {isModalVisible && (
-            <Modal visible={true} onOk={onToggleModal} onCancel={onToggleModal}>
-                <DaumPostcode onComplete={handleComplete}/>
-            </Modal>
-        )}
-        </>
-    )
+  return (
+    <>
+      <Button onClick={onToggleModal}>우편번호 검색</Button>
+      <div>내주소: {myAddress}</div>
+      <div>내우편번호: {myZonecode}</div>
+      {isOpen && (
+        <Modal visible={true} onOk={onToggleModal} onCancel={onToggleModal}>
+          <DaumPostcode onComplete={handleComplete} />
+        </Modal>
+      )}
+    </>
+  );
 }

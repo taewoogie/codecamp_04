@@ -1,6 +1,5 @@
-import BoardWriteContainer from "../../../src/components/units/board/write4/BoardWrite.Container";
+import BoardWrite from "../../../src/components/units/board/write4/BoardWrite.container";
 
 export default function BoardsNewPage(){
-   
-    return <BoardWriteContainer isEdit={false}/>
+    return <BoardWrite isEdit={false} />
 }

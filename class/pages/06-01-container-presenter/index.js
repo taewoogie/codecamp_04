@@ -1,5 +1,5 @@
-import BoardWriteContainer from "../../src/components/units/board/write/BoardWrite.Container"
+import BoardWrite from '../../src/components/units/board/write/BoardWrite.container'
 
 export default function ContainerPresenterPage(){
-    return <BoardWriteContainer />
+    return <BoardWrite />
 }

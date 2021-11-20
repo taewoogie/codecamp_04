@@ -1,146 +1,148 @@
-import * as S from '../../../../../styles/boards/write/index'
-import DaumPostcode from 'react-daum-postcode';
-import { Modal } from 'antd';
+import {
+  Address,
+  ButtonWrapper,
+  Contents,
+  ImageWrapper,
+  InputWrapper,
+  Label,
+  OptionWrapper,
+  Password,
+  RadioButton,
+  RadioLabel,
+  SearchButton,
+  Subject,
+  SubmitButton,
+  Title,
+  Wrapper,
+  Writer,
+  WriterWrapper,
+  Youtube,
+  Zipcode,
+  ZipcodeWrapper,
+  UploadButton,
+  Error,
+} from "./BoardWrite.styles";
+import { IBoardWriteUIProps } from "./BoardWrite.types";
+import { Modal } from "antd";
+import DaumPostcode from "react-daum-postcode";
 
-export default function BoardWritePresenter(props){
-
-    return(
-        <S.Container>
-            <S.Wrapper>
-                <S.Title>
-                    게시물 {props.isEdit?"수정":"등록"}
-                </S.Title>
-                {/* header */}
-                
-                
-                {/* body */}
-                <S.HeaderWrapper>
-                    <S.HeaderWrapper_left>
-                        <S.TitleText>작성자</S.TitleText>
-                        <S.Writer type="text" 
-                                  placeholder="이름을 적어주세요." 
-                                  onChange={props.WriterChk}
-                                  defaultValue={props.fetchBoardData?.fetchBoard.writer}
-                                //   style={props.isEdit?disabled:""}
-                                  readOnly={props.isEdit?'readonly':''}
-                        />
-                        <S.ErrMessage>{props.writerErr}</S.ErrMessage>
-                    </S.HeaderWrapper_left>
-                    
-
-                    <S.HeaderWrapper_right>
-                        <S.TitleText>비밀번호</S.TitleText>
-                        <S.Password type="password" 
-                                    placeholder="비밀번호를 입력해주세요." 
-                                    onChange={props.PasswordChk}
-                        />
-                        <S.ErrMessage>{props.passwordErr}</S.ErrMessage>
-                    </S.HeaderWrapper_right>
-                </S.HeaderWrapper>
-
-
-                <S.BoardTitleWrapper>
-                    <S.TitleText>제목</S.TitleText>
-                    <S.BoardTitle type="text" 
-                                  placeholder="제목을 작성해주세요." 
-                                  onChange={props.BoardTitleChk} 
-                                  defaultValue={props.fetchBoardData?.fetchBoard.title}
-                    />
-                    <S.ErrMessage>{props.boardTitleErr}</S.ErrMessage>
-                </S.BoardTitleWrapper>
-
-
-                <S.BoardContentWrapper>
-                    <S.TitleText>내용</S.TitleText>
-                    <S.BoardContent placeholder="내용을 작성해주세요." 
-                                    onChange={props.BoardContentChk} 
-                                    defaultValue={props.fetchBoardData?.fetchBoard.contents}
-                    />
-                    <S.ErrMessage>{props.boardContentErr}</S.ErrMessage>
-                </S.BoardContentWrapper>
-
-
-                <S.AddressWrapper>
-                    <S.TitleText>주소</S.TitleText>
-
-                    <S.MainAddressWrapper>
-                        <S.AddressNum type="text"
-                                      readOnly 
-                                      value = { 
-                                                props.ZoneCode ||
-                                                props.fetchBoardData?.fetchBoard.boardAddress?.zipcode||
-                                                "" 
-                                        }
-                                        // defaultValue = { props.ZoneCode }
-                                        // defaultValue = {props.isEdit ? props.fetchBoardData?.fetchBoard.boardAddress.zipcode : ""}
-                        />
-                        <S.AddressButton type="primary" onClick={props.onToggleModal}> 우편번호 검색 </S.AddressButton>
-                        {props.isModalVisible && (
-                        <Modal visible={true} onOk={props.onToggleModal} onCancel={props.onToggleModal}>
-                            <DaumPostcode onComplete={props.handleComplete}/>
-                        </Modal>
-                         )}
-                    </S.MainAddressWrapper>
-
-                    <S.SubAddressWrapper>
-                        <S.Address type="text" 
-                                   placeholder  = "우편 번호를 검색 해주세요" 
-                                   readOnly 
-                                   value        = { 
-                                       props.Address ||
-                                       props.fetchBoardData?.fetchBoard.boardAddress?.address ||
-                                       "" 
-                                    }
-                                   // defaultValue = { props.Address }
-                                   // onChange={props.Address}
-                        />
-                        <S.AddressSub type="text" 
-                                      placeholder  = "상세주소를 입력해주세요" 
-                                      onChange     = { props.onChangeAddressSub }
-                                      defaultValue = { 
-                                          props.fetchBoardData?.fetchBoard.boardAddress?.addressDetail || ""
-                                       }
-                        />
-                    </S.SubAddressWrapper>
-                </S.AddressWrapper>
-
-                <S.UtubeWrapper>
-                    <S.TitleText>유튜브</S.TitleText>
-                    <S.UtubeLink type="text" 
-                                 placeholder="링크를 복사해주세요." 
-                                 onChange={props.onChangeYoutubeUrl}
-                                 defaultValue={props.fetchBoardData?.fetchBoard.youtubeUrl}
-                                 />
-                </S.UtubeWrapper>
-
-
-                <S.PhotoWrapper>
-                    <S.TitleText>사진첨부</S.TitleText>
-                    <S.PhotoListWrapper>
-                        <S.PhotoList>Upload</S.PhotoList>
-                        <S.PhotoList>Upload</S.PhotoList>
-                        <S.PhotoList>Upload</S.PhotoList>
-                    </S.PhotoListWrapper>
-                </S.PhotoWrapper>
-
-
-                <S.MainSettingWrapper>
-                    <S.TitleText>메인 설정</S.TitleText>
-                    <S.MainSettingItemWrapper>
-                        <S.MainSettingItem type="radio" id="contents" /> 유튜브
-                        <S.MainSettingItem type="radio" id="contents" /> 사진
-                    </S.MainSettingItemWrapper>
-                </S.MainSettingWrapper>
-
-
-                {/* footer */}
-                <S.FooterWrapper>
-                    <div>
-                        {!props.isEdit && <S.FooterBtn onClick={props.RegisterConfirm} backColor={props.backColor}>{!props.isEdit?"등록":"수정"}하기</S.FooterBtn> }
-                        { props.isEdit && <S.FooterBtn onClick={props.Edit}            backColor={props.backColor}>{ props.isEdit?"수정":"등록"}하기</S.FooterBtn> }
-                    </div>
-                </S.FooterWrapper>
-            </S.Wrapper>
-        </S.Container>
-    )
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
+  return (
+    <>
+      {props.isOpen && (
+        <Modal visible={true}>
+          <DaumPostcode onComplete={props.onCompleteAddressSearch} />
+        </Modal>
+      )}
+      <Wrapper>
+        <Title>{props.isEdit ? "게시판 수정" : "게시판 등록"}</Title>
+        <WriterWrapper>
+          <InputWrapper>
+            <Label>작성자</Label>
+            <Writer
+              type="text"
+              placeholder="이름을 적어주세요."
+              onChange={props.onChangeMyWriter}
+              readOnly={Boolean(props.data?.fetchBoard.writer)}
+              defaultValue={props.data?.fetchBoard.writer || ""}
+            />
+            <Error>{props.myWriterError}</Error>
+          </InputWrapper>
+          <InputWrapper>
+            <Label>비밀번호</Label>
+            <Password type="password" onChange={props.onChangeMyPassword} />
+            <Error>{props.myPasswordError}</Error>
+          </InputWrapper>
+        </WriterWrapper>
+        <InputWrapper>
+          <Label>제목</Label>
+          <Subject
+            type="text"
+            placeholder="제목을 작성해주세요."
+            onChange={props.onChangeMyTitle}
+            defaultValue={props.data?.fetchBoard.title}
+          />
+          <Error>{props.myTitleError}</Error>
+        </InputWrapper>
+        <InputWrapper>
+          <Label>내용</Label>
+          <Contents
+            placeholder="내용을 작성해주세요."
+            onChange={props.onChangeMyContents}
+            defaultValue={props.data?.fetchBoard.contents}
+          />
+          <Error>{props.myContentsError}</Error>
+        </InputWrapper>
+        <InputWrapper>
+          <Label>주소</Label>
+          <ZipcodeWrapper>
+            <Zipcode
+              // placeholder="07250"
+              readOnly
+              value={
+                props.zipcode ||
+                props.data?.fetchBoard.boardAddress?.zipcode ||
+                ""
+              }
+            />
+            <SearchButton onClick={props.onClickAddressSearch}>
+              우편번호 검색
+            </SearchButton>
+          </ZipcodeWrapper>
+          <Address
+            readOnly
+            value={
+              props.address ||
+              props.data?.fetchBoard.boardAddress?.address ||
+              ""
+            }
+          />
+          <Address
+            onChange={props.onChangeAddressDetail}
+            defaultValue={
+              props.data?.fetchBoard.boardAddress?.addressDetail || ""
+            }
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <Label>유튜브</Label>
+          <Youtube
+            placeholder="링크를 복사해주세요."
+            onChange={props.onChangeMyYoutubeUrl}
+            defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
+          />
+        </InputWrapper>
+        <ImageWrapper>
+          <Label>사진첨부</Label>
+          <UploadButton>
+            <>+</>
+            <>Upload</>
+          </UploadButton>
+          <UploadButton>
+            <>+</>
+            <>Upload</>
+          </UploadButton>
+          <UploadButton>
+            <>+</>
+            <>Upload</>
+          </UploadButton>
+        </ImageWrapper>
+        <OptionWrapper>
+          <Label>메인설정</Label>
+          <RadioButton type="radio" id="youtube" name="radio-button" />
+          <RadioLabel htmlFor="youtube">유튜브</RadioLabel>
+          <RadioButton type="radio" id="image" name="radio-button" />
+          <RadioLabel htmlFor="image">사진</RadioLabel>
+        </OptionWrapper>
+        <ButtonWrapper>
+          <SubmitButton
+            onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
+            isActive={props.isEdit ? true : !props.isActive}
+          >
+            {props.isEdit ? "수정하기" : "등록하기"}
+          </SubmitButton>
+        </ButtonWrapper>
+      </Wrapper>
+    </>
+  );
 }

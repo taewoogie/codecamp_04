@@ -1,14 +1,12 @@
-import { MyInput , MyButton } from './BoardWrite.Styles' 
+import { MyInput, MyButton } from './BoardWrite.styles'
 
-export default function BoardWritePresenter(props){
-
-    return(
+export default function BoardWriteUI(props){
+    return (
         <>
-            작성자 : <MyInput type="text" onChange={props.onChangeWriter} /> <br />
-            제목 :  <MyInput type="text" onChange={props.onChangeTitle} /> <br />
-            내용 :  <MyInput type="text" onChange={props.onChangeContents} /> <br />
-            <MyButton onClick={props.Request} BackGround={props.BackGround} >게시물 등록하기</MyButton>
+            작성자: <MyInput type="text" onChange={props.aaa} /><br />
+            제목: <MyInput type="text" onChange={props.bbb} /><br />
+            내용: <MyInput type="text" onChange={props.ccc}/><br />
+            <MyButton onClick={props.zzz} qqq={props.qqq}>게시물 등록하기!!!</MyButton>
         </>
-        
     )
 }

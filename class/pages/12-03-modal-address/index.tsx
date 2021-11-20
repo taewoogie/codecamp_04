@@ -1,53 +1,42 @@
-import DaumPostcode from 'react-daum-postcode';
-import React, { useState } from 'react';
-import { Modal, Button } from 'antd';
+import DaumPostcode from "react-daum-postcode";
+import { useState } from "react";
+import { Modal, Button } from "antd";
 
 export default function ModalBasicPage() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [myAddress, setMyAddress] = useState("");
+  //   const [myAddressDetail, setMyAddressDetail]
+  const [myZonecode, setMyZonecode] = useState("");
 
-        const [isModalVisible, setIsModalVisible] = useState(false);
-        const [Address  , setAddress]   = useState("");
-        const [ZoneCode , setZoneCode]  = useState("");
+  const showModal = () => {
+    setIsOpen(true);
+  };
 
-      
-        const showModal = () => {
-          setIsModalVisible(true);
-        };
-      
-        const handleOk = () => {
-          setIsModalVisible(false);
-        };
-      
-        const handleCancel = () => {
-          setIsModalVisible(false);
-        };
-       
-        const handleComplete = (data:any) => {
-            // 데이터
-            console.log(data);
-            // console.log(data.address);
-            // console.log(data.jibunAddress);
-            // console.log(data.zonecode);
+  const handleOk = () => {
+    setIsOpen(false);
+  };
 
-            setAddress(data.address);
-            setZoneCode(data.zonecode);
+  const handleCancel = () => {
+    setIsOpen(false);
+  };
 
-            // 모달 창 닫기
-            setIsModalVisible(false);
+  const handleComplete = (data: any) => {
+    // console.log(data);
+    setMyAddress(data.address);
+    setMyZonecode(data.zonecode);
+    setIsOpen(false);
+  };
 
-            // 필요한 데이터 set***으로 데이터 담아서 쓰기
-        };
-
-    return(
-        <>
-        <div>내 주소  : {Address}</div>
-        <div>우편번호  : {ZoneCode}</div>
-        <Button type="primary" onClick={showModal}> Open Modal </Button>
-        {/* <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}> */}
-        {isModalVisible && (
-            <Modal visible={true} onOk={handleOk} onCancel={handleCancel}>
-                <DaumPostcode onComplete={handleComplete}/>
-            </Modal>
-        )}
-        </>
-    )
+  return (
+    <>
+      <Button onClick={showModal}>우편번호 검색</Button>
+      <div>내주소: {myAddress}</div>
+      <div>내우편번호: {myZonecode}</div>
+      {isOpen && (
+        <Modal visible={true} onOk={handleOk} onCancel={handleCancel}>
+          <DaumPostcode onComplete={handleComplete} />
+        </Modal>
+      )}
+    </>
+  );
 }

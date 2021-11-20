@@ -1,88 +1,53 @@
-import { useMutation }     from '@apollo/client'
-import { useState }        from 'react'
-import { CRERATE_BOARD }   from './BoardWrite.Queries'
-import BoardWritePresenter from './BoardWrite.Presenter'
+import BoardWriteUI from './BoardWrite.presenter'
+import { useMutation } from '@apollo/client'
+import { useState } from 'react'
+import { CREATE_BOARD } from './BoardWrite.queries'
 
-export default function BoardWriteContainer(){
-   
-    const [createBoard]                = useMutation(CRERATE_BOARD)
-    const [Writer     , setWriter]     = useState("")
-    const [Title      , setTitle]      = useState("")
-    const [Contents   , setContents]   = useState("")
-    const [BackGround , setBackGround] = useState(false)
 
-    const onChangeWriter = (event) => {
-        const chkWriter = event.target.value;
-        setWriter(chkWriter);
-        onChangeBackGround(chkWriter,Title, Contents);
-        // if(event.target.value !== '' && Title !== '' && Contents !== '') {
-        //     setBackGround(true);
-        // } 
-    }
+export default function BoardWrite(){
+    const [myQqq, setMyQqq] = useState(false)
+    const [myWriter, setMyWriter] = useState("")
+    const [myTitle, setMyTitle] = useState("")
+    const [myContents, setMyContents] = useState("")
+    const [createBoard] = useMutation(CREATE_BOARD)
 
-    const onChangeTitle = (event) => {
-        const chkTitle = event.target.value;
-        setTitle(chkTitle);
-        onChangeBackGround(Writer,chkTitle,Contents);
-        // if(event.target.value !== '' && Writer !== '' && Contents !== '') {
-        //     setBackGround(true);
-        // } 
-    }
-
-    const onChangeContents = (event) => {
-        const chkContents = event.target.value;
-        setContents(chkContents);
-        onChangeBackGround(Writer,Title,chkContents);
-        // if(event.target.value !== '' && Writer !== '' && Title !== '') {
-        //     setBackGround(true);
-        // }
-    }
-
-    const onChangeBackGround = (chkWriter , chkTitle , chkContents) => {
-        // console.log("1_BackGround : " + BackGround);
-
-        // console.log('chkWriter : '   + chkWriter);
-        // console.log('chkTitle : '    + chkTitle);
-        // console.log('chkContents : ' + chkContents);
-
-        if(chkWriter !== '' && chkTitle !== '' && chkContents !== '') {
-            // console.log("2_BackGround : " + BackGround);
-            setBackGround(true);
-        } else {
-            // console.log("3_BackGround : " + BackGround);
-            setBackGround(false);
+    function onChangeMyWriter(event){
+        setMyWriter(event.target.value)
+        if(event.target.value !== "" && myTitle !== "" && myContents !== ""){
+            setMyQqq(true)
         }
     }
 
-    // const onChangeBackGround = () => {
-    //     if(Writer !== '' && Title !== '' && Contents !== '') {
-    //         setBackGround(true)
-    //     } else {
-    //         setBackGround(false)
-    //     }
-    // }
-
-
-    const Request = async () => {
-
-        const result = await createBoard({
-            variables : {
-                writer    : Writer,
-                title     : Title,
-                contents  : Contents
-            }
-        });
-        console.log(result);
-        console.log(result.data.createBoard.message);
+    function onChangeMyTitle(event){
+        setMyTitle(event.target.value)
+        if(myWriter !== "" && event.target.value !== "" && myContents !== ""){
+            setMyQqq(true)
+        }
     }
-    return(
-        <BoardWritePresenter onChangeWriter       = { onChangeWriter }
-                             onChangeTitle        = { onChangeTitle }
-                             onChangeContents     = { onChangeContents }
-                             BackGround           = { BackGround }
-                             Request              = { Request }
-        />
 
+    function onChangeMyContents(event){
+        setMyContents(event.target.value)
+        if(myWriter !== "" && myTitle !== "" && event.target.value !== ""){
+            setMyQqq(true)
+        }
+    }
+
+    async function zzz(){
+        const result = await createBoard({
+            variables: { writer: myWriter, title: myTitle, contents: myContents }
+        })
+        console.log(result)
+        console.log(result.data.createBoard.message)
+    }
+
+    return (
+        <BoardWriteUI 
+            aaa={onChangeMyWriter}
+            bbb={onChangeMyTitle}
+            ccc={onChangeMyContents}
+            zzz={zzz}
+            qqq={myQqq}
+        />
     )
 
 }

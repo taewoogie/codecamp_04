@@ -1,211 +1,87 @@
-import { useRouter }                                   from "next/router";
-import { useQuery , useMutation }                      from "@apollo/client";
-import { FETCH_BOARD 
-       , DELETE_BOARD 
-       , LIKE_BOARD 
-       , DISLIKE_BOARD }                               from './BoardDetail.Queries'
-import BoardDetailPresenter                            from "./BoardDetail.Presenter";
-import { useState }                                    from "react";
-import { FETCH_BOARD_COMMENTS 
-       , CREATE_BOARD_COMMENT 
-       , DELETE_BOARD_COMMENT }                        from "../../boardComment/write/BoardCommentsWrite.Queries";
+import { useRouter } from "next/router";
+import BoardDetailUI from "./BoardDetail.presenter";
+import { useQuery, useMutation } from "@apollo/client";
+import {
+  FETCH_BOARD,
+  DELETE_BOARD,
+  LIKE_BOARD,
+  DISLIKE_BOARD,
+} from "./BoardDetail.queries";
+import {
+  IMutation,
+  IMutationDeleteBoardArgs,
+  IMutationDislikeBoardArgs,
+  IMutationLikeBoardArgs,
+  IQuery,
+  IQueryFetchBoardArgs,
+} from "../../../../commons/types/generated/types";
 
-export default function BoardDetailContainer(){
-    const router = useRouter();
-    // 게시글 상세 조회
-    const { data:board } = useQuery( FETCH_BOARD , { variables : { boardId : router.query.ID }});
+export default function BoardDetail() {
+  const router = useRouter();
+  const [deleteBoard] =
+    useMutation<Pick<IMutation, "deleteBoard">, IMutationDeleteBoardArgs>(
+      DELETE_BOARD
+    );
+  const [likeBoard] =
+    useMutation<Pick<IMutation, "likeBoard">, IMutationLikeBoardArgs>(
+      LIKE_BOARD
+    );
+  const [dislikeBoard] =
+    useMutation<Pick<IMutation, "dislikeBoard">, IMutationDislikeBoardArgs>(
+      DISLIKE_BOARD
+    );
 
-    console.log(board)
+  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
+    FETCH_BOARD,
+    { variables: { boardId: String(router.query.boardId) } }
+  );
 
-    // 게시글 삭제
-    const [deleteBoard] = useMutation(DELETE_BOARD);
-    // 게시글 전체 목록으로
-    const onClickGoBackList = () => {
-        router.push('../../../../../boards/list');
+  function onClickMoveToList() {
+    router.push("/boards");
+  }
+
+  function onClickMoveToUpdate() {
+    router.push(`/boards/${router.query.boardId}/edit`);
+  }
+
+  async function onClickDelete() {
+    try {
+      await deleteBoard({
+        variables: { boardId: String(router.query.boardId) },
+      });
+      alert("게시물이 삭제되었습니다.");
+      router.push("/boards");
+    } catch (error) {
+      alert(error.message);
     }
-    // 게시글 삭제하기
-    const onClickDelete = async () => {
-        console.log(("fetchBoard.ID : " + router.query.ID));
-        try{
-            const result = await deleteBoard({variables : { boardId : router.query.ID }})
-            alert("정상적으로 삭제되었습니다!");
-            router.push('../../../../../boards/list');
+  }
 
-        } catch(error) {
-            console.log(error.message)
-        }
-    }
+  function onClickLike() {
+    likeBoard({
+      variables: { boardId: String(router.query.boardId) },
+      refetchQueries: [
+        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+      ],
+    });
+  }
 
-    // ***********************
-    // 11.16 좋아요 안좋아요 
-    // ***********************
-    const [ likeBoard    ] = useMutation(LIKE_BOARD);
-    const [ dislikeBoard ] = useMutation(DISLIKE_BOARD);
+  function onClickDislike() {
+    dislikeBoard({
+      variables: { boardId: String(router.query.boardId) },
+      refetchQueries: [
+        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+      ],
+    });
+  }
 
-    const onClickLike = () => {
-        console.log(("fetchBoard.ID : " + router.query.ID));
-        try{
-            const result = likeBoard({variables : { boardId : router.query.ID },
-                                      refetchQueries : [{ query : FETCH_BOARD, variables : { boardId : router.query.ID } }]
-                                    })
-            // alert("좋아요!");
-            console.log(result);
-        } catch(error) {
-            console.log(error.message)
-        }
-    }
-    const onClickDisLike = () => {
-        console.log(("fetchBoard.ID : " + router.query.ID));
-        try{
-            const result = dislikeBoard({variables : { boardId : router.query.ID },
-                                      refetchQueries : [{ query : FETCH_BOARD, variables : { boardId : router.query.ID } }]
-                                    })
-            // alert("안좋아요!");
-            console.log(result);
-        } catch(error) {
-            console.log(error.message)
-        }
-    }
-
-    // *************
-    //     댓글
-    // *************
-    // 댓글 조회
-    const { data:cmts } = useQuery( FETCH_BOARD_COMMENTS , { variables : { boardId : router.query.ID }});
-    // 댓글 삭제
-    const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
-    console.log(cmts);
-    // 댓글 별점
-    const [starValue, setValue] = useState(0);
-    // 댓글 수정
-    const [isEdit , setIsEdit] = useState(false);
-
-    // 댓글 등록
-    const [ createBoardComment ] = useMutation(CREATE_BOARD_COMMENT);
-    const [ commentsWriter      , setCommentsWriter      ] = useState("");
-    const [ commentsPassword    , setCommentsPassword    ] = useState("");
-    const [ commentsArea        , setCommentsArea        ] = useState("");
-    const [ commentsID          , setCommentsID          ] = useState("");
-    // 댓글 삭제 모달
-    const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-
-    // 작성자명 입력 
-    const onChangeCommentsWriter = (event) => {
-        setCommentsWriter( event.target.value )
-    }
-    // 비밀번호 입력
-    const onChangeCommentsPassword= (event) => {
-        setCommentsPassword( event.target.value )
-    }
-    // 댓글 입력
-    const onChangeCommentsArea = (event) => {
-        setCommentsArea( event.target.value )
-    }
-    // 별점 
-    const onChangeRate = (value:number) => {
-        // alert(value);
-        setValue(value);
-    }
-    // 댓글 등록
-    const onClickRegComments = async() => {
-        console.log("작성자명 : " + commentsWriter )
-        console.log("비밀번호 : " + commentsPassword )
-        console.log("내용 : "    + commentsArea)
-        console.log("별점 : "    + starValue)
-        
-        if(!commentsPassword) alert("비밀번호를 입력해주세요.")
-
-        try{
-            const result = await createBoardComment({
-                variables : {
-                    createBoardCommentInput: {
-                        writer    : commentsWriter,
-                        password  : commentsPassword,
-                        contents  : commentsArea,
-                        rating    : starValue
-                    } ,
-                    boardId : router.query.ID
-                },
-                
-                // refetch 시 조회 할 때 ID값을 같이 보내 줘야 한다.
-                refetchQueries : [{ query : FETCH_BOARD_COMMENTS, variables : { boardId : router.query.ID } }]
-            });
-            console.log(result);
-            alert('정상적으로 등록 되었습니다!'); 
-            
-        } catch (error) {
-            console.log(error.message)
-        }
-    }
-
-    // 삭제 모달 팝업
-    const onClickOpenDeleteModal = (event) => {
-        setIsOpenDeleteModal(prev => !prev);
-        setCommentsID(event.target.id);
-        console.log(event.target.id);
-    } 
-
-    // 댓글 삭제하기
-    const onClickDeleteComments = async () => {
-
-        try{
-            const result = await deleteBoardComment({
-                variables : { 
-                    boardCommentId : commentsID,
-                    password       : commentsPassword
-                },
-                refetchQueries : [{ query : FETCH_BOARD_COMMENTS, variables : { boardId : router.query.ID } }]
-            })
-            console.log(result);
-            alert("정상적으로 삭제되었습니다!");
-            setIsOpenDeleteModal(prev => !prev)
-        } catch(error) {
-            console.log(error.message)
-            alert(error.message);
-        }
-    }
-
-    return(
-        <BoardDetailPresenter
-                //*****************************************************************
-                //                    게시물 상세 조회
-                //*****************************************************************
-                boardId                   = { board?.fetchBoard.ID }
-                fetchWriter               = { board?.fetchBoard.writer }
-                fetchTitle                = { board?.fetchBoard.title }
-                fetchContents             = { board?.fetchBoard.contents }
-                fetchYoutubeUrl           = { board?.fetchBoard.youtubeUrl }
-                fetchLikeCount            = { board?.fetchBoard.likeCount }
-                fetchDisLikeCount         = { board?.fetchBoard.dislikeCount }
-                onClickDelete             = { onClickDelete }
-                onClickGoBackList         = { onClickGoBackList }
-
-                //*****************************************************************
-                //                      댓글
-                //*****************************************************************
-                onClickRegComments        = { onClickRegComments }
-                onChangeCommentsWriter    = { onChangeCommentsWriter }
-                onChangeCommentsPassword  = { onChangeCommentsPassword }
-                onChangeCommentsArea      = { onChangeCommentsArea }
-                onClickDeleteComments     = { onClickDeleteComments }
-                cmts                      = { cmts }
-                onChangeRate              = { onChangeRate }
-                starValue                 = { starValue }
-                isOpenDeleteModal         = { isOpenDeleteModal }
-                onClickOpenDeleteModal    = { onClickOpenDeleteModal }
-                
-                //*****************************************************************
-                //                      우편번호
-                //*****************************************************************
-                fetchAddress              = { board?.fetchBoard?.boardAddress?.address }
-                fetchAddressDetail        = { board?.fetchBoard?.boardAddress?.addressDetail }
-                fetchZoneCode             = { board?.fetchBoard?.boardAddress?.zipcode }
-                
-                //*****************************************************************
-                //                    좋아요 / 싫어요
-                //*****************************************************************
-                onClickLike               = { onClickLike }
-                onClickDisLike            = { onClickDisLike }
-        />
-    )
+  return (
+    <BoardDetailUI
+      data={data}
+      onClickMoveToList={onClickMoveToList}
+      onClickMoveToUpdate={onClickMoveToUpdate}
+      onClickDelete={onClickDelete}
+      onClickLike={onClickLike}
+      onClickDislike={onClickDislike}
+    />
+  );
 }

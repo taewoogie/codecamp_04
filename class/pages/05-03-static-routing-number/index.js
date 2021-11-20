@@ -1,26 +1,26 @@
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 
 export default function StaticRoutingNumberPage(){
+    const router = useRouter()
 
-    
-    const router = useRouter();
-
-    const onClickRouter = () => {
+    function onClickMove1(){
         router.push('/05-04-static-routed-number/1')
     }
-    const onClickRouter2 = () => {
+
+    function onClickMove2(){
         router.push('/05-04-static-routed-number/2')
     }
-    const onClickRouter3 = () => {
+
+    function onClickMove3(){
         router.push('/05-04-static-routed-number/3')
     }
 
-
-    return(
+    return (
         <>
-            <button onClick={onClickRouter}>1번 게시글로 이동하기</button>
-            <button onClick={onClickRouter2}>2번 게시글로 이동하기</button>
-            <button onClick={onClickRouter3}>3번 게시글로 이동하기</button>
+            <button onClick={onClickMove1}>1번 게시글로 이동하기</button>
+            <button onClick={onClickMove2}>2번 게시글로 이동하기</button>
+            <button onClick={onClickMove3}>3번 게시글로 이동하기</button>
         </>
     )
+
 }

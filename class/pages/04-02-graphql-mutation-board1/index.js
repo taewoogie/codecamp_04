@@ -1,36 +1,34 @@
-import {useMutation, gql} from '@apollo/client'
+import { useMutation, gql } from '@apollo/client'
 import { useState } from 'react'
 
-const CRERATE_BOARD = gql`
-    mutation {
-        createBoard(
-            writer : "권태욱"
-            title : "Graphql의 정석"
-            contents : "구글링하기"
-            ){
-                message
-            }
+const CREATE_BOARD = gql`
+    mutation{
+        createBoard(writer:"철수", title:"제목입니다~", contents: "내용입니다~"){
+            _id
+            number
+            message
+        }
     }
 `
 
 export default function GraphqlMutationBoard1Page(){
-    const [request , setRequest] = useState("");
-
-    const [createBoard] = useMutation(CRERATE_BOARD)
-    
-    const Request = async () => {
-
-        const result = await createBoard();
-        console.log(result);
-        setRequest(result.data.createBoard.message)
+    const [aaa, setAaa] = useState("안녕하세요")
+    const [createBoard] = useMutation(CREATE_BOARD)
 
 
+    async function zzz(){
+        const result = await createBoard()
+        console.log(result)
+        console.log(result.data.createBoard.message)
+        setAaa(result.data.createBoard.message)
     }
 
-    return(
+    return (
         <>
-            <div>{request}</div>
-            <button onClick={Request}>GRAPHQL-API 요청하기</button>
+            <div>{aaa}</div>
+            <button onClick={zzz}>GRAPHQL-API 요청하기!!!</button>
         </>
     )
+
+
 }
