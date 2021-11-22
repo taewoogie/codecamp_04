@@ -117,6 +117,12 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setZipcode(data.zonecode);
     setIsOpen(false);
   }
+  function handleOk() {
+    setIsOpen((prev) => !prev);
+  }
+  function handleCancel() {
+    setIsOpen((prev) => !prev);
+  }
 
   async function onClickSubmit() {
     if (!myWriter) {
@@ -214,6 +220,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
       zipcode={zipcode}
       address={address}
       addressDetail={addressDetail}
+      handleOk={handleOk}
+      handleCancel={handleCancel}
     />
   );
 }

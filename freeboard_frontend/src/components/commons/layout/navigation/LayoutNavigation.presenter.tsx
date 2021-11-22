@@ -4,6 +4,10 @@ import { ILayoutNavigationUIProps } from "./LayoutNavigation.types";
 export default function LayoutNavigationUI(props: ILayoutNavigationUIProps) {
   return (
     <Wrapper>
+      <MenuItem id="/covid" onClick={props.onClickMenu}>
+        Covid -19
+      </MenuItem>
+      <>|</>
       <MenuItem id="/boards" onClick={props.onClickMenu}>
         Woogie Boards
       </MenuItem>
