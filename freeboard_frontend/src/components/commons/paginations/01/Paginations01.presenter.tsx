@@ -1,4 +1,4 @@
-import { Page , PageWrapper } from "./Paginations01.styles";
+import { Page, PageWrapper } from "./Paginations01.styles";
 import { IPaginations01UIProps } from "./Paginations01.types";
 
 export default function Paginations01UI(props: IPaginations01UIProps) {

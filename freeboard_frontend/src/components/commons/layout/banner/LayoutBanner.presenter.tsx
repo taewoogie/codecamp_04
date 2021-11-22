@@ -10,19 +10,21 @@ export default function LayoutBannerUI() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
   };
 
   return (
     <Wrapper>
       <Slider {...settings}>
         <div>
-          <SliderItem src="/images/layout/banner01.png" />
+          <SliderItem src="/images/layout/peach.jpeg" />
         </div>
         <div>
-          <SliderItem src="/images/layout/banner01.png" />
+          <SliderItem src="/images/layout/peach.jpeg" />
         </div>
         <div>
-          <SliderItem src="/images/layout/banner01.png" />
+          <SliderItem src="/images/layout/peach.jpeg" />
         </div>
       </Slider>
     </Wrapper>

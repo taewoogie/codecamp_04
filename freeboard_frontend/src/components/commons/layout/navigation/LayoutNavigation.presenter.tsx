@@ -5,15 +5,15 @@ export default function LayoutNavigationUI(props: ILayoutNavigationUIProps) {
   return (
     <Wrapper>
       <MenuItem id="/boards" onClick={props.onClickMenu}>
-        라이브게시판
+        Woogie Boards
       </MenuItem>
       <>|</>
       <MenuItem id="/markets" onClick={props.onClickMenu}>
-        라이브상품
+        Woogie Product
       </MenuItem>
       <>|</>
       <MenuItem id="/mypages" onClick={props.onClickMenu}>
-        마이페이지
+        Woogie Page
       </MenuItem>
     </Wrapper>
   );

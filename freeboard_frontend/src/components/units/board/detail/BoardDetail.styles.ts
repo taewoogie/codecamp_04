@@ -45,9 +45,7 @@ export const Info = styled.div`
   justify-content: center;
 `;
 
-export const Writer = styled.div`
-  font-weight: bold;
-`;
+export const Writer = styled.div``;
 
 export const CreatedAt = styled.div``;
 

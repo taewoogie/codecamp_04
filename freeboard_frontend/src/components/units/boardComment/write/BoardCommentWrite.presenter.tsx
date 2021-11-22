@@ -9,7 +9,6 @@ import {
   PencilIcon,
   Star,
   Wrapper,
-  PencilTitle,
 } from "./BoardCommentWrite.styles";
 import { IBoardCommentWriteUIProps } from "./BoardCommentWrite.types";
 
@@ -19,7 +18,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
       {!props.isEdit && (
         <>
           <PencilIcon src="/images/boardComment/write/pencil.png" />
-          <PencilTitle>댓글</PencilTitle>
+          <span>댓글</span>
         </>
       )}
       <InputWrapper>
@@ -34,7 +33,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
           placeholder="비밀번호"
           onChange={props.onChangeMyPassword}
         />
-        <Star defaultValue={props.el?.rating} onChange={props.onChangeStar} />
+        <Star onChange={props.onChangeStar} />
       </InputWrapper>
       <ContentsWrapper>
         <Contents

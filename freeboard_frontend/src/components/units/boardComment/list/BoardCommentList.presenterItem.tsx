@@ -31,16 +31,6 @@ import { IBoardCommentListUIItemProps } from "./BoardCommentList.types";
 export default function BoardCommentListUIItem(
   props: IBoardCommentListUIItemProps
 ) {
-
-  // console.log("props.el._id")
-  // console.log(props.el._id)
-  // console.log("props.el.writer")
-  // console.log(props.el.writer)
-  // console.log("props.el.rating")
-  // console.log(props.el.rating)
-  // console.log("props.el.contents")
-  // console.log(props.el.contents)
-
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);

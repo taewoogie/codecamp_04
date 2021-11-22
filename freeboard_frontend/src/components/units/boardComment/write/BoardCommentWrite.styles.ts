@@ -6,15 +6,7 @@ export const Wrapper = styled.div`
   margin: 0px 100px;
 `;
 
-export const PencilIcon = styled.img`
-  margin-right: 10px;
-  width: 30px;
-  height: 30px;
-`;
-
-export const PencilTitle = styled.span`
-  font-size: 20px;
-`;
+export const PencilIcon = styled.img``;
 
 export const Star = styled(Rate)``;
 

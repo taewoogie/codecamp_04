@@ -20,7 +20,6 @@ export const Row = styled.div`
   height: 52px;
   line-height: 52px;
   border-bottom: 1px solid gray;
-  overflow: hidden;
 
   :hover {
     color: blue;
@@ -40,13 +39,14 @@ export const ColumnHeaderTitle = styled.div`
 export const ColumnBasic = styled.div`
   width: 10%;
   text-align: center;
+  overflow: hidden;
 `;
 
 export const ColumnTitle = styled.div`
   width: 70%;
   text-align: center;
   cursor: pointer;
-
+  overflow: hidden;
   :hover {
     color: blue;
   }
@@ -56,8 +56,8 @@ export const Footer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 50px;
-  /* margin-bottom: 80px; */
+  padding-top: 20px;
+  margin-bottom: 20px;
 `;
 
 export const PencilIcon = styled.img``;
@@ -65,15 +65,15 @@ export const PencilIcon = styled.img``;
 export const Button = styled.button`
   width: 171px;
   height: 52px;
-  background-color: white;
+  background-color: #ffcce6;
+  /* background-color: white; */
   border-radius: 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   cursor: pointer;
-
   :hover {
-    background-color: #f5f2fc;
+    background-color: #ffc0cb;
   }
 `;

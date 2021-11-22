@@ -48,7 +48,6 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
     setMyStar(value);
   }
 
-  // 댓글작성
   async function onClickWrite() {
     try {
       await createBoardComment({
@@ -73,26 +72,11 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
     }
   }
 
-  // 댓글 수정
   async function onClickUpdate() {
-
-    const myUpdateBoardCommentInput:{ contents?:string; rating?:number; } = {};
-    if(myContents){
-      myUpdateBoardCommentInput.contents = myContents;
-    } else {
-      myUpdateBoardCommentInput.contents = props.el?.contents;
+    if (!myContents) {
+      alert("내용이 수정되지 않았습니다.");
+      return;
     }
-
-    if(myStar){
-      myUpdateBoardCommentInput.rating   = myStar;
-    } else {
-      myUpdateBoardCommentInput.rating   = props.el?.rating;
-    }
-
-    // if (!myContents) {
-    //   alert("내용이 수정되지 않았습니다.");
-    //   return;
-    // }
     if (!myPassword) {
       alert("비밀번호가 입력되지 않았습니다.");
       return;
@@ -102,8 +86,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
       if (!props.el?._id) return;
       await updateBoardComment({
         variables: {
-          updateBoardCommentInput: myUpdateBoardCommentInput,
-          // updateBoardCommentInput: { contents: myContents , rating: myStar },
+          updateBoardCommentInput: { contents: myContents },
           password: myPassword,
           boardCommentId: props.el?._id,
         },
