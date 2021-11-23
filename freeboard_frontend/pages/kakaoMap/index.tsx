@@ -1,5 +1,5 @@
-import KakaoMapContainer from "../../src/components/units/kakaoMap/kakaoMap.container";
+import KakaoMapContainer from "../../src/components/units/kakaoMap/KakaoMap.container";
 
-export default function KakaoMapPage() {
+export default function KakaoPage() {
   return <KakaoMapContainer />;
 }

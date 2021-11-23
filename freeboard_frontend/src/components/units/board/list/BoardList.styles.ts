@@ -66,13 +66,13 @@ export const Button = styled.button`
   width: 171px;
   height: 52px;
   background-color: #ffcce6;
-  /* background-color: white; */
   border-radius: 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   cursor: pointer;
+  border: 0px;
   :hover {
     background-color: #ffc0cb;
   }

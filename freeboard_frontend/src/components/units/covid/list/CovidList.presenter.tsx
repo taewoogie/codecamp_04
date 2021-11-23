@@ -43,7 +43,7 @@ export default function CovidListUI() {
       <div>누적 확진자 : {covidConfirmed}</div>
       <div>누적 사망자 : {covidDeaths}</div>
       <div>
-        업데이트 날짜 : {covidUpdated.replaceAll("/", ".").split(" ")[0]}
+        업데이트 d날짜 : {covidUpdated.replaceAll("/", ".").split(" ")[0]}
       </div>
     </div>
   );

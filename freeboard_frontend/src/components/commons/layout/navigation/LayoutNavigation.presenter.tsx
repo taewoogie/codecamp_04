@@ -19,6 +19,10 @@ export default function LayoutNavigationUI(props: ILayoutNavigationUIProps) {
       <MenuItem id="/mypages" onClick={props.onClickMenu}>
         Woogie Page
       </MenuItem>
+      <>|</>
+      <MenuItem id="/kakaoMap" onClick={props.onClickMenu}>
+        Woogie Map
+      </MenuItem>
     </Wrapper>
   );
 }
