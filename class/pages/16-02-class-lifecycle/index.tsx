@@ -12,12 +12,15 @@ export default class LifeCycle extends Component {
   componentDidMount() {
     console.log("마운트됨");
   }
+
   componentDidUpdate() {
     console.log("수정됨");
   }
+
   componentWillUnmount() {
     console.log("잘가요");
   }
+
   onClickMove = () => {
     router.push("/");
   };

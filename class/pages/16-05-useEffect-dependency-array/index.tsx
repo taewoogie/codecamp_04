@@ -7,16 +7,16 @@ export default function UseEffectDependencyArray() {
   // 1번 case
   // 최초 1번 실행 (= DisMount)
 
-  // useEffect(() => {
-  //   console.log("최초 1회 실행됨");
-  // }, []);
+  useEffect(() => {
+    console.log("최초 1회 실행됨");
+  }, []);
 
   // 2번 case
   // 의존성 배열의 count 감지 후 재실행
 
-  // useEffect(() => {
-  //   console.log("count가 변경되면 재실행");
-  // }, [count]);
+  useEffect(() => {
+    console.log("count가 변경되면 재실행");
+  }, [count]);
 
   // 3번 case
   // 최초 랜더링 + 1
