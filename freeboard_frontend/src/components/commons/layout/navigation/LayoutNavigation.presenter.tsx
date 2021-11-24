@@ -12,11 +12,11 @@ export default function LayoutNavigationUI(props: ILayoutNavigationUIProps) {
         Woogie Boards
       </MenuItem>
       <>|</>
-      <MenuItem id="/markets" onClick={props.onClickMenu}>
+      <MenuItem id="/product" onClick={props.onClickMenu}>
         Woogie Product
       </MenuItem>
       <>|</>
-      <MenuItem id="/mypages" onClick={props.onClickMenu}>
+      <MenuItem id="/myPage" onClick={props.onClickMenu}>
         Woogie Page
       </MenuItem>
       <>|</>

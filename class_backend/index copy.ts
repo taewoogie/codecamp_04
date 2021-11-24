@@ -30,13 +30,12 @@ const typeDefs = gql`
     deleteBoard(number: Int!): String
   }
 `;
-// 1. 아폴로 서버 설정 (DB연결 이후 아폴로 서버 오픈)
+
 const resolvers = {
   Query: {
     fetchBoards: async () => {
       // 데이터베이스에서 게시물 데이터 꺼내오기
-      // const result = await Board.find();
-      const result = await Board.find({ where: { deletedAt: null } });
+      const result = await Board.find({ where: { deletedAt: false } });
       console.log(result);
       return result;
     },
@@ -54,6 +53,7 @@ const resolvers = {
       await Board.insert({
         ...args.createBoardInput,
       });
+
       return "게시물 등록에 성공하였습니다.";
     },
   },

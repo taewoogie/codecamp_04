@@ -19,4 +19,7 @@ export default class Board extends BaseEntity {
 
   @Column({ type: "integer" })
   dislikeCount?: number;
+
+  @Column({ type: "timestamp", nullable: true, default: null })
+  deletedAt?: Date;
 }

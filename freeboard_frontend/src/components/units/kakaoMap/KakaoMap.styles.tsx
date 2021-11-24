@@ -12,3 +12,15 @@ export const WrapperTitle = styled.div`
   color: #636363;
   text-shadow: 6px 6px 6px lightgray;
 `;
+
+export const Infomation = styled.div`
+  text-align: center;
+  margin-top: 30px;
+  color: #636363;
+  font-size: 17px;
+`;
+
+export const KakaoMap = styled.div`
+  margin: auto;
+  box-shadow: 5px 5px 16px #636363;
+`;

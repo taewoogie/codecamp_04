@@ -164,6 +164,7 @@ export const SubmitButton = styled.button`
   font-weight: 500;
   margin-left: 12px;
   margin-right: 12px;
+  border-radius: 15px;
   background-color: ${(props: ISubmitButtonProps) =>
     props.isActive ? "#ffcce6" : "none"};
 
