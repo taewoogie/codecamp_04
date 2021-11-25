@@ -50,7 +50,9 @@ export const Label = styled.div`
   font-size: 16px;
   font-weight: 500;
 `;
-
+export const UploadImage = styled.div`
+  display: flex;
+`;
 export const InputWrapper = styled.div`
   padding-top: 40px;
 `;

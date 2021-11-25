@@ -20,11 +20,13 @@ import {
   Zipcode,
   ZipcodeWrapper,
   UploadButton,
+  UploadImage,
   Error,
 } from "./BoardWrite.styles";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
+import UploadPreview from "../Image-upload-preview";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
@@ -118,18 +120,12 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         </InputWrapper>
         <ImageWrapper>
           <Label>사진첨부</Label>
-          <UploadButton>
-            <>+</>
-            <>Upload</>
-          </UploadButton>
-          <UploadButton>
-            <>+</>
-            <>Upload</>
-          </UploadButton>
-          <UploadButton>
-            <>+</>
-            <>Upload</>
-          </UploadButton>
+          <UploadImage>
+            <UploadPreview />
+            <UploadPreview />
+            <UploadPreview />
+          </UploadImage>
+          {/* </UploadButton> */}
         </ImageWrapper>
         <OptionWrapper>
           <Label>메인설정</Label>
