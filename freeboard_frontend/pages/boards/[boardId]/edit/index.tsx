@@ -1,4 +1,4 @@
-import BoardWrite from "../../../../src/components/units/board/write/BoardWrite.container";
+import BoardWrite from "../../../../src/components/units/board/write/BoardWrite.Container";
 import { useQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 
@@ -9,6 +9,7 @@ const FETCH_BOARD = gql`
       title
       contents
       youtubeUrl
+      images
       boardAddress {
         zipcode
         address

@@ -18,6 +18,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [addressDetail, setAddressDetail] = useState("");
 
   const [images, setImages] = useState<string[]>([]);
+  const [temp, setTemp] = useState<string[]>([]);
+  if (images) {
+    console.log("<<<<<<<<<< images >>>>>>>>>>>");
+    console.log(images);
+  }
 
   const [myWriterError, setMyWriterError] = useState("");
   const [myPasswordError, setMyPasswordError] = useState("");
@@ -178,6 +183,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     if (myTitle) myUpdateboardInput.title = myTitle;
     if (myContents) myUpdateboardInput.contents = myContents;
     if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;
+    if (images) myUpdateboardInput.images = images;
     if (zipcode || address || addressDetail) {
       myUpdateboardInput.boardAddress = {};
       if (zipcode) myUpdateboardInput.boardAddress.zipcode = zipcode;

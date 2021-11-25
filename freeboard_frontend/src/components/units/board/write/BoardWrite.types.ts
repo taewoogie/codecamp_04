@@ -10,6 +10,7 @@ export interface IMyUpdateBoardInput {
   title?: string;
   contents?: string;
   youtubeUrl?: string;
+  images?: string[];
   boardAddress?: {
     zipcode?: string;
     address?: string;
@@ -39,6 +40,7 @@ export interface IBoardWriteUIProps {
   zipcode: string;
   address: string;
   addressDetail: string;
+  setImages: string[];
   handleOk: () => void;
   handleCancel: () => void;
 }

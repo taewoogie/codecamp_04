@@ -35,6 +35,8 @@ export default function BoardDetail() {
     FETCH_BOARD,
     { variables: { boardId: String(router.query.boardId) } }
   );
+  console.log("<<<<<< Detail Container >>>>>>>");
+  console.log(data);
 
   function onClickMoveToList() {
     router.push("/boards");

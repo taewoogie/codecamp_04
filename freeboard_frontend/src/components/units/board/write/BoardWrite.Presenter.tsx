@@ -121,9 +121,9 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <ImageWrapper>
           <Label>사진첨부</Label>
           <UploadImage>
-            <UploadPreview />
-            <UploadPreview />
-            <UploadPreview />
+            {/* <UploadPreview setImages={props.setImages} /> */}
+            {/* <UploadPreview setImages={props.setImages} /> */}
+            <UploadPreview setImages={props.setImages} data={props.data} />
           </UploadImage>
           {/* </UploadButton> */}
         </ImageWrapper>

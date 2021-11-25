@@ -37,6 +37,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           {/* 이미지 */}
           <img
             src={`https://storage.googleapis.com/${props.data?.fetchBoard.images[0]}`}
+            style={{ width: "100px", height: "100px" }}
           ></img>
 
           {props.data?.fetchBoard.youtubeUrl && (
