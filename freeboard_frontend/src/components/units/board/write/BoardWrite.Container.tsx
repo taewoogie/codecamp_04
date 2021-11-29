@@ -18,7 +18,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [addressDetail, setAddressDetail] = useState("");
 
   const [images, setImages] = useState<string[]>([]);
-  const [temp, setTemp] = useState<string[]>([]);
   if (images) {
     console.log("<<<<<<<<<< images >>>>>>>>>>>");
     console.log(images);
@@ -183,6 +182,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     if (myTitle) myUpdateboardInput.title = myTitle;
     if (myContents) myUpdateboardInput.contents = myContents;
     if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;
+    // if (images) myUpdateboardInput.images = [];
     if (images) myUpdateboardInput.images = images;
     if (zipcode || address || addressDetail) {
       myUpdateboardInput.boardAddress = {};

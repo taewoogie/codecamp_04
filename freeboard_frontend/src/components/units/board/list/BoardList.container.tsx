@@ -12,23 +12,28 @@ import {
 export default function BoardList() {
   const router = useRouter();
   const [startPage, setStartPage] = useState(1);
+  const [keyword, setKeyword] = useState("");
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
   >(FETCH_BOARDS, { variables: { page: startPage } });
-  const { data: dataBoardsCount } =
-    useQuery<Pick<IQuery, "fetchBoardsCount">, IQueryFetchBoardsCountArgs>(
-      FETCH_BOARDS_COUNT
-    );
+  const { data: dataBoardsCount, refetch: refetchBoardsCount } = useQuery<
+    Pick<IQuery, "fetchBoardsCount">,
+    IQueryFetchBoardsCountArgs
+  >(FETCH_BOARDS_COUNT);
 
-  function onClickMoveToBoardNew() {
+  const onClickMoveToBoardNew = () => {
     router.push("/boards/new");
-  }
+  };
 
-  function onClickMoveToBoardDetail(event: MouseEvent<HTMLDivElement>) {
+  const onClickMoveToBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target instanceof Element)
       router.push(`/boards/${event.target.id}`);
-  }
+  };
+
+  const onChangeKeyword = (value: string) => {
+    setKeyword(value);
+  };
 
   return (
     <BoardListUI
@@ -36,9 +41,12 @@ export default function BoardList() {
       onClickMoveToBoardNew={onClickMoveToBoardNew}
       onClickMoveToBoardDetail={onClickMoveToBoardDetail}
       refetch={refetch}
+      refetchBoardsCount={refetchBoardsCount}
+      keyword={keyword}
       count={dataBoardsCount?.fetchBoardsCount}
       startPage={startPage}
       setStartPage={setStartPage}
+      onChangeKeyword={onChangeKeyword}
     />
   );
 }

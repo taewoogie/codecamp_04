@@ -38,12 +38,25 @@ export default function CovidListUI() {
   return (
     <div>
       <div>This is Covid -19 Infomation Page</div>
-      <div>전체 인구 : {covidPopulation}</div>
-      <div>도시 : {capitalCity}</div>
-      <div>누적 확진자 : {covidConfirmed}</div>
-      <div>누적 사망자 : {covidDeaths}</div>
       <div>
-        업데이트 d날짜 : {covidUpdated.replaceAll("/", ".").split(" ")[0]}
+        전체 인구 :{" "}
+        {covidPopulation
+          .toString()
+          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+      </div>
+      <div>도시 : {capitalCity}</div>
+      <div>
+        누적 확진자 :{" "}
+        {covidConfirmed
+          .toString()
+          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+      </div>
+      <div>
+        누적 사망자 :{" "}
+        {covidDeaths.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+      </div>
+      <div>
+        업데이트 날짜 : {covidUpdated.replaceAll("/", ".").split(" ")[0]}
       </div>
     </div>
   );
