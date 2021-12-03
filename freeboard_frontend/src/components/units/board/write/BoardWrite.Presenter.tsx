@@ -19,14 +19,14 @@ import {
   Youtube,
   Zipcode,
   ZipcodeWrapper,
-  UploadButton,
   UploadImage,
   Error,
 } from "./BoardWrite.styles";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
-import UploadPreview from "../Image-upload-preview";
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
@@ -121,11 +121,16 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <ImageWrapper>
           <Label>사진첨부</Label>
           <UploadImage>
-            <UploadPreview setImages={props.setImages} data={props.data} />
-            {/* <UploadPreview setImages={props.setImages} /> */}
-            {/* <UploadPreview setImages={props.setImages} /> */}
+            {props.fileUrls.map((el, index) => (
+              <Uploads01
+                key={uuidv4()}
+                index={index}
+                fileUrl={el}
+                defaultFileUrl={props.data?.fetchBoard.images?.[index]}
+                onChangeFileUrls={props.onChangeFileUrls}
+              />
+            ))}
           </UploadImage>
-          {/* </UploadButton> */}
         </ImageWrapper>
         <OptionWrapper>
           <Label>메인설정</Label>

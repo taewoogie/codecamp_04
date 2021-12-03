@@ -40,9 +40,10 @@ export interface IBoardWriteUIProps {
   zipcode: string;
   address: string;
   addressDetail: string;
-  setImages: string[];
   handleOk: () => void;
   handleCancel: () => void;
+  fileUrls: string[];
+  onChangeFileUrls: (fileUrls: string, index: number) => void;
 }
 
 export interface ISubmitButtonProps {

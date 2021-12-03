@@ -9,7 +9,7 @@ export default function LayoutHeader() {
   }
 
   function onClickMoveToSignin() {
-    router.push("/signin");
+    router.push("/signinGoogle");
   }
 
   function onClickMoveToSignup() {
