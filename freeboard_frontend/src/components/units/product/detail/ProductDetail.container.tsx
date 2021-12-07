@@ -3,7 +3,7 @@ import ProductDetailUI from "./ProductDetail.presenter";
 
 export default function ProductDetail() {
   const onClickMoveToProductList = () => {
-    router.push("/product");
+    router.back();
   };
   return (
     <ProductDetailUI onClickMoveToProductList={onClickMoveToProductList} />

@@ -1,15 +1,15 @@
 import { ISearch01UIProps } from "./Search01.types";
-
+import * as S from "./Search01.styles";
 export default function Search01UI(props: ISearch01UIProps) {
   return (
     <>
-      <div>
-        <input
+      <S.SearchInputWrapper>
+        <S.searchInput
           type="text"
           placeholder="검색어를 입력해주세요."
           onChange={props.onChangeSearch}
         />
-      </div>
+      </S.SearchInputWrapper>
     </>
   );
 }

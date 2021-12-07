@@ -3,6 +3,7 @@ import LayoutHeader from "./header/LayoutHeader.container";
 import LayoutNavigation from "./navigation/LayoutNavigation.container";
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
+import { useRouter } from "next/router";
 
 const Body = styled.div`
   height: 500px;
@@ -11,15 +12,28 @@ const Body = styled.div`
   align-items: center;
 `;
 
+// 레이아웃 숨길 페이지
+const HIDDEN_HEADERS = ["/", "/signinGoogle", "/signinID", "/signup"];
+const HIDDEN_BANNERS = ["/", "/signinGoogle", "/signinID", "/signup"];
+const HIDDEN_NAVS = ["/", "/signinGoogle", "/signinID", "/signup"];
+const HIDDEN_FOOTERS = ["/", "/signinGoogle", "/signinID", "/signup"];
+
 interface ILayoutProps {
   children: ReactNode;
 }
 export default function Layout(props: ILayoutProps) {
+  const router = useRouter();
+
+  const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
+  const isHiddenBanners = HIDDEN_BANNERS.includes(router.asPath);
+  const isHiddenNavs = HIDDEN_NAVS.includes(router.asPath);
+  const isHiddenFooters = HIDDEN_FOOTERS.includes(router.asPath);
+
   return (
     <>
-      <LayoutHeader />
-      <LayoutBanner />
-      <LayoutNavigation />
+      {!isHiddenHeader && <LayoutHeader />}
+      {!isHiddenBanners && <LayoutBanner />}
+      {!isHiddenNavs && <LayoutNavigation />}
       <Body>{props.children}</Body>
     </>
   );

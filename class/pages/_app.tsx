@@ -58,6 +58,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     setUserInfo: setUserInfo,
   };
 
+  // 서버와 브라우저 구분하는 작업
+  // if( typeof window === "undifined" ) // 브라우저라면
+  // if( typeof window !== "undifined" ) // 서버 라면
+
+  // if (process.browser) // 현재 브라우저라면
+  // if (!process.browser) // 현재 서버라면
+
+  // useEffect()는 브라우저 동작
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken") || "";
     if (accessToken) setAccessToken(accessToken);
