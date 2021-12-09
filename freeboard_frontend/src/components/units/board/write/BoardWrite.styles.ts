@@ -169,10 +169,12 @@ export const SubmitButton = styled.button`
   border-radius: 15px;
   background-color: ${(props: ISubmitButtonProps) =>
     props.isActive ? "#ffcce6" : "none"};
+  // props.isActive ? "none" : "#ffcce6"};
 
   :hover {
     cursor: ${(props: ISubmitButtonProps) =>
       props.isActive ? "pointer" : "default"};
+    /* props.isActive ? "default" : "pointer"}; */
   }
 `;
 

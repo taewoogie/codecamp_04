@@ -15,6 +15,12 @@ export default function ProductList() {
     IQueryFetchUseditemsArgs
   >(FETCH_USED_ITEMS);
 
+  // 상품 상세조회
+  const onClickMoveToProductDetail = (event) => {
+    console.log(event.target.id);
+    router.push(`/product/${event.target.id}`);
+  };
+
   // 장바구니 담기
   const onClickMoveToBasket = (el) => () => {
     const usedItems = JSON.parse(localStorage.getItem("usedItem") || "[]");
@@ -44,6 +50,7 @@ export default function ProductList() {
   return (
     <ProductListUI
       data={data}
+      onClickMoveToProductDetail={onClickMoveToProductDetail}
       onClickMoveToBasket={onClickMoveToBasket}
       onClickMoveToProductNew={onClickMoveToProductNew}
     />

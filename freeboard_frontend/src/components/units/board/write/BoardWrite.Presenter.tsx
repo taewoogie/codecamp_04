@@ -83,7 +83,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           <Label>주소</Label>
           <ZipcodeWrapper>
             <Zipcode
-              // placeholder="07250"
               readOnly
               value={
                 props.zipcode ||

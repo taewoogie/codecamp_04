@@ -5,6 +5,7 @@ import {
   ApolloProvider,
   InMemoryCache,
   ApolloLink,
+  useQuery,
 } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
 import { AppProps } from "next/dist/shared/lib/router/router";
@@ -20,15 +21,15 @@ import {
   createContext,
 } from "react";
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyB3FSnWLebiGYOvA-GlEbdDwPfMW8Tvq0M",
-//   authDomain: "woogie-project.firebaseapp.com",
-//   projectId: "woogie-project",
-//   storageBucket: "woogie-project.appspot.com",
-//   messagingSenderId: "706248342975",
-//   appId: "1:706248342975:web:6f8e5df74172e2a936350a",
-//   measurementId: "G-PZFJ26BF5D",
-// };
+const firebaseConfig = {
+  apiKey: "AIzaSyB3FSnWLebiGYOvA-GlEbdDwPfMW8Tvq0M",
+  authDomain: "woogie-project.firebaseapp.com",
+  projectId: "woogie-project",
+  storageBucket: "woogie-project.appspot.com",
+  messagingSenderId: "706248342975",
+  appId: "1:706248342975:web:6f8e5df74172e2a936350a",
+  measurementId: "G-PZFJ26BF5D",
+};
 
 // Initialize Firebase
 // export const firebaseApp = initializeApp(firebaseConfig);
@@ -63,9 +64,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const uploadLink = createUploadLink({
     uri: "http://backend04.codebootcamp.co.kr/graphql",
-    headers: {
-      authorization: `Bearer ${accessToken}`,
-    },
+    headers: { authorization: `Bearer ${accessToken}` },
   });
 
   const client = new ApolloClient({

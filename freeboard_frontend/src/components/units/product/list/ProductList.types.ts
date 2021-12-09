@@ -3,5 +3,6 @@ import { IQuery } from "../../../../commons/types/generated/types";
 export interface IProductListUIProps {
   data?: Pick<IQuery, "fetchUseditems">;
   onClickMoveToProductNew: () => void;
-  // onClickMoveToBasket:,
+  onClickMoveToProductDetail: () => void;
+  // onClickMoveToBasket: () => void;
 }

@@ -20,20 +20,26 @@ export default function SignInID() {
   const onClickSignIn = async (data: FormValues) => {
     console.log(data);
 
-    // 로그인 유저 api 요청
-    const result = await loginUser({
-      variables: {
-        email: data.Email,
-        password: data.Password,
-      },
-    });
-    console.log(result);
-    localStorage.setItem(
-      "accessToken",
-      result.data?.loginUser.accessToken || ""
-    );
-    setAccessToken?.(result.data?.loginUser.accessToken || ""); // 여기서 setAccesToken 필요! (글로벌 스테이트에...)
-
+    try {
+      // 로그인 유저 api 요청
+      const result = await loginUser({
+        variables: {
+          email: data.Email,
+          password: data.Password,
+        },
+      });
+      console.log("<<<<< Result >>>>>");
+      console.log(result);
+      localStorage.setItem(
+        "accessToken",
+        result.data?.loginUser.accessToken || ""
+      );
+      setAccessToken?.(result.data?.loginUser.accessToken || ""); // 여기서 setAccesToken 필요! (글로벌 스테이트에...)
+    } catch (error) {
+      alert("토큰 만료! 기존의 토큰을 삭제했습니다. 다시 로그인 시도해주세요");
+      localStorage.removeItem("accessToken");
+      return;
+    }
     // 로그인 성공된 페이지로 이동시키기!!!
     router.push("/boards");
   };

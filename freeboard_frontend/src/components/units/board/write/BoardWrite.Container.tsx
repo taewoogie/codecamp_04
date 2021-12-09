@@ -7,7 +7,6 @@ import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
-
   const [myWriter, setMyWriter] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [myTitle, setMyTitle] = useState("");
@@ -16,6 +15,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
@@ -25,7 +25,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [myContentsError, setMyContentsError] = useState("");
 
   const [isActive, setIsActive] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);

@@ -6,10 +6,12 @@ export default function ProductListUI(props: IProductListUIProps) {
   return (
     <>
       {/* <productTitle>Product List</productTitle> */}
-      <Title>Woogie Products</Title>
+      <Title>Woogie Product</Title>
       {props.data?.fetchUseditems.map((el) => (
         <div key={el._id}>
-          <span>{el.name}</span>
+          <span id={el._id} onClick={props.onClickMoveToProductDetail}>
+            {el.name}
+          </span>
           <span>{el.contents}</span>
           <span>{el.price}</span>
           <span>{getDate(el.createdAt)}</span>
