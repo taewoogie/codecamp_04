@@ -1,23 +1,22 @@
 export interface FormValues {
   data: any;
-  isEdit: boolean;
+  isEdit?: boolean;
   isOpen: boolean;
   name: string;
   remarks: string;
   price: number;
-  contents: string;
+  contents?: string | "";
   tags?: string[];
   zipcode?: string;
   address?: string;
   addressDetail?: string;
   handleOk: () => void;
   handleCancel: () => void;
+  handleChange: () => void;
   handleSubmit: () => void;
   onCompleteAddressSearch: () => void;
-  // onClickSubmit: () => void;
-  // onClickUpdate: () => void;
+  onClickSubmit: () => void;
+  onClickUpdate: () => void;
   onClickAddressSearch: () => void;
   onChangeAddressDetail: () => void;
 }
-
-export interface IProductWriteUIProps {}

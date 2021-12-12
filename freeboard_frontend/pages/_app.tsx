@@ -5,8 +5,8 @@ import {
   ApolloProvider,
   InMemoryCache,
   ApolloLink,
-  useQuery,
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import { createUploadLink } from "apollo-upload-client";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import Layout from "../src/components/commons/layout";
@@ -20,6 +20,8 @@ import {
   Dispatch,
   createContext,
 } from "react";
+import { getAccessToken } from "../src/commons/libraries/Token/getAccessToken";
+import router from "next/router";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB3FSnWLebiGYOvA-GlEbdDwPfMW8Tvq0M",
@@ -56,21 +58,61 @@ function MyApp({ Component, pageProps }: AppProps) {
     userInfo: userInfo,
     setUserInfo: setUserInfo,
   };
-
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken") || "";
-    if (accessToken) setAccessToken(accessToken);
+    // const accessToken = localStorage.getItem("accessToken") || "";
+    // if (accessToken) setAccessToken(accessToken);
+    if (localStorage.getItem("refreshToken")) getAccessToken(setAccessToken);
   }, []);
 
+  // operation => 방금 실패한 쿼리
+  // forward => 쿼리 재전송
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        // 1. 토큰만료 에러 캐치
+        if (err.extensions?.code === "UNAUTHENTICATED") {
+          // 3. 기존에 실패한 요청 다시 재요청하기
+          operation.setContext({
+            headers: {
+              ...operation.getContext().headers,
+              authorization: `Bearer ${getAccessToken(setAccessToken)}`, // 2. refreshToken으로 accessToken 재발급 받기 => restoreAccessToken
+            },
+          });
+          return forward(operation);
+        } else if (err.extensions?.code === "INTERNAL_SERVER_ERROR") {
+          console.log(err);
+        }
+      }
+    }
+  });
+
   const uploadLink = createUploadLink({
-    uri: "http://backend04.codebootcamp.co.kr/graphql",
-    headers: { authorization: `Bearer ${accessToken}` },
+    uri: "https://backend04.codebootcamp.co.kr/graphql",
+    headers: {
+      authorization: `Bearer ${accessToken}`,
+    },
+    credentials: "include",
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
   });
+
+  // useEffect(() => {
+  //   const accessToken = localStorage.getItem("accessToken") || "";
+  //   if (accessToken) setAccessToken(accessToken);
+  // }, []);
+
+  // const uploadLink = createUploadLink({
+  //   uri: "http://backend04.codebootcamp.co.kr/graphql",
+  //   headers: { authorization: `Bearer ${accessToken}` },
+  // });
+
+  // const client = new ApolloClient({
+  //   link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+  //   cache: new InMemoryCache(),
+  // });
 
   return (
     <GlobalContext.Provider value={Value}>

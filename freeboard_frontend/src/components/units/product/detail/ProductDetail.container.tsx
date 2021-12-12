@@ -21,7 +21,7 @@ export default function ProductDetail() {
   });
 
   // console.log("<<<< ProductDetailContainer - FetchUseditem >>>>>");
-  console.log(data);
+  // console.log(data);
 
   const onClickMoveToProductList = () => {
     router.back();
@@ -30,6 +30,7 @@ export default function ProductDetail() {
   const onClickMoveToProductUpdate = () => {
     router.push(`/product/${router.query.productId}/edit`);
   };
+
   return (
     <ProductDetailUI
       data={data}

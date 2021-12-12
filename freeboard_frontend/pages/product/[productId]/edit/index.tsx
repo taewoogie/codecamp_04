@@ -1,7 +1,7 @@
-import ProductWrite from "../../../../src/components/units/product/write/ProductWrite.container";
 import { FETCH_USED_ITEM } from "../../../../src/components/units/product/detail/ProductDetail.queries";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
+import ProductWrite from "../../../../src/components/units/product/write/ProductWrite.container";
 
 export default function ProductEditPage() {
   const router = useRouter();

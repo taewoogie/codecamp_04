@@ -1,6 +1,10 @@
 import BoardListUI from "./BoardList.presenter";
 import { useQuery } from "@apollo/client";
-import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardList.queries";
+import {
+  FETCH_BOARDS,
+  FETCH_BOARDS_COUNT,
+  FETCH_USER_LOGGEDIN,
+} from "./BoardList.queries";
 import { useRouter } from "next/router";
 import { MouseEvent, useState } from "react";
 import {
@@ -21,6 +25,8 @@ export default function BoardList() {
     Pick<IQuery, "fetchBoardsCount">,
     IQueryFetchBoardsCountArgs
   >(FETCH_BOARDS_COUNT);
+  const { data: fetchUser } =
+    useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGEDIN);
 
   const onClickMoveToBoardNew = () => {
     router.push("/boards/new");
@@ -38,6 +44,7 @@ export default function BoardList() {
   return (
     <BoardListUI
       data={data}
+      fetchUser={fetchUser}
       onClickMoveToBoardNew={onClickMoveToBoardNew}
       onClickMoveToBoardDetail={onClickMoveToBoardDetail}
       refetch={refetch}

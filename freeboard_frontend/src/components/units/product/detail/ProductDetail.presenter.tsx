@@ -1,4 +1,6 @@
 import DOMPurify from "dompurify";
+import PaymentPage from "../../../commons/payment";
+import Payment from "../../../commons/payment/payment.container";
 
 interface IProductDetailUI {
   onClickMoveToProductList: () => void;
@@ -7,8 +9,6 @@ interface IProductDetailUI {
 }
 
 export default function ProductDetailUI(props: IProductDetailUI) {
-  console.log("Detail UI");
-  console.log(props.data);
   return (
     <>
       <h1>상품 상세 페이지</h1>
@@ -34,13 +34,19 @@ export default function ProductDetailUI(props: IProductDetailUI) {
       )}
 
       <h1>판매 가격</h1>
-      <div>{props.data?.fetchUseditem.price}</div>
-
-      <h1>태그 입력</h1>
-      <div>{props.data?.fetchUseditem.tags}</div>
       <div>
+        {props.data?.fetchUseditem.price
+          .toString()
+          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원"}
+      </div>
+
+      {/* <h1>태그 입력</h1>
+      <div>{props.data?.fetchUseditem.tags}</div> */}
+      <div style={{ display: "flex" }}>
         <button onClick={props.onClickMoveToProductList}>목록으로</button>
         <button onClick={props.onClickMoveToProductUpdate}>수정하기</button>
+        <Payment data={props.data} />
+        {/* <button onClick={props.onClickMoveToProductPay}>결제하기</button> */}
       </div>
     </>
   );

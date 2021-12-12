@@ -1,23 +1,49 @@
 import { useQuery } from "@apollo/client";
 import { Modal } from "antd";
-import router from "next/router";
+import { useRouter } from "next/router";
 import {
   IQuery,
   IQueryFetchUseditemsArgs,
 } from "../../../../commons/types/generated/types";
 import ProductListUI from "./ProductList.presenter";
-import { FETCH_USED_ITEMS } from "./ProductList.queries";
+import { FETCH_USED_ITEMS, FETCH_USED_ITEMS_BEST } from "./ProductList.queries";
 
 export default function ProductList() {
+  const router = useRouter();
   // 상품리스트 조회
-  const { data } = useQuery<
+  const { data: usedItems, fetchMore } = useQuery<
     Pick<IQuery, "fetchUseditems">,
     IQueryFetchUseditemsArgs
-  >(FETCH_USED_ITEMS);
+  >(FETCH_USED_ITEMS, {
+    variables: { isSoldout: false },
+  });
+
+  // 베스트 상품 조회
+  const { data: bestUsedItems } = useQuery<
+    Pick<IQuery, "fetchUseditemsOfTheBest">
+  >(FETCH_USED_ITEMS_BEST);
+
+  const onLoad = () => {
+    if (!usedItems) return;
+
+    fetchMore({
+      variables: { page: Math.ceil(usedItems?.fetchUseditems.length / 10) + 1 },
+      updateQuery: (prev: any, { fetchMoreResult }) => {
+        if (!fetchMoreResult?.fetchUseditems)
+          return { fetchUseditems: [...prev.fetchUseditems] };
+
+        return {
+          fetchUseditems: [
+            ...prev.fetchUseditems,
+            ...fetchMoreResult?.fetchUseditems,
+          ],
+        };
+      },
+    });
+  };
 
   // 상품 상세조회
   const onClickMoveToProductDetail = (event) => {
-    console.log(event.target.id);
     router.push(`/product/${event.target.id}`);
   };
 
@@ -49,7 +75,9 @@ export default function ProductList() {
 
   return (
     <ProductListUI
-      data={data}
+      usedItems={usedItems}
+      bestUsedItems={bestUsedItems}
+      onLoad={onLoad}
       onClickMoveToProductDetail={onClickMoveToProductDetail}
       onClickMoveToBasket={onClickMoveToBasket}
       onClickMoveToProductNew={onClickMoveToProductNew}

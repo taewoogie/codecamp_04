@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { schema } from "./SigninID.validations";
 import { FormValues } from "./SigninID.types";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "./SigninID.queries";
+import { FETCH_USER_LOGGEDIN, LOGIN_USER } from "./SigninID.queries";
 import router from "next/router";
 import { GlobalContext } from "../../../../pages/_app";
 import { useContext } from "react";
@@ -28,18 +28,14 @@ export default function SignInID() {
           password: data.Password,
         },
       });
-      console.log("<<<<< Result >>>>>");
-      console.log(result);
+      // console.log("<<<<< Result >>>>>");
+      // console.log(result);
       localStorage.setItem(
         "accessToken",
         result.data?.loginUser.accessToken || ""
       );
       setAccessToken?.(result.data?.loginUser.accessToken || ""); // 여기서 setAccesToken 필요! (글로벌 스테이트에...)
-    } catch (error) {
-      alert("토큰 만료! 기존의 토큰을 삭제했습니다. 다시 로그인 시도해주세요");
-      localStorage.removeItem("accessToken");
-      return;
-    }
+    } catch (error) {}
     // 로그인 성공된 페이지로 이동시키기!!!
     router.push("/boards");
   };

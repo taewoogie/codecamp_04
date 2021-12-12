@@ -7,3 +7,17 @@ export const CREATE_USEDITEM = gql`
     }
   }
 `;
+
+export const UPDATE_USEDITEM = gql`
+  mutation updateUseditem(
+    $useditemId: ID!
+    $updateUseditemInput: UpdateUseditemInput!
+  ) {
+    updateUseditem(
+      useditemId: $useditemId
+      updateUseditemInput: $updateUseditemInput
+    ) {
+      _id
+    }
+  }
+`;
