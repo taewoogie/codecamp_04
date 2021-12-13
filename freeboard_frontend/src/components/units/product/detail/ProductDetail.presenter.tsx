@@ -5,6 +5,7 @@ import Payment from "../../../commons/payment/payment.container";
 interface IProductDetailUI {
   onClickMoveToProductList: () => void;
   onClickMoveToProductUpdate: () => void;
+  onClickMoveToProductDelete: () => void;
   data: any;
 }
 
@@ -45,6 +46,7 @@ export default function ProductDetailUI(props: IProductDetailUI) {
       <div style={{ display: "flex" }}>
         <button onClick={props.onClickMoveToProductList}>목록으로</button>
         <button onClick={props.onClickMoveToProductUpdate}>수정하기</button>
+        <button onClick={props.onClickMoveToProductDelete}>삭제하기</button>
         <Payment data={props.data} />
         {/* <button onClick={props.onClickMoveToProductPay}>결제하기</button> */}
       </div>

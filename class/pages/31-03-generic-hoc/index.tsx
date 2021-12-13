@@ -5,6 +5,7 @@ export const withAuth =
   <P extends {}>(Component: ComponentType<P>) =>
   (props: P) => {
     const router = useRouter();
+    // const { accessToken } = useContext(GlobalContext);
 
     useEffect(() => {
       if (!localStorage.getItem("accessToken")) {

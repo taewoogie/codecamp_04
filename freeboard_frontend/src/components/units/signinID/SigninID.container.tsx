@@ -30,11 +30,13 @@ export default function SignInID() {
       });
       // console.log("<<<<< Result >>>>>");
       // console.log(result);
-      localStorage.setItem(
-        "accessToken",
-        result.data?.loginUser.accessToken || ""
-      );
-      setAccessToken?.(result.data?.loginUser.accessToken || ""); // 여기서 setAccesToken 필요! (글로벌 스테이트에...)
+      // localStorage.setItem(
+      //   "accessToken",
+      //   result.data?.loginUser.accessToken || ""
+      // );
+      // setAccessToken?.(result.data?.loginUser.accessToken || ""); // 여기서 setAccesToken 필요! (글로벌 스테이트에...)
+      localStorage.setItem("refreshToken", "true");
+      setAccessToken(result.data?.loginUserExample.accessToken || "");
     } catch (error) {}
     // 로그인 성공된 페이지로 이동시키기!!!
     router.push("/boards");

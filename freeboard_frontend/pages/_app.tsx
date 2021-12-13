@@ -21,7 +21,6 @@ import {
   createContext,
 } from "react";
 import { getAccessToken } from "../src/commons/libraries/Token/getAccessToken";
-import router from "next/router";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB3FSnWLebiGYOvA-GlEbdDwPfMW8Tvq0M",
@@ -61,7 +60,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     // const accessToken = localStorage.getItem("accessToken") || "";
     // if (accessToken) setAccessToken(accessToken);
-    if (localStorage.getItem("refreshToken")) getAccessToken(setAccessToken);
+    if (localStorage.getItem("refreshToken")) {
+      getAccessToken(setAccessToken);
+
+      // console.log(accessToken);
+    }
   }, []);
 
   // operation => 방금 실패한 쿼리

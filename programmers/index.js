@@ -3,35 +3,35 @@
 //     * 화요일
 // 1. 배열 : 배열의 선언과 할당
 
-let fruits = []
+let fruits = [];
 
-fruits.push("사과" , "바나나" , "파인애플")
+fruits.push("사과", "바나나", "파인애플");
 
 // 2. 배열 : 배열의 기능
 
-let fruits = ["사과", "바나나", "파인애플"]
+let fruits = ["사과", "바나나", "파인애플"];
 
-let newFruits = []
+let newFruits = [];
 
-newFruits.push(fruits[fruits["length"]-1])
+newFruits.push(fruits[fruits["length"] - 1]);
 
 // 3. 객체 : 객체의 선언과 할당
 
 let students = {
-    name : "철수"
-}
+  name: "철수",
+};
 
 // 4. 객체 : 객체의 키&값 추가
 
 const student = {
-	name: "철수",
-	age: 8
+  name: "철수",
+  age: 8,
 };
 
 const school = {
-	name: "다람쥐초등학교",
-	teacher: "다람이"
-}
+  name: "다람쥐초등학교",
+  teacher: "다람이",
+};
 
 student.school = school;
 
@@ -40,48 +40,55 @@ student.school = school;
 // 5. 조건문 : 조건문 연습
 
 function boolean(input1, input2) {
-	if(input1 === false && input2 === false){
-	    console.log("flase")
-	} else {
-	    console.log("true")
-	}
+  if (input1 === false && input2 === false) {
+    console.log("flase");
+  } else {
+    console.log("true");
+  }
 }
 
 // 6. 조건문 : 홀짝
 
 function evenOdd(num) {
-
-	if (num === 0 ) {
-			console.log("Zero");
-		} else if (num%2 === 1) {
-			console.log("Odd");
-		} else if (num%2 === 0) {
-			console.log("Even");
-		}
+  if (num === 0) {
+    console.log("Zero");
+  } else if (num % 2 === 1) {
+    console.log("Odd");
+  } else if (num % 2 === 0) {
+    console.log("Even");
+  }
 }
 
 // 7. 조건문 : 온도
 
-function temperature(num){
-	if (num <= 18) {
-	    console.log("조금 춥네요")
-	} else if (num <= 23 ) {
-	    console.log("날씨가 좋네요")
-	} else {
-	    console.log("조금 덥습니다")
-	}
+function temperature(num) {
+  if (num <= 18) {
+    console.log("조금 춥네요");
+  } else if (num <= 23) {
+    console.log("날씨가 좋네요");
+  } else {
+    console.log("조금 덥습니다");
+  }
 }
 
 // 8. 조건문 : 며칠
 
 function days(month) {
-	if(month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12 ) {
-	    console.log("31")
-	} else if(month === 2) {
-	    console.log("28")
-	} else {
-	    console.log("30")
-	}
+  if (
+    month === 1 ||
+    month === 3 ||
+    month === 5 ||
+    month === 7 ||
+    month === 8 ||
+    month === 10 ||
+    month === 12
+  ) {
+    console.log("31");
+  } else if (month === 2) {
+    console.log("28");
+  } else {
+    console.log("30");
+  }
 }
 
 //     * 목요일
@@ -89,61 +96,58 @@ function days(month) {
 // 9. 반복문 : 숫자 더하기
 
 function sum(num) {
-	let count = 0;
+  let count = 0;
 
-	for(let i=0; i<num; i++){
-    count += i
-	}
-
+  for (let i = 0; i < num; i++) {
+    count += i;
+  }
 }
 
 // 10. 반복문 : 특정 문자열 세기
 
 function countLetter(str) {
-	let count = 0;
+  let count = 0;
 
-		for(let i=0; i < str.length; i++){
-	
-	    if( (str[i].includes("a")) === true || (str[i].includes("A")) === true )
-	        count++;
-	}
+  for (let i = 0; i < str.length; i++) {
+    if (str[i].includes("a") === true || str[i].includes("A") === true) count++;
+  }
 }
 
 // 11. 반복문 : 문자열 삽입
 
 function makeNumber(num) {
-	let str = '';
+  let str = "";
 
-	for(let i=1; i<=num; i++){
-        if(i < num){
-        	str =  str + i + '-'
-        } else {
-        	str =  str + i 
-        }
-	}
+  for (let i = 1; i <= num; i++) {
+    if (i < num) {
+      str = str + i + "-";
+    } else {
+      str = str + i;
+    }
+  }
 }
 
 // 12. 반복문 : 홀수 문자열
 
 function makeOdd(num) {
-	let str = '';
+  let str = "";
 
-	for (let i=1; i<=num; i++){
-	    if( i % 2 === 1 ) {
-	        str += i
-	    }
-	}
+  for (let i = 1; i <= num; i++) {
+    if (i % 2 === 1) {
+      str += i;
+    }
+  }
 }
 
 // 13. 반복문 : 가장 큰 수 찾기
 
 function bigNum(str) {
-	let biggest = 0;
+  let biggest = 0;
 
-	for (let i=0; i < str.length; i++){
-	    if(Number(str[i]) > biggest) biggest = Number(str[i])
-	} 
-	return String(biggest)
+  for (let i = 0; i < str.length; i++) {
+    if (Number(str[i]) > biggest) biggest = Number(str[i]);
+  }
+  return String(biggest);
 }
 
 //	 * 금요일
@@ -151,340 +155,389 @@ function bigNum(str) {
 // 14. 조건문 : 점수에 따른 등급
 
 function grade(score) {
-    if( score < 0 || score > 100 ) {
-        return "잘못된 점수입니다."
-    } else if ( score <= 59 ) {
-        return "F"
-    } else if ( score <= 69 ) {
-        return "D"
-    } else if ( score <= 79 ) {
-        return "C"
-    } else if ( score <= 89 ) {
-        return "B"
-    } else if ( score <= 100 ) {
-        return "A"
-    }
+  if (score < 0 || score > 100) {
+    return "잘못된 점수입니다.";
+  } else if (score <= 59) {
+    return "F";
+  } else if (score <= 69) {
+    return "D";
+  } else if (score <= 79) {
+    return "C";
+  } else if (score <= 89) {
+    return "B";
+  } else if (score <= 100) {
+    return "A";
+  }
 }
 
 // 15. 반복문 : 마이페이지
 
 const myShopping = [
-	{ category: "과일"  , price: 12000　},
-	{ category: "의류"  , price:10000　 },
-	{ category: "의류"  , price: 20000　},
-	{ category: "장난감" , price: 9000 },
-	{ category: "과일"  , price: 5000　 },
-	{ category: "의류"  , price: 10000  },
-	{ category: "과일"  , price: 8000　　},
-	{ category: "의류"  , price: 7000　　},
-	{ category: "장난감" , price: 5000  },
-	{ category: "의류"  , price: 10000　 },
-]
+  { category: "과일", price: 12000 },
+  { category: "의류", price: 10000 },
+  { category: "의류", price: 20000 },
+  { category: "장난감", price: 9000 },
+  { category: "과일", price: 5000 },
+  { category: "의류", price: 10000 },
+  { category: "과일", price: 8000 },
+  { category: "의류", price: 7000 },
+  { category: "장난감", price: 5000 },
+  { category: "의류", price: 10000 },
+];
 
-let count , price = 0;
-let grade = '';
+let count,
+  price = 0;
+let grade = "";
 
-
-for (let i=0; i<myShopping.length; i++) {
-	if(myShopping[i].category === "의류") {
-		count += 1
-		price += myShopping[i].price;
-	}
+for (let i = 0; i < myShopping.length; i++) {
+  if (myShopping[i].category === "의류") {
+    count += 1;
+    price += myShopping[i].price;
+  }
 }
 
-if( 0 <= count <= 2 ) {
-	grade = "Bronze"
-} else if ( count <= 4 ) {
-	grade = "Silver"
-} else if ( count >= 5 ){
-	grade = "Gold"
+if (0 <= count <= 2) {
+  grade = "Bronze";
+} else if (count <= 4) {
+  grade = "Silver";
+} else if (count >= 5) {
+  grade = "Gold";
 }
 
 // === 의류를 구매한 횟수는 총 5
-console.log("의류를 구매한 횟수는 총 " + count + "회 금액은" + price + "원이며 등급은" + grade + "입니다."
-
-)
+console.log(
+  "의류를 구매한 횟수는 총 " +
+    count +
+    "회 금액은" +
+    price +
+    "원이며 등급은" +
+    grade +
+    "입니다."
+);
 
 //  * 2주차 월요일
 
 // 16. 문자열을 정수로 바꾸기
 function solution(s) {
-    
-    return Number(s);
+  return Number(s);
 }
 
 // 17. 같은 숫자는 싫어
 function solution(arr) {
-    var answer = [];
+  var answer = [];
 
-    for(let i=0; i<arr.length; i++){
-        if( arr[i] !== arr[i+1] ) {
-            answer.push(arr[i]);
-        }
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== arr[i + 1]) {
+      answer.push(arr[i]);
     }
-    return answer;
+  }
+  return answer;
 }
 
 // 18. 핸드폰 번호 가리기
 function solution(phone_number) {
-    var answer = '';
+  var answer = "";
 
+  // 방법 1
+  // answer = answer.padStart(phone_number.length-4,"*");
+  // answer += phone_number.slice(phone_number.length-4, phone_number.length);
 
-	// 방법 1
-	// answer = answer.padStart(phone_number.length-4,"*");
-    // answer += phone_number.slice(phone_number.length-4, phone_number.length);
-
-
-	// 방법 2
-    for (let i=0; i<phone_number.length; i++){
-       if(i < phone_number.length-4){
-           answer += '*'
-       } else {
-           answer += phone_number[i]
-       }
-        
+  // 방법 2
+  for (let i = 0; i < phone_number.length; i++) {
+    if (i < phone_number.length - 4) {
+      answer += "*";
+    } else {
+      answer += phone_number[i];
     }
-    return answer;
+  }
+  return answer;
 }
-
 
 //  * 화요일
 // 19. 짝수와 홀수
 
 function solution(num) {
-	return num % 2 === 0 ? 'Even' : 'Odd'
+  return num % 2 === 0 ? "Even" : "Odd";
 
-    // if(num % 2 === 0 || num === 0) {
-    //     return "Even"
-    // } else {
-    //     return "Odd"
-    // }
+  // if(num % 2 === 0 || num === 0) {
+  //     return "Even"
+  // } else {
+  //     return "Odd"
+  // }
 }
 
 //  20.평균 구하기
 function solution(arr) {
-    let sum = 0;
-    let answer = 0;
-    
-    for(let i=0; i<arr.length; i++){
-        sum += arr[i];
-    }
-    answer = (sum / arr.length)
-    return answer;
-}
+  let sum = 0;
+  let answer = 0;
 
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  answer = sum / arr.length;
+  return answer;
+}
 
 // 21. 가운데 글자 가져오기
 function solution(s) {
-	// 길이를 나눠 정수화 하기
-	// "abcde" : 3 "qwer" : 2
-	// console.log(Math.round(s.length / 2))     
-	// "abcde" : d "qwer" : e
-    
-    // 문자는 배열로 따지므로 길이에 -1 값을 해준다
-	// console.log(s[Math.round(s.length / 2)-1])
+  // 길이를 나눠 정수화 하기
+  // "abcde" : 3 "qwer" : 2
+  // console.log(Math.round(s.length / 2))
+  // "abcde" : d "qwer" : e
 
-	// 짝수 일 경우, 가운대 두 글자이기 때문에 
-	// Math.round(s.length / 2)-1 값과 
-	// Math.round(s.length / 2) 값을 같이 표출한다.
-    if(s.length % 2 === 1) {
-        return s[Math.round(s.length / 2)-1]
-    } else {
-        return s[Math.round(s.length / 2-1)] +
-               s[Math.round(s.length / 2)]
-    }
-    
+  // 문자는 배열로 따지므로 길이에 -1 값을 해준다
+  // console.log(s[Math.round(s.length / 2)-1])
+
+  // 짝수 일 경우, 가운대 두 글자이기 때문에
+  // Math.round(s.length / 2)-1 값과
+  // Math.round(s.length / 2) 값을 같이 표출한다.
+  if (s.length % 2 === 1) {
+    return s[Math.round(s.length / 2) - 1];
+  } else {
+    return s[Math.round(s.length / 2 - 1)] + s[Math.round(s.length / 2)];
+  }
 }
 
 //  * 수요일
 
 //  22. 서울에서 김서방 찾기
 function solution(seoul) {
-    for(let i=0; i<seoul.length; i++){
-        if(seoul[i].includes('Kim')) return '김서방은 ' + i + '에 있다'
-    }
+  for (let i = 0; i < seoul.length; i++) {
+    if (seoul[i].includes("Kim")) return "김서방은 " + i + "에 있다";
+  }
 }
 
 //  23. 문자열 다루기 기본
 function solution(s) {
-    if((s.length === 4 || s.length === 6) && !isNaN(s) && !s.includes('e')) return true
-    else return false
-    
+  if ((s.length === 4 || s.length === 6) && !isNaN(s) && !s.includes("e"))
+    return true;
+  else return false;
 }
 
 //  24. 약수의 합
 function solution(n) {
-    var answer = 0;
-    
-    for(let i=0; i<=n; i++){
-        // n을 i 로 나눴을 때 나머지 값이 0 이라면 약수로 판단
-        if(n % i === 0){
-            answer += i;
-        }
+  var answer = 0;
+
+  for (let i = 0; i <= n; i++) {
+    // n을 i 로 나눴을 때 나머지 값이 0 이라면 약수로 판단
+    if (n % i === 0) {
+      answer += i;
     }
-    return answer;
+  }
+  return answer;
 }
 
-// * 목요일 
+// * 목요일
 
 // 25. 자릿수 더하기
-function solution(n){
-    const word = n.toString();
-    let result = 0;
-    
-    // console.log(typeof(word[0]) , word[1], word[2])
-    // console.log(word.length)
-    for(let i=0; i<word.length; i++){
-        result += Number(word[i])
-    }
-    console.log(result)
-    return result
+function solution(n) {
+  const word = n.toString();
+  let result = 0;
+
+  // console.log(typeof(word[0]) , word[1], word[2])
+  // console.log(word.length)
+  for (let i = 0; i < word.length; i++) {
+    result += Number(word[i]);
+  }
+  console.log(result);
+  return result;
 }
 // ㄴ 멘토님 코드
-function solution(n){
-    let result = 0;
-    
-    String(n).split("").forEach( num => {
-        result += Number(num);
-    })
-    return result;
+function solution(n) {
+  let result = 0;
+
+  String(n)
+    .split("")
+    .forEach((num) => {
+      result += Number(num);
+    });
+  return result;
 }
 
 //  26. x만큼 간격이 있는 n개의 숫자
 function solution(x, n) {
-    var answer = [];
-    
-    for(let i=1; i<=n; i++){
-        answer.push(i*x)
-    }
-    return answer;
+  var answer = [];
+
+  for (let i = 1; i <= n; i++) {
+    answer.push(i * x);
+  }
+  return answer;
 }
 
 // * 금요일
 // 27. 문자열 내림차순으로 정렬하기
 function solution(s) {
-    const answer = [];
-    
-    for( let i = 0; i < s.length; i++ ) {
-        answer.push( s[i] )
-    }
-    answer.sort( (a, b) => {
-        return a > b ? -1 : 1
-    })
-    
-    return answer.join("");
+  const answer = [];
+
+  for (let i = 0; i < s.length; i++) {
+    answer.push(s[i]);
+  }
+  answer.sort((a, b) => {
+    return a > b ? -1 : 1;
+  });
+
+  return answer.join("");
 }
 
 // 28. k번째 수 (for문)
 function solution(array, commands) {
-    const answer = [];
-    
-    for( let idx = 0; idx < commands.length; idx++ ) {
-        const i = commands[idx][0];
-        const j = commands[idx][1];
-        const k = commands[idx][2];
-        
-        const result = array.slice( i - 1, j )
-                            .sort( (a, b) => {
-                                return a - b
-                            })
-        answer.push( result[k - 1] )
-    }
-    
-    return answer;
+  const answer = [];
+
+  for (let idx = 0; idx < commands.length; idx++) {
+    const i = commands[idx][0];
+    const j = commands[idx][1];
+    const k = commands[idx][2];
+
+    const result = array.slice(i - 1, j).sort((a, b) => {
+      return a - b;
+    });
+    answer.push(result[k - 1]);
+  }
+
+  return answer;
 }
 // map 활용문
 function solution(array, commands) {
-    const answer = commands.map( el => {
-        
-        const result = array.slice( el[0] - 1, el[1] )
-                            .sort( (a, b) => {
-                                return a - b   
-                            })
-        return result[ el[2] - 1 ]
-    }) 
-          
-    return answer;
-}
+  const answer = commands.map((el) => {
+    const result = array.slice(el[0] - 1, el[1]).sort((a, b) => {
+      return a - b;
+    });
+    return result[el[2] - 1];
+  });
 
+  return answer;
+}
 
 // 3주차
 //  * 월요일
 
 // 29. 문자열 p와 y의 개수 ( for 반복문 )
-function solution(s){
-    s = s.toLowerCase(); // 문자열 전체를 소문자로 변환
-    let p = 0; // p의 개수를 카운트
-    let y = 0; // y의 개수를 카운트
+function solution(s) {
+  s = s.toLowerCase(); // 문자열 전체를 소문자로 변환
+  let p = 0; // p의 개수를 카운트
+  let y = 0; // y의 개수를 카운트
 
-    for( let i = 0; i < s.length; i++ ) {
-        if( s[i] === "y" ) {
-            y++
-            // y += 1; // y = y + 1;
-            
-        } else if( s[i] === "p" ) {
-            p++
-        }
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "y") {
+      y++;
+      // y += 1; // y = y + 1;
+    } else if (s[i] === "p") {
+      p++;
     }
-    
-    return p === y;
-    // p와 y의 개수가 동일하다면 true 값을 리턴
-    // p와 y의 개수가 동일하지 않다면 false 값을 리턴
+  }
+
+  return p === y;
+  // p와 y의 개수가 동일하다면 true 값을 리턴
+  // p와 y의 개수가 동일하지 않다면 false 값을 리턴
 }
 
 // ( forEach 문 )
-function solution(s){
-    const check = {}; // 알파벳의 개수를 정리하는 객체
-    const answer = s.toLowerCase()
-                    .split("")
-                    .forEach( str => {
-                        check[str] === undefined
-                            ? check[str] = 1
-                            // 기존에 알파벳이 없다면 1을 초기값으로 생성
-                            : check[str] += 1
-                            // 기존의 알파벳 개수를 1 증가
-                    })
-    return check.p === check.y
+function solution(s) {
+  const check = {}; // 알파벳의 개수를 정리하는 객체
+  const answer = s
+    .toLowerCase()
+    .split("")
+    .forEach((str) => {
+      check[str] === undefined
+        ? (check[str] = 1)
+        : // 기존에 알파벳이 없다면 1을 초기값으로 생성
+          (check[str] += 1);
+      // 기존의 알파벳 개수를 1 증가
+    });
+  return check.p === check.y;
 }
-
 
 // 30. 이상한 문자 만들기 ( for 반복문 )
 function solution(s) {
-    let answer = '';
-    
-    let idx = 0; // 단어별로 인덱스 값을 저장하는 역할
-    for( let i = 0; i < s.length; i++ ) {
-        if( s[i] === " " ) {
-            // 공백이라면 그냥 공백을 넣어준다. (예외처리)
-            answer += " ";
-            idx = 0; // idx 를 0으로 초기화
-            
-        } else {
-            answer += idx % 2 === 0
-                // 짝수 인덱스라면 대문자 추가
-                ? s[i].toUpperCase()
-                // 홀수 인덱스라면 소문자 추가
-                : s[i].toLowerCase()
-            idx++;
-        }
+  let answer = "";
+
+  let idx = 0; // 단어별로 인덱스 값을 저장하는 역할
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === " ") {
+      // 공백이라면 그냥 공백을 넣어준다. (예외처리)
+      answer += " ";
+      idx = 0; // idx 를 0으로 초기화
+    } else {
+      answer +=
+        idx % 2 === 0
+          ? // 짝수 인덱스라면 대문자 추가
+            s[i].toUpperCase()
+          : // 홀수 인덱스라면 소문자 추가
+            s[i].toLowerCase();
+      idx++;
     }
-    
-    return answer;
+  }
+
+  return answer;
 }
 
 // Map 활용문
 function solution(s) {
-    // 공백을 기준으로 쪼개서 배열에 저장 (단어를 기준으로)
-    const answer = s.split(" ")
-                    .map( word => {
-                        return word.split("")
-                                   .map( (letter, i) => {
-                            return i % 2 === 0
-                                ? letter.toUpperCase()
-                                : letter.toLowerCase()
-                        }).join("")
-                        // 하나의 문자열로 (붙어서) 만들어 준다.
-                    }).join(" ")
-                    // 공백을 기준으로 (띄어서) 문자열을 만들어 준다.
-    return answer;
+  // 공백을 기준으로 쪼개서 배열에 저장 (단어를 기준으로)
+  const answer = s
+    .split(" ")
+    .map((word) => {
+      return word
+        .split("")
+        .map((letter, i) => {
+          return i % 2 === 0 ? letter.toUpperCase() : letter.toLowerCase();
+        })
+        .join("");
+      // 하나의 문자열로 (붙어서) 만들어 준다.
+    })
+    .join(" ");
+  // 공백을 기준으로 (띄어서) 문자열을 만들어 준다.
+  return answer;
 }
+
+// 3진법 뒤집기
+// 문제 설명
+// 자연수 n이 매개변수로 주어집니다. n을 3진법 상에서 앞뒤로 뒤집은 후, 이를 다시 10진법으로 표현한 수를 return 하도록 solution 함수를 완성해주세요.
+
+// 제한사항
+// n은 1 이상 100,000,000 이하인 자연수입니다.
+// 입출력 예
+// n	result
+// 45	7
+// 125	229
+// 입출력 예 설명
+// 입출력 예 #1
+
+// 답을 도출하는 과정은 다음과 같습니다.
+// n (10진법)	n (3진법)	앞뒤 반전(3진법)	10진법으로 표현
+// 45	1200	0021	7
+// 따라서 7을 return 해야 합니다.
+
+function solution(n) {
+  // console.log(n.toString(3))
+  n = n.toString(3);
+  let reverse = "";
+  for (let i = n.length - 1; i >= 0; i--) {
+    reverse += n[i];
+  }
+  // console.log(parseInt (reverse , 3))
+  return parseInt(reverse, 3);
+}
+
+// 함수형으로 문제풀기
+function solution(n) {
+  n = n
+    .toString(3)
+    .split("") // 문자열 배열에 하나씩 담긴다
+    .reverse() // 데이터들의 순서를 바꾼다
+    .join(""); // 문자열 배열을 문자로 합친다.
+
+  console.log(parseInt(n, 3)); // toString(3) 3진법으로 변환 된 데이터를 원본의 데이터로 바꿔줘야함
+}
+
+// N개의 최소공배수
+// 문제 설명
+// 두 수의 최소공배수(Least Common Multiple)란 입력된 두 수의 배수 중 공통이 되는 가장 작은 숫자를 의미합니다. 예를 들어 2와 7의 최소공배수는 14가 됩니다. 정의를 확장해서, n개의 수의 최소공배수는 n 개의 수들의 배수 중 공통이 되는 가장 작은 숫자가 됩니다. n개의 숫자를 담은 배열 arr이 입력되었을 때 이 수들의 최소공배수를 반환하는 함수, solution을 완성해 주세요.
+
+// 제한 사항
+// arr은 길이 1이상, 15이하인 배열입니다.
+// arr의 원소는 100 이하인 자연수입니다.
+// 입출력 예
+// arr	result
+// [2,6,8,14]	168
+// [1,2,3]	6
