@@ -55,3 +55,15 @@ export const FETCH_USED_ITEMS_BEST = gql`
     }
   }
 `;
+
+export const TOGGLE_USEDITEM_PICK = gql`
+  mutation toggleUseditemPick($useditemId: ID!) {
+    toggleUseditemPick(useditemId: $useditemId)
+  }
+`;
+
+export const FETCH_USEDITEMS_COUNT_I_PICKED = gql`
+  query fetchUseditemsCountIPicked {
+    fetchUseditemsCountIPicked
+  }
+`;

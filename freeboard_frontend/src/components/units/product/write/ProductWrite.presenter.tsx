@@ -9,8 +9,8 @@ import {
 } from "../../board/write/BoardWrite.styles";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
-import Uploads01UI from "../../../commons/uploads/01/Uploads01.presenter";
 import { v4 as uuidv4 } from "uuid";
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -36,7 +36,7 @@ export default function ProductWriteUI(props: FormValues) {
           상품명 :
           <input
             type="text"
-            placeholder="Price Name"
+            placeholder="Product Name"
             defaultValue={props.isEdit && props.data?.fetchUseditem.name}
             {...props.register("name")}
           />
@@ -73,8 +73,23 @@ export default function ProductWriteUI(props: FormValues) {
           ) : (
             <ReactQuill onChange={props.handleChange} />
           )}
-          <br />
-          <button onClick={props.onClickMoveToDetail}>취소하기</button>
+          <ImageWrapper>
+            <Label>사진첨부</Label>
+            <UploadImage>
+              {props.fileUrls.map((el, index) => (
+                <Uploads01
+                  key={uuidv4()}
+                  index={index}
+                  fileUrl={el}
+                  defaultFileUrl={props.data?.fetchUseditem.images?.[index]}
+                  onChangeFileUrls={props.onChangeFileUrls}
+                />
+              ))}
+            </UploadImage>
+          </ImageWrapper>
+          <button type="button" onClick={props.onClickMoveToDetail}>
+            취소하기
+          </button>
           <button>{props.isEdit ? "수정하기" : "등록하기"}</button>
         </form>
       </div>

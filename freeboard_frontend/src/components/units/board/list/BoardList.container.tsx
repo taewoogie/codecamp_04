@@ -21,10 +21,12 @@ export default function BoardList() {
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
   >(FETCH_BOARDS, { variables: { page: startPage } });
+
   const { data: dataBoardsCount, refetch: refetchBoardsCount } = useQuery<
     Pick<IQuery, "fetchBoardsCount">,
     IQueryFetchBoardsCountArgs
   >(FETCH_BOARDS_COUNT);
+
   const { data: fetchUser } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGEDIN);
 

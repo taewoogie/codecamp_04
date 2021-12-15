@@ -31,7 +31,6 @@ export const BestItemCardWrapper = styled.div`
   border: 1px solid lightgray;
   overflow: hidden;
   padding: 10px;
-  /* background-color: yellow; */
 `;
 
 export const Img = styled.img`
@@ -43,14 +42,14 @@ export const Img = styled.img`
 
 export const Info_Title = styled.span`
   width: 100%;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: bold;
   overflow: hidden;
   cursor: pointer;
 `;
 export const Info = styled.span`
   width: 100%;
-  font-size: 15px;
+  font-size: 17px;
   overflow: hidden;
 `;
 
@@ -59,8 +58,6 @@ export const UsedItemsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 50px;
-
-  /* background-color: gray; */
 `;
 
 export const UsedItemCardWrapper = styled.div`
@@ -68,8 +65,6 @@ export const UsedItemCardWrapper = styled.div`
   height: 400px;
   display: flex;
   padding: 30px;
-  /* border: 1px solid black; */
-  /* background-color: yellow; */
 `;
 
 export const ItemCard = styled.div`

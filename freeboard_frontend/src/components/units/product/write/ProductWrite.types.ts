@@ -1,22 +1,45 @@
-export interface FormValues {
+import { ChangeEvent } from "react";
+import {
+  FieldValues,
+  FormState,
+  UseFormGetValues,
+  UseFormHandleSubmit,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form";
+
+export interface IProductWriteProps {
+  isEdit: boolean;
   data: any;
-  isEdit?: boolean;
-  isOpen: boolean;
+}
+
+export interface FormValues {
   name: string;
   remarks: string;
   price: number;
-  contents?: string | "";
+  contents: string;
   tags?: string[];
+  images?: string[];
+  fileUrls?: string[];
   zipcode?: string;
   address?: string;
   addressDetail?: string;
+  data: any;
+  isEdit?: boolean;
+  isOpen: boolean;
+  setValue: UseFormSetValue<FieldValues>;
+  getValue: UseFormGetValues<FieldValues>;
+  formState: FormState<FieldValues>;
+  register: UseFormRegister<FieldValues>;
   handleOk: () => void;
   handleCancel: () => void;
-  handleChange: () => void;
-  handleSubmit: () => void;
-  onCompleteAddressSearch: () => void;
-  onClickSubmit: () => void;
-  onClickUpdate: () => void;
+  handleChange: (value: string) => void;
+  handleSubmit: UseFormHandleSubmit<FieldValues>;
+  onClickSubmit: (data: FormValues) => Promise<void>;
+  onClickUpdate: (data: FormValues) => Promise<void>;
+  onCompleteAddressSearch(data: any): void;
   onClickAddressSearch: () => void;
-  onChangeAddressDetail: () => void;
+  onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>): void;
+  onClickMoveToDetail: () => void;
+  onChangeFileUrls: (fileUrl: string, index: number) => void;
 }

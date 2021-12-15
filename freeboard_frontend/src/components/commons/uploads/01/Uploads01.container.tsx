@@ -7,15 +7,17 @@ import { UPLOAD_FILE } from "./Uploads01.queries";
 import { Modal } from "antd";
 
 export default function Uploads01(props: IUploads01Props) {
+  // console.log(props);
   const fileRef = useRef<HTMLInputElement>(null);
   const [uploadFile] = useMutation(UPLOAD_FILE);
 
-  function onClickUpload() {
+  const onClickUpload = () => {
     fileRef.current?.click();
-  }
+  };
 
-  async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
+  const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = checkValidationImage(event.target.files?.[0]);
+
     if (!file) return;
 
     try {
@@ -24,7 +26,7 @@ export default function Uploads01(props: IUploads01Props) {
     } catch (error) {
       Modal.error({ content: error.message });
     }
-  }
+  };
 
   return (
     <Uploads01UI

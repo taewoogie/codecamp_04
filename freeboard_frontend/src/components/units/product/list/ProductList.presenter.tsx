@@ -6,36 +6,47 @@ import InfiniteScroll from "react-infinite-scroller";
 export default function ProductListUI(props: IProductListUIProps) {
   return (
     <S.Container>
-      <S.Title>Woogie Product</S.Title>
+      <S.Title>Woogie Best Products</S.Title>
+      <div
+        style={{ marginRight: "100px", marginBottom: "50px", float: "right" }}
+      >
+        <div>
+          <button onClick={props.onClickMoveToProductNew}>상품 등록하기</button>
+        </div>
+      </div>
       <S.BestItemWrapper>
         {props.bestUsedItems?.fetchUseditemsOfTheBest.map((el) => (
           <S.BestItemCardWrapper key={el._id}>
-            {/* 이미지 */}
             <S.Img></S.Img>
+
             <S.Info_Title
               id={el._id}
               onClick={props.onClickMoveToProductDetail}
             >
               {el.name}
             </S.Info_Title>
+            {/* <div> */}
             <S.Info>
               {el.price
                 .toString()
                 .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
               원
             </S.Info>
+
             <S.Info>{el.pickedCount}</S.Info>
-            <S.DateWrapper>{getDate(el.createdAt)}</S.DateWrapper>
+            {/* <S.Info>{el.pickedCount}</S.Info> */}
+            {/* </div> */}
+            <S.ItemCardBottomWrapper>
+              <S.DateWrapper>{getDate(el.createdAt)}</S.DateWrapper>
+              {/* <S.BasketBtn id={el._id} onClick={props.onClickPickedUseditem}>
+                찜하기
+              </S.BasketBtn> */}
+            </S.ItemCardBottomWrapper>
           </S.BestItemCardWrapper>
         ))}
       </S.BestItemWrapper>
 
-      {/*  */}
-      <div style={{ margin: "50px" }}>
-        <div>
-          <button onClick={props.onClickMoveToProductNew}>상품 등록하기</button>
-        </div>
-      </div>
+      <S.Title style={{ marginTop: "100px" }}>Woogie Products</S.Title>
 
       <InfiniteScroll pageStart={0} loadMore={props.onLoad} hasMore={true}>
         <div
@@ -58,7 +69,7 @@ export default function ProductListUI(props: IProductListUIProps) {
                   >
                     {el.name}
                   </S.Info_Title>
-                  <S.Info>{el.contents}</S.Info>
+                  {/* <S.Info>{el.contents}</S.Info> */}
                   <S.ItemCardBottomWrapper>
                     <S.Info>
                       {el.price
@@ -70,8 +81,11 @@ export default function ProductListUI(props: IProductListUIProps) {
                   </S.ItemCardBottomWrapper>
                   <S.ItemCardBottomWrapper>
                     <S.DateWrapper>{getDate(el.createdAt)}</S.DateWrapper>
-                    <S.BasketBtn onClick={props.onClickMoveToBasket(el)}>
-                      바구니
+                    <S.BasketBtn
+                      id={el._id}
+                      onClick={props.onClickPickedUseditem}
+                    >
+                      찜하기
                     </S.BasketBtn>
                   </S.ItemCardBottomWrapper>
                 </S.ItemCard>

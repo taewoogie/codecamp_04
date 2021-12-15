@@ -1,5 +1,4 @@
 import { useMutation, useQuery } from "@apollo/client";
-import Modal from "antd/lib/modal/Modal";
 import { useRouter } from "next/router";
 import {
   IMutation,
@@ -8,17 +7,32 @@ import {
   IQueryFetchUseditemArgs,
 } from "../../../../commons/types/generated/types";
 import ProductDetailUI from "./ProductDetail.presenter";
-import { FETCH_USED_ITEM, DELETE_USED_ITEM } from "./ProductDetail.queries";
+import {
+  FETCH_USED_ITEM,
+  DELETE_USED_ITEM,
+  FETCH_USER_LOGGEDIN,
+} from "./ProductDetail.queries";
 
 export default function ProductDetail() {
+  // console.log()
+
   const router = useRouter();
 
+  // ===============================
+  //          상품 등록 유저 정보
+  // ===============================
   const { data } = useQuery<
     Pick<IQuery, "fetchUseditem">,
     IQueryFetchUseditemArgs
   >(FETCH_USED_ITEM, {
     variables: { useditemId: String(router.query.productId) },
   });
+
+  // ===============================
+  //          로그인 유저 정보
+  // ===============================
+  const { data: fetchUser } =
+    useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGEDIN);
 
   const [deleteUseditem] = useMutation<
     Pick<IMutation, "deleteUseditem">,
@@ -34,7 +48,6 @@ export default function ProductDetail() {
   };
 
   const onClickMoveToProductDelete = async () => {
-    // console.log(String(data?.fetchUseditem._id));
     console.log(String("< 상품 ID >"));
     console.log(String(router.query.productId));
     try {
@@ -52,6 +65,7 @@ export default function ProductDetail() {
   return (
     <ProductDetailUI
       data={data}
+      fetchUser={fetchUser}
       onClickMoveToProductList={onClickMoveToProductList}
       onClickMoveToProductUpdate={onClickMoveToProductUpdate}
       onClickMoveToProductDelete={onClickMoveToProductDelete}

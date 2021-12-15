@@ -6,5 +6,5 @@ export interface IProductListUIProps {
   onClickMoveToProductNew: () => void;
   onClickMoveToProductDetail: () => void;
   onLoad: () => void;
-  // onClickMoveToBasket: () => void;
+  onClickPickedUseditem: () => void;
 }

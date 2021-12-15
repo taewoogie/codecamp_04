@@ -7,7 +7,7 @@ import {
 } from "../../../../commons/types/generated/types";
 import ProductWriteUI from "./ProductWrite.presenter";
 import { CREATE_USEDITEM, UPDATE_USEDITEM } from "./ProductWrite.queries";
-import { FormValues } from "./ProductWrite.types";
+import { FormValues, IProductWriteProps } from "./ProductWrite.types";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { Modal } from "antd";
@@ -15,10 +15,6 @@ import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { schema } from "./ProductWrite.validations";
 import { ChangeEvent, useEffect, useState } from "react";
 
-interface IProductWriteProps {
-  isEdit: boolean;
-  data: any;
-}
 export default function ProductWrite(props: IProductWriteProps) {
   const router = useRouter();
   const [zipcode, setZipcode] = useState("");
@@ -71,20 +67,21 @@ export default function ProductWrite(props: IProductWriteProps) {
     setIsOpen((prev) => !prev);
   }
 
-  function onChangeFileUrls(fileUrl: string, index: number) {
-    const newFileUrls = [...fileUrls];
-    newFileUrls[index] = fileUrl;
-    setFileUrls(newFileUrls);
-  }
+  // function onChangeFileUrls(fileUrl: string, index: number) {
+  //   const newFileUrls = [...fileUrls];
+  //   newFileUrls[index] = fileUrl;
+  //   setFileUrls(newFileUrls);
+  // }
 
-  useEffect(() => {
-    if (props.data?.fetchUseditem.images?.length) {
-      setFileUrls([...props.data?.fetchUseditem.images]);
-    }
-  }, [props.data]);
+  // useEffect(() => {
+  //   if (props.data?.fetchUseditem.images?.length) {
+  //     setFileUrls([...props.data?.fetchUseditem.images]);
+  //   }
+  // }, [props.data]);
 
   const onClickSubmit = async (data: FormValues) => {
     // createUsedItem 요청
+    console.log(data);
 
     try {
       const result = await createUseditem({
@@ -95,6 +92,7 @@ export default function ProductWrite(props: IProductWriteProps) {
             price: data.price,
             contents: data.contents,
             tags: data.tags,
+            images: fileUrls,
             useditemAddress: {
               zipcode,
               address,
@@ -103,7 +101,6 @@ export default function ProductWrite(props: IProductWriteProps) {
           },
         },
       });
-      // 등록 완료 후 상세페이지로 이동!!
       console.log(result);
       Modal.success({ content: "상품 등록에 성공했습니다! " });
       router.push(`/product/${result.data?.createUseditem._id}`);
@@ -119,6 +116,7 @@ export default function ProductWrite(props: IProductWriteProps) {
       remarks: data.remarks,
       price: data.price,
       contents: data.contents,
+      images: fileUrls,
     };
 
     console.log(updateUseditemInput);
@@ -141,6 +139,18 @@ export default function ProductWrite(props: IProductWriteProps) {
   const onClickMoveToDetail = () => {
     router.back();
   };
+
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
+
+  useEffect(() => {
+    if (props.data?.fetchUseditem.images?.length) {
+      setFileUrls([...props.data?.fetchUseditem.images]);
+    }
+  }, [props.data]);
 
   return (
     <ProductWriteUI
@@ -170,7 +180,12 @@ export default function ProductWrite(props: IProductWriteProps) {
       handleCancel={handleCancel}
       // 수정
       onClickUpdate={onClickUpdate}
+      // 상품상세
       onClickMoveToDetail={onClickMoveToDetail}
+      name={""}
+      remarks={""}
+      price={0}
+      contents={""}
     />
   );
 }

@@ -1,5 +1,16 @@
 import { gql } from "@apollo/client";
 
+export const FETCH_USER_LOGGEDIN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      _id
+      email
+      name
+      picture
+    }
+  }
+`;
+
 export const FETCH_USED_ITEM = gql`
   query fetchUseditem($useditemId: ID!) {
     fetchUseditem(useditemId: $useditemId) {
@@ -18,6 +29,11 @@ export const FETCH_USED_ITEM = gql`
         addressDetail
         lat
         lng
+      }
+      seller {
+        _id
+        email
+        name
       }
     }
   }

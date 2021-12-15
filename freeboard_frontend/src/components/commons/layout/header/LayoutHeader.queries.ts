@@ -5,3 +5,14 @@ export const LOGOUT_USER = gql`
     logoutUser
   }
 `;
+
+export const FETCH_USER_LOGGEDIN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      _id
+      email
+      name
+      picture
+    }
+  }
+`;

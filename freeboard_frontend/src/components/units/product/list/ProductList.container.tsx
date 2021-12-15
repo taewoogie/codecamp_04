@@ -1,14 +1,23 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import {
+  IMutation,
+  IMutationToggleUseditemPickArgs,
   IQuery,
   IQueryFetchUseditemsArgs,
 } from "../../../../commons/types/generated/types";
 import ProductListUI from "./ProductList.presenter";
-import { FETCH_USED_ITEMS, FETCH_USED_ITEMS_BEST } from "./ProductList.queries";
+import {
+  FETCH_USED_ITEMS,
+  FETCH_USED_ITEMS_BEST,
+  TOGGLE_USEDITEM_PICK,
+} from "./ProductList.queries";
 
 export default function ProductList() {
+  //   process.browser{
+  //   const checkSignIn = localStorage.getItem("refreshToken");
+  // }
   const router = useRouter();
   // 상품리스트 조회
   const { data: usedItems, fetchMore } = useQuery<
@@ -22,6 +31,12 @@ export default function ProductList() {
   const { data: bestUsedItems } = useQuery<
     Pick<IQuery, "fetchUseditemsOfTheBest">
   >(FETCH_USED_ITEMS_BEST);
+
+  // 찜하기
+  const [toggleUseditemPick] = useMutation<
+    Pick<IMutation, "toggleUseditemPick">,
+    IMutationToggleUseditemPickArgs
+  >(TOGGLE_USEDITEM_PICK);
 
   const onLoad = () => {
     if (!usedItems) return;
@@ -47,7 +62,26 @@ export default function ProductList() {
     router.push(`/product/${event.target.id}`);
   };
 
-  // 장바구니 담기
+  // ====================================
+  //      찜하기
+  // ====================================
+  const onClickPickedUseditem = async (event) => {
+    const useditemId = event.target.id;
+    const result = await toggleUseditemPick({
+      variables: { useditemId },
+      refetchQueries: [
+        {
+          query: FETCH_USED_ITEMS,
+          variables: { isSoldout: false },
+        },
+      ],
+    });
+    console.log(result);
+  };
+
+  // ====================================
+  //      오늘 본 상품 담기 [ 수정 예정 ]
+  // ====================================
   const onClickMoveToBasket = (el) => () => {
     const usedItems = JSON.parse(localStorage.getItem("usedItem") || "[]");
     // 장바구니에 담기 한 행의 id값이 장바구니에 있는지 유효성 체크
@@ -78,6 +112,7 @@ export default function ProductList() {
       usedItems={usedItems}
       bestUsedItems={bestUsedItems}
       onLoad={onLoad}
+      onClickPickedUseditem={onClickPickedUseditem}
       onClickMoveToProductDetail={onClickMoveToProductDetail}
       onClickMoveToBasket={onClickMoveToBasket}
       onClickMoveToProductNew={onClickMoveToProductNew}

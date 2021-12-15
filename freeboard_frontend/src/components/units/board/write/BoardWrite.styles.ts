@@ -110,7 +110,8 @@ export const Youtube = styled.input`
 
 export const ImageWrapper = styled.div`
   width: 996px;
-  padding-top: 40px;
+  margin: 40px 0px;
+  /* background-color:; */
 `;
 
 export const UploadButton = styled.button`
@@ -125,7 +126,7 @@ export const UploadButton = styled.button`
 
 export const OptionWrapper = styled.div`
   width: 996px;
-  padding-top: 40px;
+  /* padding-top: 40px; */
 `;
 
 export const RadioButton = styled.input`
