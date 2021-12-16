@@ -15,9 +15,6 @@ import {
 } from "./ProductList.queries";
 
 export default function ProductList() {
-  //   process.browser{
-  //   const checkSignIn = localStorage.getItem("refreshToken");
-  // }
   const router = useRouter();
   // 상품리스트 조회
   const { data: usedItems, fetchMore } = useQuery<
@@ -63,10 +60,11 @@ export default function ProductList() {
   };
 
   // ====================================
-  //      찜하기
+  //                찜하기
   // ====================================
   const onClickPickedUseditem = async (event) => {
     const useditemId = event.target.id;
+    console.log(useditemId);
     const result = await toggleUseditemPick({
       variables: { useditemId },
       refetchQueries: [

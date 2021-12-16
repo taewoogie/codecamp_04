@@ -16,7 +16,7 @@ import {
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
 
-export default function BoardDetail() {
+const BoardDetail = () => {
   const router = useRouter();
   const [deleteBoard] = useMutation<
     Pick<IMutation, "deleteBoard">,
@@ -38,15 +38,15 @@ export default function BoardDetail() {
   // console.log("<<<<<< Detail Container >>>>>>>");
   console.log(data);
 
-  function onClickMoveToList() {
+  const onClickMoveToList = () => {
     router.push("/boards");
-  }
+  };
 
-  function onClickMoveToUpdate() {
+  const onClickMoveToUpdate = () => {
     router.push(`/boards/${router.query.boardId}/edit`);
-  }
+  };
 
-  async function onClickDelete() {
+  const onClickDelete = async () => {
     try {
       await deleteBoard({
         variables: { boardId: String(router.query.boardId) },
@@ -56,25 +56,65 @@ export default function BoardDetail() {
     } catch (error) {
       alert(error.message);
     }
-  }
+  };
 
-  function onClickLike() {
+  const onClickLike = () => {
     likeBoard({
       variables: { boardId: String(router.query.boardId) },
-      refetchQueries: [
-        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
-      ],
+      optimisticResponse: {
+        likeBoard: (data?.fetchBoard.likeCount || 0) + 1,
+      },
+      update(cache, { data }) {
+        cache.writeQuery({
+          query: FETCH_BOARD,
+          variables: { boardId: String(router.query.boardId) },
+          data: {
+            fetchBoard: {
+              _id: String(router.query.boardId),
+              __typename: "Board",
+              likeCount: data?.likeBoard,
+            },
+          },
+        });
+      },
     });
-  }
+    // likeBoard({
+    //   variables: { boardId: String(router.query.boardId) },
+    //   refetchQueries: [
+    //     { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+    //   ],
+    // });
+  };
 
-  function onClickDislike() {
-    dislikeBoard({
-      variables: { boardId: String(router.query.boardId) },
-      refetchQueries: [
-        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
-      ],
-    });
-  }
+  const onClickDislike = () => {
+    dislikeBoard(
+      {
+        variables: { boardId: String(router.query.boardId) },
+        optimisticResponse: {
+          dislikeBoard: (data?.fetchBoard.dislikeCount || 0) + 1,
+        },
+        update(cache, { data }) {
+          cache.writeQuery({
+            query: FETCH_BOARD,
+            variables: { boardId: String(router.query.boardId) },
+            data: {
+              fetchBoard: {
+                _id: String(router.query.boardId),
+                __typename: "Board",
+                dislikeCount: data?.dislikeBoard,
+              },
+            },
+          });
+        },
+      }
+      // dislikeBoard({
+      //   variables: { boardId: String(router.query.boardId) },
+      //   refetchQueries: [
+      //     { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+      //   ],
+      // });
+    );
+  };
 
   return (
     <BoardDetailUI
@@ -86,4 +126,5 @@ export default function BoardDetail() {
       onClickDislike={onClickDislike}
     />
   );
-}
+};
+export default BoardDetail;

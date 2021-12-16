@@ -1,7 +1,9 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import {
   IMutation,
+  IMutationCreatePointTransactionOfBuyingAndSellingArgs,
   IMutationDeleteUseditemArgs,
   IQuery,
   IQueryFetchUseditemArgs,
@@ -11,6 +13,7 @@ import {
   FETCH_USED_ITEM,
   DELETE_USED_ITEM,
   FETCH_USER_LOGGEDIN,
+  CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
 } from "./ProductDetail.queries";
 
 export default function ProductDetail() {
@@ -39,6 +42,14 @@ export default function ProductDetail() {
     IMutationDeleteUseditemArgs
   >(DELETE_USED_ITEM);
 
+  // ===============================
+  //         포인트로 상품 구매
+  // ===============================
+  const [createPointTransactionOfBuyingAndSelling] = useMutation<
+    Pick<IMutation, "createPointTransactionOfBuyingAndSelling">,
+    IMutationCreatePointTransactionOfBuyingAndSellingArgs
+  >(CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING);
+
   const onClickMoveToProductList = () => {
     router.push("/product");
   };
@@ -62,6 +73,23 @@ export default function ProductDetail() {
     }
   };
 
+  // 상품 구매하기
+  const onClickBuyUseditem = async () => {
+    console.log(String(router.query.productId));
+    try {
+      const result = await createPointTransactionOfBuyingAndSelling({
+        variables: { useritemId: String(router.query.productId) },
+      });
+      console.log("구매성공!");
+      console.log(result);
+      Modal.success({ content: "구매 되었습니다. 감사합니다." });
+      router.push("/product");
+    } catch (error) {
+      Modal.error({ content: "구매 실패 했습니다." });
+      if (error instanceof Error) console.log(error.message);
+    }
+  };
+
   return (
     <ProductDetailUI
       data={data}
@@ -69,6 +97,7 @@ export default function ProductDetail() {
       onClickMoveToProductList={onClickMoveToProductList}
       onClickMoveToProductUpdate={onClickMoveToProductUpdate}
       onClickMoveToProductDelete={onClickMoveToProductDelete}
+      onClickBuyUseditem={onClickBuyUseditem}
     />
   );
 }

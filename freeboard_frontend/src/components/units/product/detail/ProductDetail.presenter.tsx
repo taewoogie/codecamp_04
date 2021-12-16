@@ -6,6 +6,7 @@ interface IProductDetailUI {
   onClickMoveToProductList: () => void;
   onClickMoveToProductUpdate: () => void;
   onClickMoveToProductDelete: () => void;
+  onClickBuyUseditem: () => void;
   data: any;
   fetchUser: any;
 }
@@ -69,7 +70,8 @@ export default function ProductDetailUI(props: IProductDetailUI) {
             <button onClick={props.onClickMoveToProductDelete}>삭제하기</button>
           </>
         ) : (
-          <Payment data={props.data} />
+          // <Payment data={props.data} />
+          <button onClick={props.onClickBuyUseditem}>구매하기</button>
         )}
       </div>
     </>

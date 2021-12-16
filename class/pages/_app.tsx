@@ -21,6 +21,7 @@ import {
   useState,
 } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
+import * as Sentry from "@sentry/nextjs";
 // import Head from "next/head";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -39,6 +40,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
+
+Sentry.init({
+  dsn: "https://44bad86b8ae6483faa3b5768bc74f87b@o1091877.ingest.sentry.io/6109505",
+});
 
 interface IGlobalContext {
   accessToken?: string;
