@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, MouseEvent } from "react";
 import Search01UI from "./Search01.presenter";
 import { ISearch01Props } from "./Search01.types";
 import _ from "lodash";
@@ -9,10 +9,20 @@ export default function Search01(props: ISearch01Props) {
     props.refetch({ search: data });
     props.refetchBoardsCount({ search: data });
     props.onChangeKewword(data);
-  }, 300);
+  }, 200);
+
+  let SearchData = "";
+
   // 검색어 입력 시 이벤트
   const onChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    getDebounce(event.target.value);
+    SearchData = event.target.value;
   };
-  return <Search01UI onChangeSearch={onChangeSearch} />;
+
+  const onClickSearch = (event: MouseEvent<HTMLButtonElement>) => {
+    getDebounce(SearchData);
+  };
+
+  return (
+    <Search01UI onChangeSearch={onChangeSearch} onClickSearch={onClickSearch} />
+  );
 }

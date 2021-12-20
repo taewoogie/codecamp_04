@@ -21,6 +21,7 @@ export interface IBoardListUIProps {
   setStartPage: Dispatch<SetStateAction<number>>;
   keyword: string;
   onChangeKeyword: (value: string) => void;
+  fetchUser: Pick<IQuery, "fetchUserLoggedIn">;
 }
 
 export interface ITextTokenProps {

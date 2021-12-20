@@ -20,7 +20,7 @@ export default function BoardList() {
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
-  >(FETCH_BOARDS, { variables: { page: startPage } });
+  >(FETCH_BOARDS, { variables: { page: startPage, search: keyword } });
 
   const { data: dataBoardsCount, refetch: refetchBoardsCount } = useQuery<
     Pick<IQuery, "fetchBoardsCount">,

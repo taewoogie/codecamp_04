@@ -15,7 +15,7 @@ import {
 } from "./BoardList.styles";
 import Paginations01 from "../../../commons/paginations/01/Paginations01.container";
 import { IBoardListUIProps } from "./BoardList.types";
-import Search01 from "../../../commons/search/01/Search01.container";
+import Search01 from "../../../commons/search/BoardSearch/Search01.container";
 import { v4 as uuidv4 } from "uuid";
 import * as React from "react";
 
