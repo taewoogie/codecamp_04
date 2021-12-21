@@ -7,4 +7,5 @@ export interface IProductListUIProps {
   onClickMoveToProductDetail: () => void;
   onLoad: () => void;
   onClickPickedUseditem: () => void;
+  // handleErrorImg:
 }

@@ -3,8 +3,15 @@ import Paginations01UI from "./Paginations01.presenter";
 import { IPaginations01Props } from "./Paginations01.types";
 
 export default function Paginations01(props: IPaginations01Props) {
+  // console.log(props.count);
+  // console.log(props.startPage);
+  console.log(props.refetchBoardsCount);
+
   const [activedPage, setActivedPage] = useState(1);
   const lastPage = props.count ? Math.ceil(props.count / 10) : 0;
+
+  // console.log(activedPage);
+  // console.log(lastPage);
 
   function onClickPage(event: MouseEvent<HTMLSpanElement>) {
     if (!(event.target instanceof Element)) return;

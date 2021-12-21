@@ -1,4 +1,8 @@
-import { getDate } from "../../../../commons/libraries/utils";
+import {
+  changePrice,
+  changeUrl,
+  getDate,
+} from "../../../../commons/libraries/utils";
 import * as S from "./ProductList.styles";
 import { IProductListUIProps } from "./ProductList.types";
 import InfiniteScroll from "react-infinite-scroller";
@@ -16,32 +20,24 @@ export default function ProductListUI(props: IProductListUIProps) {
       </div>
       <S.BestItemWrapper>
         {props.bestUsedItems?.fetchUseditemsOfTheBest.map((el) => (
-          <S.BestItemCardWrapper key={el._id}>
-            <S.Img></S.Img>
-
-            <S.Info_Title
-              id={el._id}
-              onClick={props.onClickMoveToProductDetail}
-            >
-              {el.name}
-            </S.Info_Title>
-            {/* <div> */}
-            <S.Info>
-              {el.price
-                .toString()
-                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
-              원
-            </S.Info>
-
-            <S.Info>{el.pickedCount}</S.Info>
-            {/* <S.Info>{el.pickedCount}</S.Info> */}
-            {/* </div> */}
-            <S.ItemCardBottomWrapper>
-              <S.DateWrapper>{getDate(el.createdAt)}</S.DateWrapper>
-              {/* <S.BasketBtn id={el._id} onClick={props.onClickPickedUseditem}>
-                찜하기
-              </S.BasketBtn> */}
-            </S.ItemCardBottomWrapper>
+          <S.BestItemCardWrapper
+            key={el._id}
+            id={el._id}
+            onClick={props.onClickMoveToProductDetail}
+          >
+            <S.Img
+              src={changeUrl(el.images?.[0] || "")}
+              onError={props.handleErrorImg}
+            />
+            <S.Info_Title>{el.name}</S.Info_Title>
+            <S.UsedItemBody>
+              <S.Info_Tag>{el.tags}</S.Info_Tag>
+              <S.Info>{changePrice(el.price)}</S.Info>
+              <S.Info>{el.pickedCount}</S.Info>
+              <S.UsedItemBottomWrapper>
+                <S.DateWrapper>{getDate(el.createdAt)}</S.DateWrapper>
+              </S.UsedItemBottomWrapper>
+            </S.UsedItemBody>
           </S.BestItemCardWrapper>
         ))}
       </S.BestItemWrapper>
@@ -57,41 +53,36 @@ export default function ProductListUI(props: IProductListUIProps) {
             alignItems: "center",
           }}
         >
-          <S.UsedItemsWrapper>
+          <S.UsedItemsContainer>
             {props.usedItems?.fetchUseditems.map((el) => (
-              <S.UsedItemCardWrapper key={el._id}>
-                <S.ItemCard key={el._id}>
-                  {/* 이미지 */}
-                  <S.Img></S.Img>
-                  <S.Info_Title
+              <S.UsedItemsdWrapper key={el._id}>
+                <S.Img
+                  src={changeUrl(el.images?.[0] || "")}
+                  onError={props.handleErrorImg}
+                />
+                <S.Info_Title
+                  id={el._id}
+                  onClick={props.onClickMoveToProductDetail}
+                >
+                  {el.name}
+                </S.Info_Title>
+                <S.UsedItemBody>
+                  <S.Info_Tag>{el.tags}</S.Info_Tag>
+                  <S.Info>{changePrice(el.price)}</S.Info>
+                  <S.Info>{el.pickedCount}</S.Info>
+                </S.UsedItemBody>
+                <S.UsedItemBottomWrapper>
+                  <S.DateWrapper>{getDate(el.createdAt)}</S.DateWrapper>
+                  <S.BasketBtn
                     id={el._id}
-                    onClick={props.onClickMoveToProductDetail}
+                    onClick={props.onClickPickedUseditem}
                   >
-                    {el.name}
-                  </S.Info_Title>
-                  {/* <S.Info>{el.contents}</S.Info> */}
-                  <S.ItemCardBottomWrapper>
-                    <S.Info>
-                      {el.price
-                        .toString()
-                        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
-                      원
-                    </S.Info>
-                    <S.PickCount>{el.pickedCount}</S.PickCount>
-                  </S.ItemCardBottomWrapper>
-                  <S.ItemCardBottomWrapper>
-                    <S.DateWrapper>{getDate(el.createdAt)}</S.DateWrapper>
-                    <S.BasketBtn
-                      id={el._id}
-                      onClick={props.onClickPickedUseditem}
-                    >
-                      찜하기
-                    </S.BasketBtn>
-                  </S.ItemCardBottomWrapper>
-                </S.ItemCard>
-              </S.UsedItemCardWrapper>
+                    찜하기
+                  </S.BasketBtn>
+                </S.UsedItemBottomWrapper>
+              </S.UsedItemsdWrapper>
             ))}
-          </S.UsedItemsWrapper>
+          </S.UsedItemsContainer>
         </div>
       </InfiniteScroll>
     </S.Container>

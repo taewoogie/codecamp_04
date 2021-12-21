@@ -59,6 +59,10 @@ export default function ProductList() {
     router.push(`/product/${event.target.id}`);
   };
 
+  const handleErrorImg = (event) => {
+    event.target.src = "/images/no-image.png";
+  };
+
   // ====================================
   //                찜하기
   // ====================================
@@ -110,6 +114,7 @@ export default function ProductList() {
       usedItems={usedItems}
       bestUsedItems={bestUsedItems}
       onLoad={onLoad}
+      handleErrorImg={handleErrorImg}
       onClickPickedUseditem={onClickPickedUseditem}
       onClickMoveToProductDetail={onClickMoveToProductDetail}
       onClickMoveToBasket={onClickMoveToBasket}

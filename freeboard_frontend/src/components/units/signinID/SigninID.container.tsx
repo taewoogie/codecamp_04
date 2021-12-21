@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { schema } from "./SigninID.validations";
 import { FormValues } from "./SigninID.types";
 import { useMutation } from "@apollo/client";
-import { FETCH_USER_LOGGEDIN, LOGIN_USER } from "./SigninID.queries";
+import { LOGIN_USER } from "./SigninID.queries";
 import router from "next/router";
 import { GlobalContext } from "../../../../pages/_app";
 import { useContext } from "react";

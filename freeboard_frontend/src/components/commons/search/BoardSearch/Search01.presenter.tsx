@@ -9,7 +9,10 @@ export default function Search01UI(props: ISearch01UIProps) {
           placeholder="검색어를 입력해주세요."
           onChange={props.onChangeSearch}
         />
-        <button onClick={props.onClickSearch}>검색하기</button>
+
+        <button style={{ marginLeft: "30px" }} onClick={props.onClickSearch}>
+          검색하기
+        </button>
       </S.SearchInputWrapper>
     </>
   );
