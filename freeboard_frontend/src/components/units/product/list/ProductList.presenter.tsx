@@ -6,71 +6,67 @@ import {
 import * as S from "./ProductList.styles";
 import { IProductListUIProps } from "./ProductList.types";
 import InfiniteScroll from "react-infinite-scroller";
+import DOMPurify from "dompurify";
 
 export default function ProductListUI(props: IProductListUIProps) {
   return (
     <S.Container>
-      <S.Title>Woogie Best Products</S.Title>
-      <div
-        style={{ marginRight: "100px", marginBottom: "50px", float: "right" }}
-      >
-        <div>
-          <button onClick={props.onClickMoveToProductNew}>상품 등록하기</button>
-        </div>
-      </div>
+      <S.Title>Best Products</S.Title>
       <S.BestItemWrapper>
         {props.bestUsedItems?.fetchUseditemsOfTheBest.map((el) => (
           <S.BestItemCardWrapper
             key={el._id}
             id={el._id}
-            onClick={props.onClickMoveToProductDetail}
+            onClick={props.onClickMoveToBestProductDetail}
           >
-            <S.Img
-              src={changeUrl(el.images?.[0] || "")}
-              onError={props.handleErrorImg}
-            />
-            <S.Info_Title>{el.name}</S.Info_Title>
-            <S.UsedItemBody>
-              <S.Info_Tag>{el.tags}</S.Info_Tag>
-              <S.Info>{changePrice(el.price)}</S.Info>
-              <S.Info>{el.pickedCount}</S.Info>
-              <S.UsedItemBottomWrapper>
-                <S.DateWrapper>{getDate(el.createdAt)}</S.DateWrapper>
-              </S.UsedItemBottomWrapper>
-            </S.UsedItemBody>
+            <S.ImageWrapper>
+              <img
+                src={changeUrl(el.images?.[0] || "")}
+                onError={props.handleErrorImg}
+                alt=""
+              />
+            </S.ImageWrapper>
+            <S.ItemInfo>
+              <S.InfoTitle>{el.name}</S.InfoTitle>
+              <S.InfoPrice>{changePrice(el.price)}</S.InfoPrice>
+              <S.InfoTag>{el.tags?.[0]}</S.InfoTag>
+              <S.InfoTag>{el.tags?.[1]}</S.InfoTag>
+              <S.InfoTag>{el.tags?.[2]}</S.InfoTag>
+            </S.ItemInfo>
           </S.BestItemCardWrapper>
         ))}
       </S.BestItemWrapper>
 
-      <S.Title style={{ marginTop: "100px" }}>Woogie Products</S.Title>
+      <S.Title>Woogie Products</S.Title>
+
+      <div>
+        <button onClick={props.onClickMoveToProductNew}>상품 등록하기</button>
+      </div>
 
       <InfiniteScroll pageStart={0} loadMore={props.onLoad} hasMore={true}>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <S.UsedItemsContainer>
-            {props.usedItems?.fetchUseditems.map((el) => (
-              <S.UsedItemsdWrapper key={el._id}>
-                <S.Img
-                  src={changeUrl(el.images?.[0] || "")}
-                  onError={props.handleErrorImg}
-                />
-                <S.Info_Title
-                  id={el._id}
-                  onClick={props.onClickMoveToProductDetail}
-                >
-                  {el.name}
-                </S.Info_Title>
-                <S.UsedItemBody>
-                  <S.Info_Tag>{el.tags}</S.Info_Tag>
-                  <S.Info>{changePrice(el.price)}</S.Info>
-                  <S.Info>{el.pickedCount}</S.Info>
-                </S.UsedItemBody>
+        <S.UsedItemsContainer>
+          {props.usedItems?.fetchUseditems.map((el) => (
+            <S.UsedItemsdWrapper key={el._id}>
+              <S.InnerWrapper>
+                <S.ImageWrapper>
+                  <img
+                    src={changeUrl(el.images?.[0] || "")}
+                    onError={props.handleErrorImg}
+                  />
+                </S.ImageWrapper>
+
+                <S.ItemInfo>
+                  <S.InfoTitle
+                    id={el._id}
+                    onClick={props.onClickMoveToProductDetail}
+                  >
+                    {el.name}
+                  </S.InfoTitle>
+                  <S.InfoPrice>{changePrice(el.price)}</S.InfoPrice>
+                  <S.InfoTag>{el.tags?.[0]}</S.InfoTag>
+                  <S.InfoTag>{el.tags?.[1]}</S.InfoTag>
+                  <S.InfoTag>{el.tags?.[2]}</S.InfoTag>
+                </S.ItemInfo>
                 <S.UsedItemBottomWrapper>
                   <S.DateWrapper>{getDate(el.createdAt)}</S.DateWrapper>
                   <S.BasketBtn
@@ -80,10 +76,10 @@ export default function ProductListUI(props: IProductListUIProps) {
                     찜하기
                   </S.BasketBtn>
                 </S.UsedItemBottomWrapper>
-              </S.UsedItemsdWrapper>
-            ))}
-          </S.UsedItemsContainer>
-        </div>
+              </S.InnerWrapper>
+            </S.UsedItemsdWrapper>
+          ))}
+        </S.UsedItemsContainer>
       </InfiniteScroll>
     </S.Container>
   );

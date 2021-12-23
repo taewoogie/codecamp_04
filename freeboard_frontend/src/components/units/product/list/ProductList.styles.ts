@@ -1,99 +1,107 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  margin: auto;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  max-width: 1200px;
 `;
 
 export const Title = styled.div`
-  font-size: 50px;
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
   color: #636363;
   text-shadow: 6px 6px 6px lightgray;
+  font-size: 25px;
 `;
 
 export const BestItemWrapper = styled.div`
-  width: 100%;
-  height: 800px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e4e4e6;
-  padding: 20px;
 `;
 
 export const BestItemCardWrapper = styled.div`
-  width: 21%;
-  height: 500px;
-  margin-right: 17px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
+  display: block;
+  padding: 0px 15px 0px 0px;
+  width: 100%;
   cursor: pointer;
-  :hover {
-    transform: scale(1.05, 1.05);
-    transition-duration: 0.5s;
-    overflow: hidden;
+`;
+
+export const ImageWrapper = styled.div`
+  overflow: hidden;
+  height: 300px;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    :hover {
+      overflow: hidden;
+      transform: scale(1.05, 1.05);
+      transition-duration: 0.5s;
+      /* transform: scale(1.02);
+      transition: all 0.3s ease-in-out; */
+    }
   }
 `;
 
-export const Img = styled.img`
-  width: 100%;
-  height: 250px;
+export const ItemInfo = styled.div`
+  display: block;
+  padding: 15px 10px 10px 0px;
 `;
 
-export const Info_Title = styled.span`
-  width: 100%;
-  height: 250px;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 15px;
-  line-height: 25px;
-`;
-
-export const UsedItemBody = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+export const InfoTitle = styled.span`
   overflow: hidden;
+  max-height: 58px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #333;
+  line-height: 29px;
+  cursor: pointer;
 `;
 
-export const Info = styled.span`
-  width: 100%;
-  height: 250px;
-  font-size: 17px;
-  padding: 0px 15px 15px 15px;
-  font-weight: bold;
-  overflow: hidden;
+export const InfoPrice = styled.span`
+  display: block;
+  padding-top: 7px;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 29px;
+  color: #333;
 `;
 
-export const Info_Tag = styled.div`
-  width: 100%;
-  padding: 0px 15px 15px 15px;
-  font-size: 17px;
+export const InfoTag = styled.span`
+  display: inline-block;
+  /* height: 22px; */
+  margin: 7px 6px 0px 0px;
+  padding: 0px 8px;
+  border-radius: 4px;
+  background-color: #f3f3f3;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 22px;
+  vertical-align: middle;
 `;
 
 export const UsedItemsContainer = styled.div`
-  width: 85%;
+  width: 100%;
+  max-width: 1200px;
   display: flex;
-  justify-content: center;
-  align-content: center;
+  /* justify-content: center;
+  align-content: center; */
   flex-wrap: wrap;
-  margin: 50px;
-  padding: 80px;
+  /* margin: 50px; */
+  /* padding: 80px; */
+  margin: 0 -10px;
 `;
 
 export const UsedItemsdWrapper = styled.div`
   /* background-color: gray; */
-  width: 300px;
-  height: 450px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 25%;
+  /* height: 450px; */
+  margin-bottom: 35px;
 
-  margin: 20px 20px;
+  /* margin: 20px 20px; */
+  padding: 0 10px;
   cursor: pointer;
   :hover {
     transform: scale(1.05, 1.05);
@@ -103,15 +111,7 @@ export const UsedItemsdWrapper = styled.div`
   }
 `;
 
-export const UsedItem = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-  font-size: 17px;
-  overflow: hidden;
-`;
+export const InnerWrapper = styled.div``;
 
 export const UsedItemBottomWrapper = styled.div`
   width: 100%;

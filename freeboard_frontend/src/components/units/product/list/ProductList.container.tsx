@@ -54,7 +54,11 @@ export default function ProductList() {
     });
   };
 
-  // 상품 상세조회
+  // 베스트 상품 상세조회
+  const onClickMoveToBestProductDetail = (event) => {
+    router.push(`/product/${event.currentTarget.id}`);
+  };
+  // 일반 상품 상세조회
   const onClickMoveToProductDetail = (event) => {
     router.push(`/product/${event.target.id}`);
   };
@@ -116,6 +120,7 @@ export default function ProductList() {
       onLoad={onLoad}
       handleErrorImg={handleErrorImg}
       onClickPickedUseditem={onClickPickedUseditem}
+      onClickMoveToBestProductDetail={onClickMoveToBestProductDetail}
       onClickMoveToProductDetail={onClickMoveToProductDetail}
       onClickMoveToBasket={onClickMoveToBasket}
       onClickMoveToProductNew={onClickMoveToProductNew}

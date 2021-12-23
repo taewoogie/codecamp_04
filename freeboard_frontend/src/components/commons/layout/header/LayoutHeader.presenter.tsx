@@ -1,9 +1,13 @@
-import { useQuery } from "@apollo/client";
 import {
-  InnerButton,
-  InnerLogo,
-  InnerWrapper,
   Wrapper,
+  UserMenuWrapper,
+  UserMenu,
+  UserPicture,
+  UserName,
+  UserName2,
+  InnerButton,
+  InnerLogoWrapper,
+  InnerLogo,
 } from "./LayoutHeader.styles";
 
 interface IProps {
@@ -16,25 +20,34 @@ interface IProps {
 export default function LayoutHeaderUI(props: IProps) {
   return (
     <Wrapper>
-      <InnerWrapper>
-        <InnerLogo onClick={props.onClickLogo}>💎 Woogie</InnerLogo>
+      <UserMenuWrapper>
         {props.fetchUser?.fetchUserLoggedIn._id ? (
-          <div>
-            <span>{props.fetchUser?.fetchUserLoggedIn?.picture}</span>
-            <span>{props.fetchUser?.fetchUserLoggedIn.name}님 환영합니다!</span>
+          <UserMenu>
+            {props.fetchUser.fetchUserLoggedIn.picture ? (
+              <UserPicture>
+                {props.fetchUser?.fetchUserLoggedIn?.picture}
+              </UserPicture>
+            ) : (
+              <UserPicture src="/images/avatar.png" />
+            )}
+            <UserName>{props.fetchUser?.fetchUserLoggedIn.name}</UserName>
+            <UserName2>님 환영합니다!</UserName2>
             <InnerButton onClick={props.onClickDeleteAtk}>Log out</InnerButton>
-          </div>
+          </UserMenu>
         ) : (
-          <div>
+          <UserMenu>
             <InnerButton onClick={props.onClickMoveToSignin}>
               Sign in
             </InnerButton>
             <InnerButton onClick={props.onClickMoveToSignup}>
               Sign up
             </InnerButton>
-          </div>
+          </UserMenu>
         )}
-      </InnerWrapper>
+      </UserMenuWrapper>
+      <InnerLogoWrapper>
+        <InnerLogo onClick={props.onClickLogo} src="/images/pngwing.com.png" />
+      </InnerLogoWrapper>
     </Wrapper>
   );
 }

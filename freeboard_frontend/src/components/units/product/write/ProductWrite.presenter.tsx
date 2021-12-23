@@ -60,6 +60,22 @@ export default function ProductWriteUI(props: FormValues) {
           />
           <div>{props.formState.errors.price?.message}</div>
           <br />
+          태그 :
+          {props.isEdit ? (
+            <>
+              <div>{props.data?.fetchUseditem.tags}</div>
+            </>
+          ) : (
+            <div>
+              {props.hashArr?.map((el, index) => (
+                <span key={index} onClick={props.deleteHashTag(index)}>
+                  {el}
+                </span>
+              ))}
+              <input type="text" onKeyUp={props.onKeyUpHashTag} />
+            </div>
+          )}
+          <br />
           상품설명 :
           {props.isEdit ? (
             <ReactQuill

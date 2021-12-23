@@ -42,4 +42,7 @@ export interface FormValues {
   onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>): void;
   onClickMoveToDetail: () => void;
   onChangeFileUrls: (fileUrl: string, index: number) => void;
+  hashArr: string[];
+  onKeyUpHashTag: (event: any) => void;
+  deleteHashTag: (index: any) => () => void;
 }

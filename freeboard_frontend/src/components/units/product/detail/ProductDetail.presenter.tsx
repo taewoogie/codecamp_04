@@ -1,6 +1,4 @@
 import DOMPurify from "dompurify";
-import PaymentPage from "../../../commons/payment";
-import Payment from "../../../commons/payment/payment.container";
 
 interface IProductDetailUI {
   onClickMoveToProductList: () => void;
@@ -12,14 +10,7 @@ interface IProductDetailUI {
 }
 
 export default function ProductDetailUI(props: IProductDetailUI) {
-  // =====================================
-  //          상품 등록 유저 정보 (판매자 ID 값)
-  // =====================================
   const sellerId = props.data?.fetchUseditem.seller._id;
-
-  // ===========================================
-  //          로그인 유저 정보 (현재 나의 ID 값)
-  // ===========================================
   const myId = props.fetchUser?.fetchUserLoggedIn._id;
 
   return (
@@ -38,6 +29,9 @@ export default function ProductDetailUI(props: IProductDetailUI) {
           .toString()
           .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원"}
       </div>
+
+      <h1>태그</h1>
+      <div>{props.data?.fetchUseditem.tags}</div>
 
       <h1>상품설명</h1>
       {process.browser ? (

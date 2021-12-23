@@ -24,6 +24,7 @@ export default function ProductWrite(props: IProductWriteProps) {
   // const [lng, setLng] = useState("");
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const [isOpen, setIsOpen] = useState(false);
+  const [hashArr, setHashArr] = useState<string[]>([]);
 
   const [createUseditem] = useMutation<
     Pick<IMutation, "createUseditem">,
@@ -47,37 +48,38 @@ export default function ProductWrite(props: IProductWriteProps) {
     trigger("contents");
   };
 
-  function onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>) {
+  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
     setAddressDetail(event.target.value);
-  }
+  };
 
-  function onClickAddressSearch() {
+  const onClickAddressSearch = () => {
     setIsOpen(true);
-  }
+  };
 
-  function onCompleteAddressSearch(data: any) {
+  const onCompleteAddressSearch = (data: any) => {
     setAddress(data.address);
     setZipcode(data.zonecode);
     setIsOpen(false);
-  }
-  function handleOk() {
-    setIsOpen((prev) => !prev);
-  }
-  function handleCancel() {
-    setIsOpen((prev) => !prev);
-  }
+  };
 
-  // function onChangeFileUrls(fileUrl: string, index: number) {
-  //   const newFileUrls = [...fileUrls];
-  //   newFileUrls[index] = fileUrl;
-  //   setFileUrls(newFileUrls);
-  // }
+  const handleOk = () => {
+    setIsOpen((prev) => !prev);
+  };
+  const handleCancel = () => {
+    setIsOpen((prev) => !prev);
+  };
 
-  // useEffect(() => {
-  //   if (props.data?.fetchUseditem.images?.length) {
-  //     setFileUrls([...props.data?.fetchUseditem.images]);
-  //   }
-  // }, [props.data]);
+  const onKeyUpHashTag = (event) => {
+    if (event.keyCode === 32 && event.target.value !== "") {
+      setHashArr([...hashArr, `#${event.target.value}`]);
+      event.target.value = "";
+    }
+  };
+
+  const deleteHashTag = (index) => () => {
+    hashArr.splice(index, 1);
+    setHashArr([...hashArr]);
+  };
 
   const onClickSubmit = async (data: FormValues) => {
     // createUsedItem 요청
@@ -91,7 +93,7 @@ export default function ProductWrite(props: IProductWriteProps) {
             remarks: data.remarks,
             price: data.price,
             contents: data.contents,
-            tags: data.tags,
+            tags: hashArr,
             images: fileUrls,
             useditemAddress: {
               zipcode,
@@ -117,6 +119,7 @@ export default function ProductWrite(props: IProductWriteProps) {
       price: data.price,
       contents: data.contents,
       images: fileUrls,
+      tags: hashArr,
     };
 
     console.log(updateUseditemInput);
@@ -186,6 +189,11 @@ export default function ProductWrite(props: IProductWriteProps) {
       remarks={""}
       price={0}
       contents={""}
+      // 해쉬태그
+      hashArr={hashArr}
+      setHashArr={setHashArr}
+      onKeyUpHashTag={onKeyUpHashTag}
+      deleteHashTag={deleteHashTag}
     />
   );
 }

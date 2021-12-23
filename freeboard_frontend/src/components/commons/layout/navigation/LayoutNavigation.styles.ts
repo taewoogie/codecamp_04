@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  width: 100%;
   height: 64px;
-  background-color: #ffcce6;
+  /* background-color: #ffcce6; */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  color: white;
+  color: #333;
 `;
 
 export const MenuItem = styled.div`
@@ -16,6 +17,8 @@ export const MenuItem = styled.div`
   cursor: pointer;
 
   :hover {
-    color: orange;
+    overflow: hidden;
+    transform: scale(1.05, 1.05);
+    transition-duration: 0.5s;
   }
 `;

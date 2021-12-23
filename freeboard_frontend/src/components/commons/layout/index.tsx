@@ -6,15 +6,23 @@ import { ReactNode } from "react";
 import { useRouter } from "next/router";
 
 const Body = styled.div`
-  height: 500px;
+  margin: 0 auto;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* background-color: lightgray; */
 `;
 
 // 레이아웃 숨길 페이지
 const HIDDEN_HEADERS = ["/", "/signinGoogle", "/signinID", "/signup"];
-const HIDDEN_BANNERS = ["/", "/signinGoogle", "/signinID", "/signup"];
+const HIDDEN_BANNERS = [
+  "/",
+  "/signinGoogle",
+  "/signinID",
+  "/signup",
+  "/product",
+];
 const HIDDEN_NAVS = ["/", "/signinGoogle", "/signinID", "/signup"];
 const HIDDEN_FOOTERS = ["/", "/signinGoogle", "/signinID", "/signup"];
 
@@ -32,7 +40,7 @@ export default function Layout(props: ILayoutProps) {
   return (
     <>
       {!isHiddenHeader && <LayoutHeader />}
-      {!isHiddenBanners && <LayoutBanner />}
+      {/* {!isHiddenBanners && <LayoutBanner />} */}
       {!isHiddenNavs && <LayoutNavigation />}
       <Body>{props.children}</Body>
     </>

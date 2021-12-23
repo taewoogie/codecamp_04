@@ -5,6 +5,7 @@ export interface IProductListUIProps {
   bestUsedItems?: Pick<IQuery, "fetchUseditemsOfTheBest">;
   onClickMoveToProductNew: () => void;
   onClickMoveToProductDetail: () => void;
+  onClickMoveToBestProductDetail: () => void;
   onLoad: () => void;
   onClickPickedUseditem: () => void;
   // handleErrorImg:
