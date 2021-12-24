@@ -51,13 +51,10 @@ export const InnerLogoWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  z-index: 100;
 `;
+
 export const InnerLogo = styled.img`
-  cursor: pointer;
-  /* z-index: 2; */
   width: 150px;
-  height: 150px;
+  cursor: pointer;
 `;

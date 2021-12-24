@@ -23,7 +23,7 @@ export default function LayoutHeader() {
   };
 
   const onClickLogo = () => {
-    router.push("/boards");
+    router.push("/product");
   };
 
   const onClickMoveToSignin = () => {

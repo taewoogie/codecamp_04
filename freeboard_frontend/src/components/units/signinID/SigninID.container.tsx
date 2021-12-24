@@ -39,7 +39,7 @@ export default function SignInID() {
       setAccessToken(result.data?.loginUserExample.accessToken || "");
     } catch (error) {}
     // 로그인 성공된 페이지로 이동시키기!!!
-    router.push("/boards");
+    router.push("/product");
   };
 
   return (

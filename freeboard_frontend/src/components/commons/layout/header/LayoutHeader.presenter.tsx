@@ -28,7 +28,7 @@ export default function LayoutHeaderUI(props: IProps) {
                 {props.fetchUser?.fetchUserLoggedIn?.picture}
               </UserPicture>
             ) : (
-              <UserPicture src="/images/avatar.png" />
+              <UserPicture src="/images/avatar.png"></UserPicture>
             )}
             <UserName>{props.fetchUser?.fetchUserLoggedIn.name}</UserName>
             <UserName2>님 환영합니다!</UserName2>
