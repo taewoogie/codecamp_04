@@ -7,6 +7,7 @@ import {
 import { firebaseApp } from "../_app";
 
 export default function FirebasePage() {
+  
   async function onClickSubmit() {
     const board = collection(getFirestore(firebaseApp), "board");
     await addDoc(board, {
