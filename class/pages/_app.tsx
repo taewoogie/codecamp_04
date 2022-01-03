@@ -22,6 +22,7 @@ import {
 } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 import * as Sentry from "@sentry/nextjs";
+
 // import Head from "next/head";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -36,6 +37,25 @@ const firebaseConfig = {
   messagingSenderId: "706248342975",
   appId: "1:706248342975:web:6f8e5df74172e2a936350a",
   measurementId: "G-PZFJ26BF5D",
+  type: "service_account",
+  project_id: "woogie-project",
+  private_key_id: "cf83e663722cf089bd18304571bd36991d53252c",
+  private_key:
+    "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCuren29l2HkBg7\n5oxdKCj6NI+6jtVp9dWA2QrMk6Yh5731nZux+/1O1Ip+gtqaJsX58QhcNznjSbyR\nK6C6625x8D9UFwyWFlGe0DzNtGvYbQDuQq+WATs592Rr7noctMykaUVpL0nIXJ5Z\nF2V9MAD1JNLYuvMR7L8beyAQy0y+WNZKFXWoFXO5reWDePQ1Ioa8+cw3KGKe99wR\naO+ROtrB2sR3n7xJXpO5gHhgxAJK7ZFnTX7Ru4LNO9tduJMY9aEe8lKTyBGi6Vom\nfDKM+4sWdwuBylmxjB45NmyJGbKa3wnlzkXBHTw2LVEc6ilW5ANPhnOf0+QpVcRl\nJXjFnL17AgMBAAECggEADjfkx+/kzBCMEHAjM7/9meQmYNqYf3/9qXfBO8a26qKY\n4UG7dyDaTQza2xJepdaLHd2jPxJVuWz6ltx0wFJCkq6qEPexVBQr/5/Wmy3Y62xv\n+3TdIvolroG3IFvwf56t26If/sBVIqR7VSgk4CxEn6+oI/EPsQFSyvNaOFO8AvBI\nimXZ3vt9OG9uyTloLrL1dl8klzWx+tfzLjB3crKPuQaa+pf4Rlj6fg44Gvop6ltz\npMiHDMuzFlfmiGWvGG1rsYDc5Zk1XTqC4SSaslqKh+KaK8XXkybNKjfr+pISPbIk\nUm6inWo7xsZhVkSTSTZ/qc7d5V4+ABkIkt+WXlaIcQKBgQDvxjXJXnkqLnvNulF6\nGetp2u+hp5YoFpeHY0hn9d1kvpwDug6xiaMZaG+4+awHF7tNRpyows6gdu8ghmK8\nfXPBeBWitrzCuE4dOmHKDe/A02Ky6iH/0cfp6BAfGGL7ZyH2CYHuFc7qpJF69BEa\nQrsuK6y8dej2GuIBNf2ZS0AvcQKBgQC6gAQJQE6njw0tqVPxmFdUfKgmRdh55qew\npTfMS8YnZtTjSIvv+sVxfCZb9YN7nm9tv0/VWNEzJj0joszmjwFaGcUtSS73XNPP\n+ox8p2TQ76SyH3F7fbSwRd4wVcPl1cff1hwQEQDCJtk715saFBkMywtf9J5kmSPm\nUSYJqhFdqwKBgHbKl5lFcfghAXtCZN1+e/B85J4NXkpMLxSHbrb6y43/FWKPSnpQ\n+3o6EKfvInh9HHHDmxfNM/uyEPTnP4GtEa13ZhiwOkKqdyDp7MrjLrY0xEBp2SBZ\n+ZZ8P4h4V4nAZcX0neer7FC56c2ln9eH2h6cyr6wGBPd67y32AWbj5gxAoGAUVBL\ncjUllgza9BOl0+pV+TI4pidB0TRt3KjMgThwdvFw1H/m84Tk3SwCFYof/5/+eV02\nU5Db9W8wrP7oU4X6Uux1ed80qQlCGKXm5tqdLDOwHTF0ayFNzKVJ0M00Elt5P/C8\nX4zqRbxmbp78swwcN+W3WejvvnC+pEaxTPlnhO0CgYB/fseaY1IyiChubZxnvIot\nFfj5foIQzujADev4hT3cygUsEWgXurcZBj6cp9TIcQdj99Y+/RrrFWNR4wEjyjaj\nD9smVl9XV6HfKZbt/t2Qz9JzGW3iC8VbCIb26OEhWR25ZAIAo6qWYePfop6Y5fs+\nHe6O0QlCYbR/We81MC+FSA==\n-----END PRIVATE KEY-----\n",
+  client_email:
+    "firebase-adminsdk-1h8da@woogie-project.iam.gserviceaccount.com",
+  client_id: "102543135877558199648",
+  auth_uri: "https://accounts.google.com/o/oauth2/auth",
+  token_uri: "https://oauth2.googleapis.com/token",
+  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+  client_x509_cert_url:
+    "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-1h8da%40woogie-project.iam.gserviceaccount.com",
+};
+
+// Email 인증
+export const actionCodeSettings = {
+  url: "http://woogie-project.firebaseapp.com",
+  handleCodeInApp: true,
 };
 
 // Initialize Firebase
